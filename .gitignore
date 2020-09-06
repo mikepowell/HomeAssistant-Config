@@ -11,3 +11,4 @@ harmony*.conf
 *.log
 .cloud
 .storage
+@eaDir/

@@ -1,0 +1,13 @@
+edgeos.key
+secrets.yaml
+.HA_VERSION
+.uuid
+*.db
+*.sqlite
+*.xml
+*.conf
+edgeos.key
+harmony*.conf
+*.log
+.cloud
+.storage

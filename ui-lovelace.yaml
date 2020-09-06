@@ -1,0 +1,472 @@
+title: Michael
+views:
+  - badges: []
+    cards:
+      - cards:
+          - cards:
+
+              - entity: scene.basement_work_mode_on
+                icon: 'mdi:account-hard-hat'
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.basement_work_mode_on
+                type: button
+
+              - entity: scene.basement_work_mode_off
+                hold_action:
+                  action: none
+                icon: 'mdi:account-hard-hat'
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.basement_work_mode_off
+                type: button
+
+            type: horizontal-stack
+        type: vertical-stack
+    icon: 'mdi:home-assistant'
+    title: ''
+
+  - badges: []
+    cards:
+      - cards:
+          - content: '### Front room'
+            type: markdown
+          - cards:
+              - entity: switch.front_room_floor_lamp
+                hold_action:
+                  action: more-info
+                icon_height: 36px
+                name: Floor lamp
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: light.bookshelf_lights
+                hold_action:
+                  action: more-info
+                icon: 'mdi:track-light'
+                icon_height: 36px
+                name: Bookshelves
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
+            type: horizontal-stack
+          - content: '### Living room'
+            type: markdown
+          - cards:
+              - entity: light.sofa_lights
+                hold_action:
+                  action: more-info
+                icon: 'mdi:wall-sconce-flat'
+                icon_height: 36px
+                name: Sofa
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: switch.end_table_lamp
+                hold_action:
+                  action: more-info
+                icon: 'mdi:lamp'
+                icon_height: 36px
+                name: End table
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: switch.living_room_lamp
+                hold_action:
+                  action: more-info
+                icon: 'mdi:floor-lamp'
+                icon_height: 36px
+                name: Floor lamp
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
+            type: horizontal-stack
+          - content: '### Basement'
+            type: markdown
+          - cards:
+              - entity: light.basement_office
+                hold_action:
+                  action: more-info
+                icon: 'mdi:wall-sconce-flat'
+                icon_height: 36px
+                name: Ceiling
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: switch.basement_floor_lamp_gosund
+                hold_action:
+                  action: more-info
+                icon: 'mdi:lamp'
+                icon_height: 36px
+                name: Desk
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: light.basement_stairs_light
+                hold_action:
+                  action: more-info
+                icon: 'mdi:ceiling-light'
+                icon_height: 36px
+                name: Stairs
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
+            type: horizontal-stack
+          - content: '### Upstairs'
+            type: markdown
+          - cards:
+              - entity: switch.spare_room_lamp
+                hold_action:
+                  action: more-info
+                icon: 'mdi:lamp'
+                icon_height: 36px
+                name: Spare room
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
+            type: horizontal-stack
+          - content: '### Outdoor'
+            type: markdown
+          - cards:
+              - entity: light.porch_lights
+                hold_action:
+                  action: more-info
+                icon: 'mdi:dome-light'
+                icon_height: 36px
+                name: Porch
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: light.front_entry_lights
+                hold_action:
+                  action: more-info
+                icon: 'mdi:coach-lamp'
+                icon_height: 36px
+                name: Entry
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: switch.aeotec_cord
+                hold_action:
+                  action: more-info
+                icon: 'mdi:string-lights'
+                icon_height: 36px
+                name: String
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: switch.patio_lights
+                hold_action:
+                  action: more-info
+                icon: 'mdi:coach-lamp'
+                icon_height: 36px
+                name: Patio
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: switch.barn_barn_front_lights
+                hold_action:
+                  action: more-info
+                icon: 'mdi:outdoor-lamp'
+                icon_height: 36px
+                name: Barn
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
+            type: horizontal-stack
+          - content: '### Floodlights'
+            type: markdown
+          - cards:
+              - entity: switch.flood_back
+                hold_action:
+                  action: more-info
+                icon: 'mdi:car-light-high'
+                icon_height: 36px
+                name: Back
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: switch.flood_garage
+                hold_action:
+                  action: more-info
+                icon: 'mdi:car-light-high'
+                icon_height: 36px
+                name: Garage
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: switch.flood_side
+                hold_action:
+                  action: more-info
+                icon: 'mdi:car-light-high'
+                icon_height: 36px
+                name: Side
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
+              - entity: switch.barn_barn_flood_lights
+                hold_action:
+                  action: more-info
+                icon: 'mdi:car-light-high'
+                icon_height: 36px
+                name: Barn
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
+            type: horizontal-stack
+        type: vertical-stack
+    icon: 'mdi:home-assistant'
+    path: main
+    title: ''
+  - badges: []
+    cards:
+      - cards:
+          - cards:
+              - entity: sensor.my_weather_station_temp
+                graph: line
+                name: Temp
+                type: sensor
+              - entity: sensor.my_weather_station_humidity
+                graph: line
+                name: Humidity
+                type: sensor
+              - entity: sensor.my_weather_station_rel_pressure
+                graph: line
+                name: Pressure
+                type: sensor
+            type: horizontal-stack
+          - cards:
+              - entity: sensor.my_weather_station_wind_speed
+                graph: line
+                icon: 'mdi:weather-windy'
+                name: Wind
+                type: sensor
+              - entity: sensor.my_weather_station_wind_gust
+                graph: line
+                icon: 'mdi:weather-windy'
+                name: Gust
+                type: sensor
+            type: horizontal-stack
+          - cards:
+              - entity: sensor.my_weather_station_hourly_rain_rate
+                graph: line
+                icon: 'mdi:weather-pouring'
+                name: Rate
+                type: sensor
+              - entity: sensor.my_weather_station_daily_rain
+                graph: line
+                icon: 'mdi:weather-pouring'
+                name: Daily
+                type: sensor
+            type: horizontal-stack
+        type: vertical-stack
+      - entities:
+          - entity: sensor.my_weather_station_temp
+            name: Temperature
+          - entity: sensor.my_weather_station_humidity
+            name: Humidity
+          - entity: sensor.my_weather_station_wind_speed
+            name: Wind speed
+          - entity: sensor.my_weather_station_wind_gust
+            name: Wind gust
+          - entity: sensor.my_weather_station_hourly_rain_rate
+            name: Hourly rain rate
+          - entity: sensor.my_weather_station_daily_rain
+            name: Daily rain
+        hours_to_show: 24
+        refresh_interval: 0
+        type: history-graph
+    icon: 'mdi:weather-partly-snowy-rainy'
+    title: ''
+  - badges: []
+    cards:
+      - entity: climate.main_floor
+        name: Main Floor
+        theme: Backend-selected
+        type: thermostat
+      - entity: climate.upstairs
+        name: Upstairs
+        theme: Backend-selected
+        type: thermostat
+    icon: 'mdi:thermostat'
+    panel: false
+    path: ''
+    title: ''
+  - badges: []
+    cards:
+      - cards:
+          - content: '### Synology'
+            type: markdown
+          - cards:
+              - cards:
+                  - entity: sensor.syno_cpu_load_5_min
+                    graph: line
+                    hours_to_show: 6
+                    name: CPU
+                    type: sensor
+                  - entity: sensor.syno_memory_usage_real
+                    graph: line
+                    name: RAM
+                    type: sensor
+                type: horizontal-stack
+              - cards:
+                  - entity: sensor.syno_network_down
+                    graph: line
+                    hours_to_show: 6
+                    name: Down
+                    type: sensor
+                  - entity: sensor.syno_network_up
+                    graph: line
+                    hours_to_show: 6
+                    name: Up
+                    type: sensor
+                type: horizontal-stack
+              - entities:
+                  - entity: sensor.syno_network_down
+                    name: Network down
+                  - entity: sensor.syno_network_up
+                    name: Network up
+                hours_to_show: 12
+                refresh_interval: 0
+                type: history-graph
+              - entities:
+                  - entity: sensor.syno_cpu_load_15_min
+                    name: CPU load (15m)
+                  - entity: sensor.syno_cpu_load_5_min
+                    name: CPU load (5m)
+                hours_to_show: 12
+                refresh_interval: 0
+                type: history-graph
+            type: vertical-stack
+        type: vertical-stack
+      - cards:
+          - content: '### UDM Pro'
+            type: markdown
+          - entities:
+              - entity: sensor.udm_pro_rx
+                name: RX
+              - entity: sensor.udm_pro_tx
+                name: TX
+            hours_to_show: 24
+            type: history-graph
+          - entities:
+              - entity: sensor.synology_nas_rx
+                name: Syno RX
+              - entity: sensor.synology_nas_tx
+                name: Syno TX
+            hours_to_show: 12
+            refresh_interval: 0
+            type: history-graph
+        type: vertical-stack
+    icon: 'mdi:chart-bell-curve-cumulative'
+    path: ''
+    title: ''
+  - badges: []
+    cards:
+      - entities:
+          - entity: lock.front_door_lock
+            name: Front door
+          - entity: lock.porch_door_lock
+            name: Porch door
+          - entity: lock.basement_door_lock
+            name: Basement door
+          - entity: sensor.front_door_lock_battery
+            name: Front door battery
+          - entity: sensor.porch_door_lock_battery
+            name: Porch door battery
+          - entity: sensor.basement_door_lock_battery
+            name: Basement door battery
+        title: Doors
+        type: entities
+    icon: 'mdi:door-closed-lock'
+    path: ''
+    title: ''
+  - badges: []
+    cards:
+      - entities:
+          - entity: sensor.smoke_main_smoke_detector
+            name: Main floor smoke
+          - entity: sensor.smoke_upstairs_smoke_detector
+            name: Upstairs smoke
+          - entity: sensor.smoke_basement_smoke_detector
+            name: Basement smoke
+          - entity: sensor.workshop_smoke_detector_smoke_detector
+            name: Workshop smoke
+          - entity: sensor.smoke_main_carbon_monoxide_detector
+            name: Main floor CO
+          - entity: sensor.smoke_upstairs_carbon_monoxide_detector
+            name: Upstairs CO
+          - entity: sensor.smoke_basement_carbon_monoxide_detector
+            name: Basement CO
+          - entity: sensor.workshop_smoke_detector_carbon_monoxide_detector
+            name: Workshop CO
+          - entity: sensor.smoke_main_battery
+            name: Main floor battery
+          - entity: sensor.smoke_upstairs_battery
+            name: Upstairs battery
+          - entity: sensor.smoke_basement_battery
+            name: Basement battery
+          - entity: sensor.workshop_smoke_detector_battery
+            name: Workshop battery
+          - entity: binary_sensor.motion_sensor_home_security_motion_detected
+          - entity: binary_sensor.motion_sensor_home_security_motion_detected_2
+          - entity: binary_sensor.motion_sensor_home_security_tampering_cover_removed
+        title: Smoke Detectors
+        type: entities
+    icon: 'mdi:fire'

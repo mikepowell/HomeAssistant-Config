@@ -1,0 +1,8 @@
+mode: yaml
+
+dashboards:
+  lovelace-alison:
+    filename: ui-alison.yaml
+    title: Alison
+    mode: yaml
+    show_in_sidebar: true

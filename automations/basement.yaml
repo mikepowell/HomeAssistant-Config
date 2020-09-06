@@ -1,0 +1,34 @@
+- alias: Turn on basement stairs light on motion
+  trigger:
+    platform: state
+    entity_id: binary_sensor.basement_stairs_motion
+    to: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.basement_stairs_light
+  mode: single
+
+- alias: Turn off basement stairs light after motion end
+  trigger:
+    platform: state
+    entity_id: binary_sensor.basement_stairs_motion
+    to: 'off'
+    for:
+      minutes: 2
+  action:
+    service: light.turn_off
+    entity_id: light.basement_stairs_light
+  mode: single
+
+- alias: Start work mode when phone charging
+  trigger:
+    platform: state
+    entity_id: sensor.michaels_iphone_battery_state
+    to: charging
+  condition:
+    condition: time
+    after: '07:00:00'
+    before: '09:00:00'
+  action:
+    service: scene.turn_on
+    entity_id: scene.basement_work_mode

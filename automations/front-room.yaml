@@ -1,0 +1,17 @@
+- alias: Turn on bookshelf lights when front room lamp turned on
+  trigger:
+    platform: state
+    entity_id: switch.front_room_floor_lamp
+    to: 'on'
+  action:
+    service: light.turn_on
+    entity_id: light.bookshelf_lights
+
+- alias: Turn off bookshelf lights when front room lamp turned off
+  trigger:
+    platform: state
+    entity_id: switch.front_room_floor_lamp
+    to: 'off'
+  action:
+    service: light.turn_off
+    entity_id: light.bookshelf_lights

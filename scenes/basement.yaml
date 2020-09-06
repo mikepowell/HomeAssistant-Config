@@ -1,0 +1,12 @@
+- name: Basement work mode on
+  entities:
+    light.basement_office:
+      state: 'on'
+      brightness: 50
+    switch.basement_floor_lamp_gosund: 'on'
+
+- name: Basement work mode off
+  entities:
+    light.basement_office: 'off'
+    switch.basement_floor_lamp_gosund: 'off'
+

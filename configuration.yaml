@@ -1,0 +1,47 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+homeassistant:
+  customize: !include customize.yaml
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+http:
+  base_url: !secret nabu_base_url
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+frontend:
+  themes: !include_dir_merge_named themes/
+
+system_log:
+  max_entries: 200
+
+logger:
+  default: info
+  logs:
+    homeassistant.components.ambient_station: debug
+    aioambient: debug
+
+recorder:
+  purge_keep_days: 30
+
+camera:
+
+tuya: !include tuya.yaml
+
+lovelace: !include lovelace-config.yaml
+
+sensor:
+
+remote_homeassistant: !include remote-homeassistant.yaml
+
+ambient_station:
+  api_key: !secret ambient_api_key
+  app_key: !secret ambient_app_key_2
+
+binary_sensor: !include binary-sensor.yaml
+group: !include groups.yaml
+automation: !include_dir_merge_list automations
+script: !include scripts.yaml
+scene: !include_dir_merge_list scenes

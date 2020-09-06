@@ -1,0 +1,4 @@
+username: !secret gmail_address
+password: !secret tuya_password
+country_code: 1
+platform: smart_life

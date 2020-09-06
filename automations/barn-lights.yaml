@@ -1,0 +1,33 @@
+- alias: Turn barn lights on in the morning
+  trigger:
+    platform: time
+    at: 05:30
+  action:
+    service: switch.turn_on
+    entity_id: switch.barn_barn_front_lights
+
+- alias: Turn barn lights off in the morning
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: +01:00:00
+  action:
+    service: switch.turn_off
+    entity_id: switch.barn_barn_front_lights
+
+- alias: Turn barn lights on in the evening
+  trigger:
+    platform: sun
+    event: sunset
+    offset: -01:00:00
+  action:
+    service: switch.turn_on
+    entity_id: switch.barn_barn_front_lights
+
+- alias: Turn barn lights off in the evening
+  trigger:
+    platform: time
+    at: '23:00'
+  action:
+    service: switch.turn_off
+    entity_id: switch.barn_barn_front_lights

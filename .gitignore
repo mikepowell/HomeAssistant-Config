@@ -3,6 +3,8 @@ secrets.yaml
 .HA_VERSION
 .uuid
 *.db
+*.db-shm
+*.db-wal
 *.sqlite
 *.xml
 *.conf

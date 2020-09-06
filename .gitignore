@@ -14,4 +14,4 @@ harmony*.conf
 .cloud
 .storage
 @eaDir/
-# testing
+__pycache__/

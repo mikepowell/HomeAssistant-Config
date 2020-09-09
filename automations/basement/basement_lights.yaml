@@ -1,0 +1,40 @@
+- alias: 'Basement lights to Off'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: input_select.basement_lights
+      to: 'Off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.basement_floor_lamp_gosund
+    - service: light.turn_off
+      entity_id: light.basement_office
+
+- alias: 'Basement lights to On'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: input_select.basement_lights
+      to: 'On'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.basement_floor_lamp_gosund
+    - service: light.turn_on
+      data:
+        entity_id: light.basement_office
+        brightness: 255
+
+- alias: 'Basement lights to Working'
+  initial_state: 'on'
+  trigger:
+    - platform: state
+      entity_id: input_select.basement_lights
+      to: 'Working'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.basement_floor_lamp_gosund
+    - service: light.turn_on
+      data:
+        entity_id: light.basement_office
+        brightness: 50
+

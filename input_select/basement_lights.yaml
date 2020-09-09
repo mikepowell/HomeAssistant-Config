@@ -1,0 +1,7 @@
+# include_dir_merge_named
+
+name: Basement lights
+options:
+  - 'On'
+  - 'Working'
+  - 'Off'

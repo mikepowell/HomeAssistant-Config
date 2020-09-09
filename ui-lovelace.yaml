@@ -3,42 +3,6 @@ views:
   - badges: []
     cards:
       - cards:
-          - cards:
-
-              - entity: scene.basement_work_mode_on
-                icon: 'mdi:account-hard-hat'
-                show_icon: true
-                show_name: true
-                show_state: false
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.basement_work_mode_on
-                type: button
-
-              - entity: scene.basement_work_mode_off
-                hold_action:
-                  action: none
-                icon: 'mdi:account-hard-hat'
-                show_icon: true
-                show_name: true
-                show_state: false
-                tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.basement_work_mode_off
-                type: button
-
-            type: horizontal-stack
-        type: vertical-stack
-    icon: 'mdi:home-assistant'
-    title: ''
-
-  - badges: []
-    cards:
-      - cards:
           - content: '### Front room'
             type: markdown
           - cards:
@@ -101,12 +65,14 @@ views:
                   action: toggle
                 type: button
             type: horizontal-stack
-          - content: '### Basement'
-            type: markdown
-          - cards:
-              - entity: light.basement_office
-                hold_action:
-                  action: more-info
+
+          - type: markdown
+            content: '### Basement'
+
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: light.basement_office
                 icon: 'mdi:wall-sconce-flat'
                 icon_height: 36px
                 name: Ceiling
@@ -115,7 +81,9 @@ views:
                 show_state: false
                 tap_action:
                   action: toggle
-                type: button
+                hold_action:
+                  action: more-info
+
               - entity: switch.basement_floor_lamp_gosund
                 hold_action:
                   action: more-info
@@ -138,7 +106,63 @@ views:
                 tap_action:
                   action: toggle
                 type: button
-            type: horizontal-stack
+
+          - type: horizontal-stack
+            cards:
+              - type: button
+                entity: light.basement_office
+                icon: 'mdi:lightbulb-multiple'
+                icon_height: 36px
+                name: 'Off'
+                show_icon: true
+                show_name: true
+                show_state: false
+                state_color: false
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.basement_lights
+                    option: 'Off'
+                hold_action:
+                  action: more-info
+
+              - type: button
+                entity: light.basement_office
+                icon: 'mdi:lightbulb-multiple'
+                icon_height: 36px
+                name: 'On'
+                show_icon: true
+                show_name: true
+                show_state: false
+                state_color: false
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.basement_lights
+                    option: 'On'
+                hold_action:
+                  action: more-info
+
+              - type: button
+                entity: light.basement_office
+                icon: 'mdi:lightbulb-multiple'
+                icon_height: 36px
+                name: 'Working'
+                show_icon: true
+                show_name: true
+                show_state: false
+                state_color: false
+                tap_action:
+                  action: call-service
+                  service: input_select.select_option
+                  service_data:
+                    entity_id: input_select.basement_lights
+                    option: 'Working'
+                hold_action:
+                  action: more-info
+
           - content: '### Upstairs'
             type: markdown
           - cards:

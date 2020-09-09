@@ -43,6 +43,8 @@ ambient_station:
   api_key: !secret ambient_api_key
   app_key: !secret ambient_app_key_2
 
+input_select: !include_dir_named input_select
+
 binary_sensor: !include binary-sensor.yaml
 group: !include groups.yaml
 automation: !include_dir_merge_list automations

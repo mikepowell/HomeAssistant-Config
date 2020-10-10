@@ -1,5 +1,5 @@
 instances:
-  - host: 192.168.1.96
+  - host: 192.168.10.14
     port: 8123
     access_token: !secret barn_hassio_token
     entity_prefix: barn_

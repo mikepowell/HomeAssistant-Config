@@ -180,7 +180,8 @@ views:
             type: horizontal-stack
           - content: '### Outdoor'
             type: markdown
-          - cards:
+          - type: horizontal-stack
+            cards:
               - entity: light.porch_lights
                 hold_action:
                   action: more-info
@@ -217,6 +218,8 @@ views:
                 tap_action:
                   action: toggle
                 type: button
+          - type: horizontal-stack
+            cards:
               - entity: switch.patio_lights
                 hold_action:
                   action: more-info
@@ -241,7 +244,18 @@ views:
                 tap_action:
                   action: toggle
                 type: button
-            type: horizontal-stack
+              - entity: light.holiday_lights
+                hold_action:
+                  action: more-info
+                icon: 'mdi:string-lights'
+                icon_height: 36px
+                name: Holiday
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
           - content: '### Floodlights'
             type: markdown
           - cards:
@@ -444,26 +458,6 @@ views:
   - badges: []
     cards:
       - entities:
-          - entity: lock.front_door_lock
-            name: Front door
-          - entity: lock.porch_door_lock
-            name: Porch door
-          - entity: lock.basement_door_lock
-            name: Basement door
-          - entity: sensor.front_door_lock_battery
-            name: Front door battery
-          - entity: sensor.porch_door_lock_battery
-            name: Porch door battery
-          - entity: sensor.basement_door_lock_battery
-            name: Basement door battery
-        title: Doors
-        type: entities
-    icon: 'mdi:door-closed-lock'
-    path: ''
-    title: ''
-  - badges: []
-    cards:
-      - entities:
           - entity: sensor.smoke_main_smoke_detector
             name: Main floor smoke
           - entity: sensor.smoke_upstairs_smoke_detector
@@ -488,9 +482,6 @@ views:
             name: Basement battery
           - entity: sensor.workshop_smoke_detector_battery
             name: Workshop battery
-          - entity: binary_sensor.motion_sensor_home_security_motion_detected
-          - entity: binary_sensor.motion_sensor_home_security_motion_detected_2
-          - entity: binary_sensor.motion_sensor_home_security_tampering_cover_removed
         title: Smoke Detectors
         type: entities
     icon: 'mdi:fire'

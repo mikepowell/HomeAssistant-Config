@@ -242,23 +242,3 @@ views:
     panel: false
     path: ''
     title: ''
-  - badges: []
-    cards:
-      - entities:
-          - entity: lock.front_door_lock
-            name: Front door
-          - entity: lock.porch_door_lock
-            name: Porch door
-          - entity: lock.basement_door_lock
-            name: Basement door
-          - entity: sensor.front_door_lock_battery
-            name: Front door battery
-          - entity: sensor.porch_door_lock_battery
-            name: Porch door battery
-          - entity: sensor.basement_door_lock_battery
-            name: Basement door battery
-        title: Doors
-        type: entities
-    icon: 'mdi:door-closed-lock'
-    path: ''
-    title: ''

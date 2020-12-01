@@ -66,7 +66,8 @@ views:
             type: horizontal-stack
           - content: '### Outdoor'
             type: markdown
-          - cards:
+          - type: horizontal-stack
+            cards:
               - entity: light.porch_lights
                 hold_action:
                   action: more-info
@@ -103,6 +104,8 @@ views:
                 tap_action:
                   action: toggle
                 type: button
+          - type: horizontal-stack
+            cards:
               - entity: switch.patio_lights
                 hold_action:
                   action: more-info
@@ -127,7 +130,18 @@ views:
                 tap_action:
                   action: toggle
                 type: button
-            type: horizontal-stack
+              - entity: light.holiday_lights
+                hold_action:
+                  action: more-info
+                icon: 'mdi:string-lights'
+                icon_height: 36px
+                name: Holiday
+                show_icon: true
+                show_name: true
+                show_state: false
+                tap_action:
+                  action: toggle
+                type: button
           - content: '### Floodlights'
             type: markdown
           - cards:

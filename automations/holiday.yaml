@@ -1,0 +1,41 @@
+- alias: Holiday lights on
+  description: Turn on holiday lights on porch
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:15:00" # 15m before sunset
+  action:
+    service: light.turn_on
+    entity_id: light.holiday_lights
+  mode: single
+
+- alias: Holiday lights off
+  description: Turn off holiday lights on porch
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: "00:15:00" # 15m after sunset
+  action:
+    service: light.turn_off
+    entity_id: light.holiday_lights
+  mode: single
+
+- alias: Christmas tree on
+  description: Turn on xmas tree in the morning
+  trigger:
+    platform: time
+    at: "06:00:00"
+  action:
+    service: switch.turn_on
+    entity_id: switch.christmas_tree
+  mode: single
+
+- alias: Christmas tree off
+  description: Turn off xmas tree at night
+  trigger:
+    platform: time
+    at: "22:00:00"
+  action:
+    service: switch.turn_off
+    entity_id: switch.christmas_tree
+  mode: single

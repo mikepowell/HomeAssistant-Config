@@ -29,7 +29,8 @@ views:
             type: horizontal-stack
           - content: '### Living room'
             type: markdown
-          - cards:
+          - type: horizontal-stack
+            cards:
               - entity: light.sofa_lights
                 hold_action:
                   action: more-info
@@ -63,7 +64,17 @@ views:
                 tap_action:
                   action: toggle
                 type: button
-            type: horizontal-stack
+              - entity: switch.christmas_tree
+                hold_action:
+                  action: more-info
+                icon: 'mdi:string-lights'
+                icon_height: 36px
+                name: Xmas
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
           - content: '### Outdoor'
             type: markdown
           - type: horizontal-stack

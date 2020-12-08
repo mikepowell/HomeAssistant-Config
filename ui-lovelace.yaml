@@ -5,7 +5,8 @@ views:
       - cards:
           - content: '### Front room'
             type: markdown
-          - cards:
+          - type: horizontal-stack
+            cards:
               - entity: switch.front_room_floor_lamp
                 hold_action:
                   action: more-info
@@ -27,7 +28,7 @@ views:
                 tap_action:
                   action: toggle
                 type: button
-            type: horizontal-stack
+
           - content: '### Living room'
             type: markdown
           - type: horizontal-stack
@@ -79,7 +80,6 @@ views:
 
           - type: markdown
             content: '### Basement'
-
           - type: horizontal-stack
             cards:
               - type: button
@@ -176,19 +176,31 @@ views:
 
           - content: '### Upstairs'
             type: markdown
-          - cards:
+          - type: horizontal-stack
+            cards:
               - entity: switch.spare_room_lamp
                 hold_action:
                   action: more-info
                 icon: 'mdi:lamp'
                 icon_height: 36px
-                name: Spare room
+                name: Nightstand
                 show_icon: true
                 show_name: true
                 tap_action:
                   action: toggle
                 type: button
-            type: horizontal-stack
+              - entity: switch.spare_room_dresser
+                hold_action:
+                  action: more-info
+                icon: 'mdi:lamp'
+                icon_height: 36px
+                name: Dresser
+                show_icon: true
+                show_name: true
+                tap_action:
+                  action: toggle
+                type: button
+
           - content: '### Outdoor'
             type: markdown
           - type: horizontal-stack

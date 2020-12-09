@@ -20,7 +20,6 @@ var buttonManager = require("buttons");
 var http = require("http");
 
 // IP address or hostname of home assistant
-// Note that HA must be on the same local subnet as the Flic Hub!
 var ha_address = "192.168.10.13";
 
 // Port number for the HA web interface
@@ -33,8 +32,10 @@ var baseUrl = "http://" + ha_address + ":" + ha_port + "/api/webhook/" + webhook
 
 buttonManager.on("buttonSingleOrDoubleClickOrHold", function(evt) {
   var button = buttonManager.getButton(evt.bdaddr);
+  var buttonName = button.name ? button.name : "unnamed-" + button.serialNumber
   var clickType = evt.isSingleClick ? "click" : evt.isDoubleClick ? "doubleclick" : "hold";
-  var name = button.name.toLowerCase().replace(" ", "-");
+
+  var name = buttonName.toLowerCase().replace(" ", "-");
   var url = baseUrl + name + "_" + clickType;
 
   http.makeRequest(
@@ -49,7 +50,7 @@ buttonManager.on("buttonSingleOrDoubleClickOrHold", function(evt) {
           console.log("HTTP request: " + url);
       }
       else {
-          console.log("Error sending http request for " + button.name + ":"
+          console.log("Error sending http request for " + buttonName + ":"
           + button.serialNumber + " - status " + res.statusCode );
       }
     }

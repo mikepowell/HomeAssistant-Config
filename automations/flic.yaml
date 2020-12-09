@@ -1,0 +1,19 @@
+- alias: Set basement office to Working on Flic click
+  trigger:
+    platform: webhook
+    webhook_id: flic_office-desk_click
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.basement_lights
+      option: 'Working'
+
+- alias: Set basement office to Off on Flic double click
+  trigger:
+    platform: webhook
+    webhook_id: flic_office-desk_doubleclick
+  action:
+    service: input_select.select_option
+    data:
+      entity_id: input_select.basement_lights
+      option: 'Off'

@@ -1,6 +1,7 @@
 # include_dir_merge_named
 
 name: Basement lights
+icon: mdi:lightbulb-multiple
 options:
   - 'On'
   - 'Working'

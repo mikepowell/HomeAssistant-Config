@@ -1,6 +1,18 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
+
 homeassistant:
+  # Name of the location where Home Assistant is running
+  name: !secret property_name
+  # Required to calculate sunrise/sunset
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 150
+  # metric or imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: !secret timezone
   customize: !include customize.yaml
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
@@ -34,6 +46,9 @@ camera:
 tuya: !include tuya.yaml
 
 lovelace: !include lovelace-config.yaml
+
+hacs:
+  token: !secret github_token
 
 sensor:
 

@@ -13,15 +13,15 @@
   condition:
     condition: or
     conditions:
-    - below: '40'
-      condition: numeric_state
-      entity_id: sensor.basement_door_lock_battery
-    - below: '40'
-      condition: numeric_state
-      entity_id: sensor.front_door_lock_battery
-    - below: '40'
-      condition: numeric_state
-      entity_id: sensor.porch_door_lock_battery
+      - below: '40'
+        condition: numeric_state
+        entity_id: sensor.basement_door_lock_battery
+      - below: '40'
+        condition: numeric_state
+        entity_id: sensor.front_door_lock_battery
+      - below: '40'
+        condition: numeric_state
+        entity_id: sensor.porch_door_lock_battery
   action:
     data:
       message: Door lock battery low!

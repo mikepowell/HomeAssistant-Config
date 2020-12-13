@@ -3,7 +3,7 @@
   trigger:
     platform: sun
     event: sunset
-    offset: "-00:15:00" # 15m before sunset
+    offset: "-00:15:00"  # 15m before sunset
   action:
     service: light.turn_on
     entity_id: light.holiday_lights
@@ -14,7 +14,7 @@
   trigger:
     platform: sun
     event: sunrise
-    offset: "00:15:00" # 15m after sunset
+    offset: "00:15:00"  # 15m after sunset
   action:
     service: light.turn_off
     entity_id: light.holiday_lights

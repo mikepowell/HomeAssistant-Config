@@ -35,11 +35,6 @@ rules:
   document-end:
     level: error
     present: false
-  document-start:
-    level: error
-    present: true
-    ignore: |
-      config/known_devices.yaml
   empty-lines:
     level: error
     max: 1

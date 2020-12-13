@@ -47,9 +47,6 @@ tuya: !include tuya.yaml
 
 lovelace: !include lovelace-config.yaml
 
-hacs:
-  token: !secret github_token
-
 sensor:
 
 remote_homeassistant: !include remote-homeassistant.yaml

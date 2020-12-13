@@ -1,16 +1,9 @@
 ---
 ignore: |
   config/custom_components/
-  config/ip_bans.yaml
-  config/esphomeyaml/*/
-  config/notebooks/
   config/automations.yaml
   config/scenes.yaml
-  config/themes/clear.yaml
-  config/themes/slate.yaml
-  config/themes/clear-dark.yaml
-  config/themes/synthwave.yaml
-  config/themes/purple.yaml
+  config/themes/
 rules:
   braces:
     level: error
@@ -63,9 +56,6 @@ rules:
   key-duplicates:
     level: error
   line-length:
-    ignore: |
-      .github/support.yml
-      .github/settings.yml
     level: warning
     max: 88
     allow-non-breakable-words: true

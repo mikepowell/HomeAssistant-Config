@@ -23,9 +23,6 @@ http:
 tts:
   - platform: google_translate
 
-frontend:
-  themes: !include_dir_merge_named themes/
-
 influxdb:
   host: 192.168.10.13
   port: 8086
@@ -41,13 +38,13 @@ logger:
 recorder:
   purge_keep_days: 30
 
-camera:
+camera: []
 
 tuya: !include tuya.yaml
 
 lovelace: !include lovelace-config.yaml
 
-sensor:
+sensor: []
 
 remote_homeassistant: !include remote-homeassistant.yaml
 

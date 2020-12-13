@@ -1,18 +1,31 @@
-edgeos.key
-secrets.yaml
-.HA_VERSION
-.uuid
+# Generic ignores
+*.log
 *.db
 *.db-shm
 *.db-wal
-*.sqlite
-*.xml
-*.conf
-edgeos.key
-harmony*.conf
-*.log
-.cloud
-.storage
-@eaDir/
-__pycache__/
-tts/*.mp3
+*.pyc
+._*
+__pycache__
+
+# Directory (contents) ignores
+config/.cloud
+config/.storage
+config/deps
+
+# Specific file ignores
+config/.config_entries.json
+config/.homekit.state
+config/.ios.conf
+config/.spotify-token-cache
+config/.tradfri_psk.conf
+config/.uuid
+config/core
+config/html5_push_registrations.conf
+config/image
+config/ip_bans.yaml
+config/options.xml
+config/scripts.yaml
+config/secrets.yaml
+
+# Specific keeps
+!.gitkeep

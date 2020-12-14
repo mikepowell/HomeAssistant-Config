@@ -11,14 +11,14 @@
 # dashboards themselves.
 #
 # https://www.home-assistant.io/lovelace/dashboards-and-views/#dashboards
-primary:
+ui-primary:
   mode: yaml
   title: Primary
   icon: mdi:head-cog
   show_in_sidebar: true
   filename: lovelace/ui-primary/dashboard.yaml
 
-alison:
+ui-alison:
   mode: yaml
   title: Minimal
   icon: mdi:head-cog

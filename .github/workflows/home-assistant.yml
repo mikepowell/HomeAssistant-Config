@@ -12,22 +12,24 @@ jobs:
   yamllint:
     runs-on: ubuntu-latest
     steps:
-      - name: Getting your configuration from GitHub
+      - name: Getting configuration from GitHub
         uses: actions/checkout@v1
       - name: Running YAMLlint
         uses: "docker://pipelinecomponents/yamllint:latest"
         with:
           args: yamllint .
+
   remarklint:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Getting your configuration from GitHub
+      - name: Getting configuration from GitHub
         uses: actions/checkout@v1
-      - name: Running Remark lint
-        uses: "docker://pipelinecomponents/remark-lint:latest"
-        continue-on-error: true
+      - name: Running MarkdownLint
+        uses: nosborn/github-action-markdown-cli@1.1.1
         with:
-          args: "remark --no-stdout --color --frail --use preset-lint-recommended ."
+          files: .
+          config_file: .markdownlint.yaml
+
   home_assistant_stable:
     runs-on: ubuntu-latest
     needs: [yamllint, remarklint]

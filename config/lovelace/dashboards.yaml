@@ -13,14 +13,14 @@
 # https://www.home-assistant.io/lovelace/dashboards-and-views/#dashboards
 primary:
   mode: yaml
-  title: Michael
+  title: Primary
   icon: mdi:head-cog
   show_in_sidebar: true
-  filename: lovelace/primary/dashboard.yaml
+  filename: lovelace/ui-primary/dashboard.yaml
 
 alison:
   mode: yaml
-  title: Alison
+  title: Minimal
   icon: mdi:head-cog
   show_in_sidebar: true
-  filename: lovelace/alison/dashboard.yaml
+  filename: lovelace/ui-minimal/dashboard.yaml

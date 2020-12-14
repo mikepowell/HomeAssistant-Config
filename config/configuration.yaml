@@ -36,7 +36,7 @@ logger:
     influxdb: debug
 
 recorder:
-  purge_keep_days: 30
+  purge_keep_days: 14
 
 camera: []
 

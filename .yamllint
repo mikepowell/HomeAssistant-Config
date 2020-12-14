@@ -4,6 +4,7 @@ ignore: |
   config/automations.yaml
   config/scenes.yaml
   config/themes/
+  .github/
 rules:
   braces:
     level: error
@@ -57,9 +58,6 @@ rules:
     allow-non-breakable-inline-mappings: true
   new-line-at-end-of-file:
     level: error
-  new-lines:
-    level: error
-    type: unix
   trailing-spaces:
     level: error
   truthy:

@@ -27,5 +27,8 @@ config/options.xml
 config/scripts.yaml
 config/secrets.yaml
 
+# Harmony remote
+config/harmony_*
+
 # Specific keeps
 !.gitkeep

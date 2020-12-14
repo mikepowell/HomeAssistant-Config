@@ -29,6 +29,7 @@ jobs:
         with:
           files: .
           config_file: .markdownlint.yaml
+          ignore_files: config/custom_components/*
 
   home_assistant_stable:
     runs-on: ubuntu-latest

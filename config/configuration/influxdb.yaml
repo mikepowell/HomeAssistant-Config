@@ -1,0 +1,10 @@
+# I store a lot of sensor data into InfluxDB, which allows me to query
+# a longer history with ease. It also allows nice graphing with Grafana.
+#
+# I followed Phil Hawthorne's instructions for setting up both in Docker.
+#
+# https://philhawthorne.com/getting-started-with-grafana-influxdb-for-home-assistant/
+#
+influxdb:
+  host: 192.168.10.13
+  port: 8086

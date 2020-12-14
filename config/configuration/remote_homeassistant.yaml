@@ -1,0 +1,25 @@
+#
+# This integration connects the main HA instance to a remote hassio instance
+# running on a Raspberry Pi in our barn.
+#
+remote_homeassistant:
+  instances:
+    - host: 192.168.10.14
+      port: 8123
+      access_token: !secret barn_hassio_token
+      entity_prefix: barn_
+      include:
+        domains:
+          - switch
+          - sensor
+      exclude:
+        domains:
+          - persistent_notification
+        entities:
+          - zwave.aeotec_zw090_zstick_gen5_us
+          - zwave.aeotec_dsc06106_smart_energy_switch
+      subscribe_events:
+        - state_changed
+        - service_registered
+        - zwave.network_ready
+        - zwave.node_event

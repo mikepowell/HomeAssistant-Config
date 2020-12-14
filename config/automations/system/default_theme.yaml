@@ -1,0 +1,16 @@
+alias: Set theme at startup
+description: Set the default theme on start.
+id: 43558e16-0f06-4f14-9678-ed89bfc2d0d9
+mode: single
+
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: event
+    event_type: automation_reload
+
+action:
+  service: frontend.set_theme
+  data:
+    name: Me_Dark_Theme
+

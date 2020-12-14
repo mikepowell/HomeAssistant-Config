@@ -1,0 +1,7 @@
+#
+# Scene for the basement office area when everything is off.
+#
+name: Basement work mode off
+entities:
+  light.basement_office: 'off'
+  switch.basement_floor_lamp_gosund: 'on'

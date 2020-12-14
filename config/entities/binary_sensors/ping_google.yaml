@@ -1,0 +1,9 @@
+#
+# This sensor pings a Google DNS server every 60 seconds, to check internet
+# connectivity.
+#
+platform: ping
+name: Google DNS ping
+host: 8.8.8.8
+count: 1
+scan_interval: 60

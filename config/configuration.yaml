@@ -1,63 +1,8 @@
-# Configure a default setup of Home Assistant (frontend, api, etc)
-default_config:
-
+# Welcome to my Home Assistant configuration!
+#
+# Basically, each file in the repository does 1 thing only;
+# this configuration.yaml file is only used to bootstrap the system.
+#
 homeassistant:
-  # Name of the location where Home Assistant is running
-  name: !secret property_name
-  # Required to calculate sunrise/sunset
-  latitude: !secret latitude
-  longitude: !secret longitude
-  # Impacts weather/sunrise data (altitude above sea level in meters)
-  elevation: 150
-  # metric or imperial
-  unit_system: imperial
-  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  time_zone: !secret timezone
-  customize: !include customize.yaml
-
-# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-http:
-  base_url: !secret nabu_base_url
-
-# Text to speech
-tts:
-  - platform: google_translate
-
-influxdb:
-  host: 192.168.10.13
-  port: 8086
-
-system_log:
-  max_entries: 200
-
-logger:
-  default: info
-  logs:
-    influxdb: debug
-
-recorder:
-  purge_keep_days: 14
-
-camera: []
-
-tuya: !include tuya.yaml
-
-lovelace: !include lovelace-config.yaml
-
-sensor: []
-
-remote_homeassistant: !include remote-homeassistant.yaml
-
-ambient_station:
-  api_key: !secret ambient_api_key
-  app_key: !secret ambient_app_key_2
-
-input_select: !include_dir_named input_select
-
-binary_sensor: !include binary-sensor.yaml
-group: !include groups.yaml
-automation: !include_dir_merge_list automations
-scene: !include_dir_merge_list scenes
-
-frontend:
-  themes: !include_dir_merge_named themes
+  # Load packages
+  packages: !include_dir_named configuration

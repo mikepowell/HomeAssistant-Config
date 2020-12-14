@@ -1,12 +1,3 @@
-- alias: Set theme at startup
-  trigger:
-    event: start
-    platform: homeassistant
-  action:
-    data:
-      name: Me_Dark_Theme
-    service: frontend.set_theme
-
 - alias: Notify when lock batteries are low
   description: ''
   trigger: []

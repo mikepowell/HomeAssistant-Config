@@ -1,0 +1,9 @@
+#
+# This sensor pings the remote hassio device in the barn every 60 seconds,
+# to verify that it's online and connected.
+#
+platform: ping
+name: Hassio barn ping
+host: 192.168.10.14
+count: 1
+scan_interval: 60

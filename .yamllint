@@ -53,7 +53,7 @@ rules:
     level: error
   line-length:
     level: warning
-    max: 88
+    max: 120
     allow-non-breakable-words: true
     allow-non-breakable-inline-mappings: true
   new-line-at-end-of-file:

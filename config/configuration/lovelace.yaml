@@ -16,7 +16,7 @@
 #
 lovelace:
   # Either 'yaml' or 'storage'
-  mode: yaml
+  mode: storage
 
   # YAML dashboards are stored here:
   dashboards: !include ../lovelace/dashboards.yaml

@@ -1,14 +1,15 @@
 # Flic Hub integration
 
-The Flic hub is configured to send HTTP requests to the Home Assistant [webhook](https://www.home-assistant.io/docs/automation/trigger/#webhook-trigger) endpoint. This is accomplished by installing a custom JavaScript module
-onto the Flic hub using the [Flic Hub SDK](http://myhub.flic.io/static/tutorial/).
+The Flic hub is configured to send HTTP requests to the Home Assistant [webhook][ha-webhook] endpoint.
+This is accomplished by installing a custom JavaScript module onto the Flic hub using the
+[Flic Hub SDK][flic-sdk].
 
 Currently (as of December 2020), the Flic Hub SDK is in beta, and you'll need to send an email to
-[support@flic.io](mailto://support@flic.io) to request the SDK-enabled firmware. Once the request is
+[support@flic.io][flic-support] to request the SDK-enabled firmware. Once the request is
 approved, press the reset button for exactly 3 seconds after which the LED will blink for 20-30 seconds.
 The Flic Hub will then reboot with the new firmware.
 
-Next, use the IDE at [myhub.flic.io](http://myhub.flic.io) to add a new module containing the custom
+Next, use the IDE at [myhub.flic.io][flic-ide] to add a new module containing the custom
 code to run on the hub.
 
 The following code, in the `main.js` file in this module, sends an HTTP POST request to Home Assistant
@@ -69,3 +70,8 @@ console.log("Webhook endpoint: " + baseUrl + "<button-name><event-name>");
 - [Super helpful blog post](https://ecozonnewoning.nl/2020/10/flic2-buttons-koppelen-aan-homeassistant/)
   (in Dutch)
 - [Home Assistant webhook triggers](https://www.home-assistant.io/docs/automation/trigger/#webhook-trigger)
+
+[ha-webhook]: https://www.home-assistant.io/docs/automation/trigger/#webhook-trigger
+[flic-sdk]: http://myhub.flic.io/static/tutorial/
+[flic-support]: mailto://support@flic.io
+[flic-ide]: http://myhub.flic.io

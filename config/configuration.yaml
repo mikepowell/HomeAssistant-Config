@@ -3,6 +3,10 @@
 # Basically, each file in the repository does 1 thing only;
 # this configuration.yaml file is only used to bootstrap the system.
 #
+
+# Configure a default setup of Home Assistant (frontent, api, etc)
+default_config:
+
+# Load packages for everything else
 homeassistant:
-  # Load packages
   packages: !include_dir_named integrations

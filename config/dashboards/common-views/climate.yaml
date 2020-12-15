@@ -1,0 +1,9 @@
+icon: mdi:thermostat
+path: climate
+cards:
+  - entity: climate.main_floor
+    name: Main Floor
+    type: thermostat
+  - entity: climate.upstairs
+    name: Upstairs
+    type: thermostat

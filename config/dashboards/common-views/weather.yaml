@@ -1,0 +1,62 @@
+icon: mdi:weather-partly-snowy-rainy
+path: weather
+cards:
+  - type: vertical-stack
+    cards:
+      - type: horizontal-stack
+        cards:
+          - entity: sensor.my_weather_station_temp
+            graph: line
+            name: Temp
+            type: sensor
+          - entity: sensor.my_weather_station_humidity
+            graph: line
+            name: Humidity
+            type: sensor
+          - entity: sensor.my_weather_station_rel_pressure
+            graph: line
+            name: Pressure
+            type: sensor
+
+      - type: horizontal-stack
+        cards:
+          - entity: sensor.my_weather_station_wind_speed
+            graph: line
+            icon: 'mdi:weather-windy'
+            name: Wind
+            type: sensor
+          - entity: sensor.my_weather_station_wind_gust
+            graph: line
+            icon: 'mdi:weather-windy'
+            name: Gust
+            type: sensor
+
+      - type: horizontal-stack
+        cards:
+          - entity: sensor.my_weather_station_hourly_rain_rate
+            graph: line
+            icon: 'mdi:weather-pouring'
+            name: Rate
+            type: sensor
+          - entity: sensor.my_weather_station_daily_rain
+            graph: line
+            icon: 'mdi:weather-pouring'
+            name: Daily
+            type: sensor
+
+  - type: history-graph
+    hours_to_show: 24
+    refresh_interval: 0
+    entities:
+      - entity: sensor.my_weather_station_temp
+        name: Temperature
+      - entity: sensor.my_weather_station_humidity
+        name: Humidity
+      - entity: sensor.my_weather_station_wind_speed
+        name: Wind speed
+      - entity: sensor.my_weather_station_wind_gust
+        name: Wind gust
+      - entity: sensor.my_weather_station_hourly_rain_rate
+        name: Hourly rain rate
+      - entity: sensor.my_weather_station_daily_rain
+        name: Daily rain

@@ -1,7 +1,9 @@
 # Welcome to my Home Assistant configuration!
 #
-# Basically, each file in the repository does 1 thing only;
-# this configuration.yaml file is only used to bootstrap the system.
+# Most files in this configuration do only one thing, or a short list
+# of closely-related things. This configuration.yaml file bootstraps
+# the setup by loading each integration from its file in the
+# /config/integrations folder.
 #
 
 # Configure a default setup of Home Assistant (frontent, api, etc)

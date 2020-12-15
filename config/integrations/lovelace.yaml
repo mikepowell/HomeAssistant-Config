@@ -19,4 +19,4 @@ lovelace:
   mode: storage
 
   # YAML dashboards are stored here:
-  dashboards: !include ../lovelace/dashboards.yaml
+  dashboards: !include ../dashboards/dashboards.yaml

@@ -1,0 +1,7 @@
+title: Primary
+views:
+  - !include views/main.yaml
+  - !include ../common-views/weather.yaml
+  - !include ../common-views/climate.yaml
+  - !include views/tech.yaml
+  - !include views/smoke.yaml

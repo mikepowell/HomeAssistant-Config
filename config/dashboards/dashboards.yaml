@@ -1,0 +1,20 @@
+#
+# This file defines the Lovelace dashboards in my UI.
+# Note that the filename attribute is relative to the /config folder, not
+# to this file. So all dashboard yaml filenames should start with 'dashboards/'.
+#
+# https://www.home-assistant.io/lovelace/dashboards-and-views/#dashboards
+#
+ui-primary:
+  mode: yaml
+  title: Primary
+  icon: mdi:head-cog
+  show_in_sidebar: true
+  filename: dashboards/ui-primary/dashboard.yaml
+
+ui-minimal:
+  mode: yaml
+  title: Minimal
+  icon: mdi:head-cog
+  show_in_sidebar: true
+  filename: dashboards/ui-minimal/dashboard.yaml

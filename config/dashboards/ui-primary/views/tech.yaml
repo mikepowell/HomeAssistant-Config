@@ -1,0 +1,78 @@
+icon: 'mdi:chart-bell-curve-cumulative'
+path: tech
+cards:
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: '### Synology'
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                entity: sensor.syno_cpu_load_5_min
+                graph: line
+                hours_to_show: 6
+                name: CPU
+
+              - type: sensor
+                entity: sensor.syno_memory_usage_real
+                graph: line
+                name: RAM
+
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                entity: sensor.syno_network_down
+                graph: line
+                hours_to_show: 6
+                name: Down
+              - type: sensor
+                entity: sensor.syno_network_up
+                graph: line
+                hours_to_show: 6
+                name: Up
+
+          - type: history-graph
+            hours_to_show: 12
+            refresh_interval: 0
+            entities:
+              - entity: sensor.syno_network_down
+                name: Network down
+              - entity: sensor.syno_network_up
+                name: Network up
+
+          - type: history-graph
+            hours_to_show: 12
+            refresh_interval: 0
+            entities:
+              - entity: sensor.syno_cpu_load_15_min
+                name: CPU load (15m)
+              - entity: sensor.syno_cpu_load_5_min
+                name: CPU load (5m)
+
+
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: '### UDM Pro'
+
+      - type: history-graph
+        hours_to_show: 24
+        refresh_interval: 0
+        entities:
+          - entity: sensor.udm_pro_rx
+            name: RX
+          - entity: sensor.udm_pro_tx
+            name: TX
+
+      - type: history-graph
+        hours_to_show: 12
+        refresh_interval: 0
+        entities:
+          - entity: sensor.synology_nas_rx
+            name: Syno RX
+          - entity: sensor.synology_nas_tx
+            name: Syno TX
+

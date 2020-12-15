@@ -52,7 +52,6 @@ cards:
               - entity: sensor.syno_cpu_load_5_min
                 name: CPU load (5m)
 
-
   - type: vertical-stack
     cards:
       - type: markdown

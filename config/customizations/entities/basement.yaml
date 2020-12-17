@@ -1,0 +1,8 @@
+camera.basement:
+  friendly_name: Basement storage camera
+
+media_player.basement:
+  friendly_name: Basement Sonos
+
+sensor.basement_door_sensor_battery:
+  friendly_name: Basement door sensor battery

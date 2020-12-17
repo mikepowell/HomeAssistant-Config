@@ -1,0 +1,6 @@
+cloud:
+  alexa:
+    filter:
+      include_domains:
+        - light
+        - switch

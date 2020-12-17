@@ -74,4 +74,3 @@ cards:
             name: Syno RX
           - entity: sensor.synology_nas_tx
             name: Syno TX
-

@@ -9,6 +9,25 @@
 # Configure a default setup of Home Assistant (frontent, api, etc)
 default_config:
 
-# Load packages for everything else
+
+#
+# Sets up Home Assistant
+#
 homeassistant:
+  # Name of the location where Home Assistant is running
+  name: !secret property_name
+  # Required to calculate sunrise/sunset
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 150
+  # metric or imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: !secret timezone
+
+  # Customize individual entity display names, icons, etc.
+  customize: !include_dir_merge_named customizations/entities
+
+  # Load packages for everything else
   packages: !include_dir_named integrations

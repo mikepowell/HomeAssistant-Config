@@ -1,14 +1,16 @@
----
-# The Google Text-to-Speech platform use Google Text-to-Speech engine to
-# read a text with a natural sounding voice(s).
+# The Microsoft text-to-speech platform uses the TTS engine of
+# the Azure Cognitive Services Speech Service to read text with
+# a natural sounding voice. You'll need a free Azure subscription
+# to use it, more info in the HA docs.
 #
-# https://www.home-assistant.io/integrations/google_translate/
+# https://www.home-assistant.io/integrations/microsoft
 #
 tts:
-  platform: google_translate
+  platform: microsoft
+  api_key: !secret microsoft_speech_api_key
 
-  # Set the default voice language.
-  language: 'en'
+  # Set the voice language.
+  language: en-us
 
   # Cache voice files to a local storage.
   cache: true

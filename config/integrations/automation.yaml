@@ -2,5 +2,9 @@
 #
 # https://www.home-assistant.io/docs/automation/
 #
+
+# This include allows for UI-base automations.
 automation: !include ../automations.yaml
-automation split: !include_dir_merge_list ../automations
+
+# This one loads automations defined here in YAML.
+automation mine: !include_dir_merge_list ../automations

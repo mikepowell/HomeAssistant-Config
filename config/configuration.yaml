@@ -9,7 +9,6 @@
 # Configure a default setup of Home Assistant (frontent, api, etc)
 default_config:
 
-
 #
 # Sets up Home Assistant
 #

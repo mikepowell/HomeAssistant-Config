@@ -9,7 +9,10 @@ from homeassistant.helpers.typing import HomeAssistantType
 
 from .const import (
     ATTR_CAMERA_ID,
+    ATTR_IS_DARK,
+    ATTR_MIC_SENSITIVITY,
     ATTR_ONLINE,
+    ATTR_PRIVACY_MODE,
     ATTR_UP_SINCE,
     DEFAULT_ATTRIBUTION,
     DEFAULT_BRAND,
@@ -21,12 +24,16 @@ from .const import (
     SERVICE_SET_HDR_MODE,
     SERVICE_SET_HIGHFPS_VIDEO_MODE,
     SERVICE_SET_IR_MODE,
+    SERVICE_SET_MIC_VOLUME,
+    SERVICE_SET_PRIVACY_MODE,
     SERVICE_SET_RECORDING_MODE,
     SERVICE_SET_STATUS_LIGHT,
     SET_DOORBELL_LCD_MESSAGE_SCHEMA,
     SET_HDR_MODE_SCHEMA,
     SET_HIGHFPS_VIDEO_MODE_SCHEMA,
     SET_IR_MODE_SCHEMA,
+    SET_MIC_VOLUME_SCHEMA,
+    SET_PRIVACY_MODE_SCHEMA,
     SET_RECORDING_MODE_SCHEMA,
     SET_STATUS_LIGHT_SCHEMA,
 )
@@ -42,13 +49,16 @@ async def async_setup_entry(
     entry_data = hass.data[DOMAIN][entry.entry_id]
     upv_object = entry_data["upv"]
     protect_data = entry_data["protect_data"]
+    server_info = entry_data["server_info"]
     snapshot_direct = entry_data["snapshot_direct"]
     if not protect_data.data:
         return
 
     async_add_entities(
         [
-            UnifiProtectCamera(upv_object, protect_data, camera_id, snapshot_direct)
+            UnifiProtectCamera(
+                upv_object, protect_data, server_info, camera_id, snapshot_direct
+            )
             for camera_id in protect_data.data
         ]
     )
@@ -89,15 +99,25 @@ async def async_setup_entry(
         SERVICE_SAVE_THUMBNAIL, SAVE_THUMBNAIL_SCHEMA, "async_save_thumbnail"
     )
 
+    platform.async_register_entity_service(
+        SERVICE_SET_MIC_VOLUME, SET_MIC_VOLUME_SCHEMA, "async_set_mic_volume"
+    )
+
+    platform.async_register_entity_service(
+        SERVICE_SET_PRIVACY_MODE, SET_PRIVACY_MODE_SCHEMA, "async_set_privacy_mode"
+    )
+
     return True
 
 
 class UnifiProtectCamera(UnifiProtectEntity, Camera):
     """A Ubiquiti Unifi Protect Camera."""
 
-    def __init__(self, upv_object, protect_data, camera_id, snapshot_direct):
+    def __init__(
+        self, upv_object, protect_data, server_info, camera_id, snapshot_direct
+    ):
         """Initialize an Unifi camera."""
-        super().__init__(upv_object, protect_data, camera_id, None)
+        super().__init__(upv_object, protect_data, server_info, camera_id, None)
         self._snapshot_direct = snapshot_direct
         self._name = self._camera_data["name"]
         self._stream_source = self._camera_data["rtsp"]
@@ -132,11 +152,9 @@ class UnifiProtectCamera(UnifiProtectEntity, Camera):
     @property
     def is_recording(self):
         """Return true if the device is recording."""
-        return (
-            True
-            if self._camera_data["recording_mode"] != "never"
+        return bool(
+            self._camera_data["recording_mode"] != "never"
             and self._camera_data["online"]
-            else False
         )
 
     @property
@@ -153,6 +171,9 @@ class UnifiProtectCamera(UnifiProtectEntity, Camera):
             ATTR_ONLINE: self._camera_data["online"],
             ATTR_CAMERA_ID: self._camera_id,
             ATTR_LAST_TRIP_TIME: last_trip_time,
+            ATTR_IS_DARK: self._camera_data["is_dark"],
+            ATTR_MIC_SENSITIVITY: self._camera_data["mic_volume"],
+            ATTR_PRIVACY_MODE: self._camera_data["privacy_on"],
         }
 
     async def async_set_recording_mode(self, recording_mode):
@@ -200,6 +221,16 @@ class UnifiProtectCamera(UnifiProtectEntity, Camera):
             duration = None
         await self.upv_object.set_doorbell_custom_text(
             self._camera_id, message, duration
+        )
+
+    async def async_set_mic_volume(self, level):
+        """Set camera Microphone Level."""
+        await self.upv_object.set_mic_volume(self._camera_id, level)
+
+    async def async_set_privacy_mode(self, privacy_mode, mic_level, recording_mode):
+        """Set camera Privacy mode."""
+        await self.upv_object.set_privacy_mode(
+            self._camera_id, privacy_mode, mic_level, recording_mode
         )
 
     async def async_enable_motion_detection(self):

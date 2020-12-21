@@ -1,0 +1,6 @@
+#
+# Strip lights at the basement wrapping station
+#
+light.strip_light_1:
+  friendly_name: Wrapping station strip lights
+  supported_features: 189

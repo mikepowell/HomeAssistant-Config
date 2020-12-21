@@ -102,7 +102,7 @@ cards:
               action: more-info
 
           - type: button
-            entity: switch.basement_floor_lamp_gosund
+            entity: switch.basement_desk_lamp
             hold_action:
               action: more-info
             icon: 'mdi:lamp'

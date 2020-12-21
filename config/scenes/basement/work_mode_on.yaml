@@ -1,9 +1,0 @@
-#
-# Scene for the basement office area when working.
-#
-name: Basement work mode on
-entities:
-  light.basement_office:
-    state: 'on'
-    brightness: 50
-  switch.basement_floor_lamp_gosund: 'on'

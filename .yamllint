@@ -1,4 +1,3 @@
----
 ignore: |
   config/custom_components/
   config/automations.yaml

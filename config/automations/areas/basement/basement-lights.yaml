@@ -9,6 +9,8 @@
       entity_id: switch.basement_desk_lamp
     - service: light.turn_off
       entity_id: light.basement_office
+    - service: light.turn_off
+      entity_id: light.strip_light_1
 
 - alias: 'Basement lights to On'
   initial_state: 'on'
@@ -23,6 +25,12 @@
       data:
         entity_id: light.basement_office
         brightness: 255
+
+    # Added cheer
+    - service: light.turn_on
+      data:
+        entity_id: light.strip_light_1
+        color_name: green
 
 - alias: 'Basement lights to Working'
   initial_state: 'on'

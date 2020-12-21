@@ -1,6 +1,15 @@
 #
 # Strip lights at the basement wrapping station
 #
+# supported_features bitmap goes like this:
+# SUPPORT_BRIGHTNESS = 1
+# SUPPORT_COLOR_TEMP = 2
+# SUPPORT_EFFECT = 4
+# SUPPORT_FLASH = 8
+# SUPPORT_COLOR = 16
+# SUPPORT_TRANSITION = 32
+# SUPPORT_WHITE_VALUE = 128
+#
 light.strip_light_1:
   friendly_name: Wrapping station strip lights
-  supported_features: 189
+  supported_features: 191

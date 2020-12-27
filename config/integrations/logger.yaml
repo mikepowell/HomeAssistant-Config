@@ -9,3 +9,6 @@ logger:
     # homeassistant.setup: debug
     influxdb: debug
 
+    # Debugging aux heat issue with ecobee
+    ecobee: debug
+

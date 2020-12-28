@@ -32,59 +32,6 @@ cards:
               action: toggle
 
       - type: markdown
-        content: '### Living room'
-
-      - type: horizontal-stack
-        cards:
-          - type: button
-            entity: light.sofa_lights
-            hold_action:
-              action: more-info
-            icon: 'mdi:wall-sconce-flat'
-            icon_height: 36px
-            name: Sofa
-            show_icon: true
-            show_name: true
-            tap_action:
-              action: toggle
-
-          - type: button
-            entity: switch.end_table_lamp
-            hold_action:
-              action: more-info
-            icon: 'mdi:lamp'
-            icon_height: 36px
-            name: End table
-            show_icon: true
-            show_name: true
-            tap_action:
-              action: toggle
-
-          - type: button
-            entity: switch.living_room_lamp
-            hold_action:
-              action: more-info
-            icon: 'mdi:floor-lamp'
-            icon_height: 36px
-            name: Floor lamp
-            show_icon: true
-            show_name: true
-            tap_action:
-              action: toggle
-
-          - type: button
-            entity: switch.christmas_tree
-            hold_action:
-              action: more-info
-            icon: 'mdi:string-lights'
-            icon_height: 36px
-            name: Xmas
-            show_icon: true
-            show_name: true
-            tap_action:
-              action: toggle
-
-      - type: markdown
         content: '### Basement'
 
       - type: horizontal-stack
@@ -202,6 +149,136 @@ cards:
             icon: 'mdi:lamp'
             icon_height: 36px
             name: Dresser
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: light.spare_room_ceiling_light
+            hold_action:
+              action: more-info
+            icon: mdi:ceiling-light
+            icon_height: 36px
+            name: Light
+            show_icon: true
+            show_name: false
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: fan.spare_room_ceiling_fan
+            icon: mdi:fan-off
+            icon_height: 36px
+            name: 'Off'
+            show_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: fan.turn_off
+              service_data:
+                entity_id: fan.spare_room_ceiling_fan
+            hold_action:
+              action: more-info
+
+          - type: button
+            entity: fan.spare_room_ceiling_fan
+            icon: mdi:fan-speed-1
+            icon_height: 36px
+            name: Low
+            show_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: fan.turn_on
+              service_data:
+                entity_id: fan.spare_room_ceiling_fan
+                speed: low
+            hold_action:
+              action: more-info
+
+          - type: button
+            entity: fan.spare_room_ceiling_fan
+            icon: mdi:fan-speed-2
+            icon_height: 36px
+            name: Med
+            show_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: fan.turn_on
+              service_data:
+                entity_id: fan.spare_room_ceiling_fan
+                speed: medium
+            hold_action:
+              action: more-info
+
+          - type: button
+            entity: fan.spare_room_ceiling_fan
+            icon: mdi:fan-speed-3
+            icon_height: 36px
+            name: High
+            show_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: fan.turn_on
+              service_data:
+                entity_id: fan.spare_room_ceiling_fan
+                speed: high
+            hold_action:
+              action: more-info
+
+      - type: markdown
+        content: '### Living room'
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: light.sofa_lights
+            hold_action:
+              action: more-info
+            icon: 'mdi:wall-sconce-flat'
+            icon_height: 36px
+            name: Sofa
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: switch.end_table_lamp
+            hold_action:
+              action: more-info
+            icon: 'mdi:lamp'
+            icon_height: 36px
+            name: End table
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: switch.living_room_lamp
+            hold_action:
+              action: more-info
+            icon: 'mdi:floor-lamp'
+            icon_height: 36px
+            name: Floor lamp
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: switch.christmas_tree
+            hold_action:
+              action: more-info
+            icon: 'mdi:string-lights'
+            icon_height: 36px
+            name: Xmas
             show_icon: true
             show_name: true
             tap_action:

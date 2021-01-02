@@ -15,8 +15,6 @@
     platform: state
     entity_id: binary_sensor.zw_basement_stairs_motion
     to: 'off'
-    for:
-      minutes: 2
   action:
     service: light.turn_off
     entity_id: light.zw_basement_stairs_light_level

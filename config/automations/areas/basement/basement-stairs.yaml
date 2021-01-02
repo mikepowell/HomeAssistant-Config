@@ -5,7 +5,9 @@
     to: 'on'
   action:
     service: light.turn_on
-    entity_id: light.basement_stairs_light
+    data:
+      entity_id: light.basement_stairs_light
+      brightness_pct: 40
   mode: single
 
 - alias: Turn off basement stairs light after motion end

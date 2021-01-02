@@ -131,7 +131,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: button
-            entity: switch.spare_room_lamp
+            entity: switch.zw_spare_room_lamp
             hold_action:
               action: more-info
             icon: 'mdi:lamp'

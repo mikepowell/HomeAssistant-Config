@@ -23,3 +23,19 @@ remote_homeassistant:
         - service_registered
         - zwave.network_ready
         - zwave.node_event
+
+    - host: 192.168.10.33
+      port: 8123
+      access_token: !secret zwave_hassio_token
+      entity_prefix: zw_
+      include:
+        domains:
+          - binary_sensor
+          - light
+          - sensor
+          - switch
+      subscribe_events:
+        - state_changed
+        - service_registered
+        - zwave.network_ready
+        - zwave.node_event

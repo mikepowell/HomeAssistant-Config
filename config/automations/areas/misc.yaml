@@ -47,7 +47,7 @@
   description: Spare room motion detected
   trigger:
     platform: state
-    entity_id: binary_sensor.spare_room_motion_motion
+    entity_id: binary_sensor.zw_spare_room_motion
     to: 'on'
   action:
     data:

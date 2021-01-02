@@ -7,46 +7,6 @@
     entity_id: switch.zw_spare_room_lamp
   mode: single
 
-- alias: Turn off spare room light on phone charging
-  trigger:
-    platform: state
-    entity_id: sensor.michaels_iphone_battery_state
-    to: charging
-  condition:
-    condition: time
-    after: '20:00:00'
-    before: '01:00:00'
-  action:
-    service: switch.turn_off
-    entity_id: switch.zw_spare_room_lamp
-  mode: single
-
-- alias: Toggle nightstand lamp when button 1 pushed
-  trigger:
-    platform: event
-    event_type: smartthings.button
-    event_data:
-      name: Minimote
-      component_id: button1
-      value: pushed
-  action:
-    service: switch.toggle
-    entity_id: switch.zw_spare_room_lamp
-  mode: single
-
-- alias: Toggle dresser lamp when button 2 pushed
-  trigger:
-    platform: event
-    event_type: smartthings.button
-    event_data:
-      name: Minimote
-      component_id: button2
-      value: pushed
-  action:
-    service: switch.toggle
-    entity_id: switch.spare_room_dresser
-  mode: single
-
 - alias: Toggle nightstand lamp on Flic click
   trigger:
     platform: webhook

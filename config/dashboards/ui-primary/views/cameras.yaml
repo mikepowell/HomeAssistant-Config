@@ -1,0 +1,26 @@
+icon: 'mdi:video-outline'
+path: cameras
+cards:
+  - type: picture-glance
+    title: Garage
+    entities:
+      - entity: binary_sensor.motion_garage
+      - entity: switch.flood_garage
+      - entity: switch.ir_active_garage
+      - entity: switch.hdr_mode_garage
+    camera_image: camera.garage
+    tap_action:
+      action: more-info
+    hold_action:
+      action: none
+  - type: picture-glance
+    title: Basement
+    entities:
+      - entity: binary_sensor.motion_basement
+      - entity: switch.ir_active_basement
+      - entity: switch.hdr_mode_basement
+    camera_image: camera.basement
+    tap_action:
+      action: more-info
+    hold_action:
+      action: none

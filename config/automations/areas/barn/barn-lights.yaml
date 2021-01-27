@@ -4,7 +4,7 @@
     at: 05:30
   action:
     service: switch.turn_on
-    entity_id: switch.barn_barn_front_lights
+    entity_id: switch.barn_front_down_lights
 
 - alias: Turn barn lights off in the morning
   trigger:
@@ -13,7 +13,7 @@
     offset: +01:00:00
   action:
     service: switch.turn_off
-    entity_id: switch.barn_barn_front_lights
+    entity_id: switch.barn_front_down_lights
 
 - alias: Turn barn lights on in the evening
   trigger:
@@ -22,7 +22,7 @@
     offset: -01:00:00
   action:
     service: switch.turn_on
-    entity_id: switch.barn_barn_front_lights
+    entity_id: switch.barn_front_down_lights
 
 - alias: Turn barn lights off in the evening
   trigger:
@@ -30,4 +30,4 @@
     at: '23:00'
   action:
     service: switch.turn_off
-    entity_id: switch.barn_barn_front_lights
+    entity_id: switch.barn_front_down_lights

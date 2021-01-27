@@ -127,7 +127,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: switch.barn_barn_front_lights
+            entity: switch.barn_front_down_lights
             hold_action:
               action: more-info
             icon: 'mdi:outdoor-lamp'
@@ -192,7 +192,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: switch.barn_barn_flood_lights
+            entity: switch.barn_back_flood_lights
             hold_action:
               action: more-info
             icon: 'mdi:car-light-high'

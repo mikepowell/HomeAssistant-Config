@@ -1,0 +1,7 @@
+switch.barn_back_flood_lights:
+  friendly_name: Barn flood lights
+  icon: mdi:car-light-high
+
+switch.barn_front_down_lights:
+  friendly_name: Barn front lights
+  icon: mdi:outdoor-lamp

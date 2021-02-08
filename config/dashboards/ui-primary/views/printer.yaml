@@ -15,6 +15,7 @@ cards:
     font: Roboto
     scale: 1
     round: true
+    temperature_unit: C
     light_entity: light.basement_desk_lamp
 
   - type: picture-glance

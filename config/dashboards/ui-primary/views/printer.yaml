@@ -1,0 +1,27 @@
+icon: mdi:printer-3d
+path: 3dprinter
+cards:
+  - type: 'custom:threedy-card'
+    base_entity: sensor.ender_3_v2
+    name: Ender 3 V2
+    printer_type: I3
+    monitored:
+      - Status
+      - ETA
+      - Elapsed
+      - Hotend
+      - Bed
+    theme: Default
+    font: Roboto
+    scale: 1
+    round: true
+    light_entity: light.basement_desk_lamp
+
+  - type: picture-glance
+    title: 3D Printer
+    entities: []
+    camera_image: camera.ender_3_v2
+    tap_action:
+      action: more-info
+    hold_action:
+      action: none

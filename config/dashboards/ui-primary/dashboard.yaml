@@ -4,6 +4,7 @@ views:
   - !include ../common-views/weather.yaml
   - !include views/indoor_climate.yaml
   - !include views/cameras.yaml
+  - !include views/printer.yaml
   - !include ../common-views/climate.yaml
   - !include views/tech.yaml
   - !include views/smoke.yaml

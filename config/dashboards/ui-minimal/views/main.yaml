@@ -60,7 +60,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: switch.living_room_lamp
+            entity: switch.living_room_floor_lamp
             hold_action:
               action: more-info
             icon: 'mdi:floor-lamp'

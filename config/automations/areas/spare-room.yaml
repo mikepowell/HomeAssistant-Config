@@ -35,3 +35,15 @@
     - service: switch.turn_off
       entity_id: switch.spare_room_dresser
   mode: single
+
+- id: spare_room_dresser_zha
+  alias: Spare room dresser (zigbee)
+  trigger:
+  - event_data:
+      command: single
+      unique_id: "00:15:8d:00:02:82:cf:e3:1:0x0012"
+    event_type: zha_event
+    platform: event
+  action:
+    - service: light.toggle
+      entity_id: light.spare_room_dresser_lamp

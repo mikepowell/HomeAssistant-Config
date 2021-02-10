@@ -20,7 +20,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: light.bookshelf_lights
+            entity: light.zw_bookshelf_lights
             hold_action:
               action: more-info
             icon: 'mdi:track-light'

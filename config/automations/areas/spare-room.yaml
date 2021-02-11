@@ -39,7 +39,7 @@
 - id: spare_room_dresser_zha
   alias: Spare room dresser (zigbee)
   trigger:
-  - event_data:
+    event_data:
       command: single
       unique_id: "00:15:8d:00:02:82:cf:e3:1:0x0012"
     event_type: zha_event

@@ -8,4 +8,4 @@
 scene: !include ../scenes.yaml
 
 # This include covers any YAML scenes defined here.
-scene mine: !include_dir_list ../scenes
+scene mine: !include_dir_merge_list ../scenes

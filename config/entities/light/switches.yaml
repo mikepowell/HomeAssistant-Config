@@ -1,0 +1,64 @@
+# The Light Switch platform creates light entities from switch entities.
+# Using this platform on switches that control light fixtures allows you
+# to include them in Light Groups. Since I have a lot of z-wave wall
+# switches controlling light fixtures this is very helpful.
+
+# Note that the light entities will be given IDs based on the names below,
+# e.g. switch.aeotec_cord becomes light.porch_string in the config below.
+# https://www.home-assistant.io/integrations/light.switch/
+
+- platform: switch
+  entity_id: switch.basement_desk_lamp
+  name: Basement desk lamp
+
+- platform: switch
+  entity_id: switch.aeotec_cord
+  name: Porch string
+
+- platform: switch
+  entity_id: switch.barn_back_flood_lights
+  name: Barn back floodlight
+
+- platform: switch
+  entity_id: switch.barn_front_down_lights
+  name: Barn front lights
+
+- platform: switch
+  entity_id: switch.christmas_tree
+  name: Christmas tree lights
+
+- platform: switch
+  entity_id: switch.end_table_lamp
+  name: Living room end table
+
+- platform: switch
+  entity_id: switch.flood_back
+  name: Back floodlight
+
+- platform: switch
+  entity_id: switch.flood_garage
+  name: Garage floodlight
+
+- platform: switch
+  entity_id: switch.flood_side
+  name: Side floodlight
+
+- platform: switch
+  entity_id: switch.front_room_floor_lamp
+  name: Front room floor lamp
+
+- platform: switch
+  entity_id: switch.living_room_floor_lamp
+  name: Living room floor lamp
+
+- platform: switch
+  entity_id: switch.zw_patio_lights
+  name: Patio lights
+
+- platform: switch
+  entity_id: switch.spare_room_dresser
+  name: Spare room dresser lamp
+
+- platform: switch
+  entity_id: switch.zw_spare_room_lamp
+  name: Spare room nightstand lamp

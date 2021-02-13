@@ -43,13 +43,3 @@
       message: Downstairs thermostat back online (maybe the power came back on?)
     service: notify.notify
 
-- alias: Notify on spare room motion
-  description: Spare room motion detected
-  trigger:
-    platform: state
-    entity_id: binary_sensor.zw_spare_room_motion
-    to: 'on'
-  action:
-    data:
-      message: Spare room motion detected
-    service: notify.mobile_app_iphone

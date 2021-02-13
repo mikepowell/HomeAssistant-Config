@@ -1,8 +1,0 @@
-outdoor_lights:
-  name: Outdoor Lights
-  entities:
-    - switch.flood_back
-    - switch.flood_garage
-    - switch.flood_side
-    - light.front_entry_lights
-    - light.porch_lights

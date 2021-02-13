@@ -1,0 +1,25 @@
+# Light groups allow multiple light entities to be turned on and
+# off as if they were a single group.
+# https://www.home-assistant.io/integrations/light.group/
+
+- platform: group
+  name: All outdoor lights
+  entities:
+    - light.back_floodlight
+    - light.garage_floodlight
+    - light.side_floodlight
+    - light.front_entry_lights
+    - light.porch_lights
+
+- platform: group
+  name: Floodlights
+  entities:
+    - light.back_floodlight
+    - light.garage_floodlight
+    - light.side_floodlight
+
+- platform: group
+  name: Front room lights
+  entities:
+    - light.front_room_floor_lamp
+    - light.zw_bookshelf_lights

@@ -1,20 +1,10 @@
-- alias: Turn on bookshelf lights when front room lamp turned on
+- alias: Turn on front room lights with aqara button
   trigger:
-    platform: state
-    entity_id: switch.front_room_floor_lamp
-    to: 'on'
+    event_data:
+      command: single
+      unique_id: "00:15:8d:00:02:82:cf:e3:1:0x0012"
+    event_type: zha_event
+    platform: event
   action:
-    service: light.turn_on
-    data:
-      entity_id: light.zw_bookshelf_lights
-      brightness_pct: 100
-
-- alias: Turn off bookshelf lights when front room lamp turned off
-  trigger:
-    platform: state
-    entity_id: switch.front_room_floor_lamp
-    to: 'off'
-  action:
-    service: light.turn_off
-    entity_id: light.zw_bookshelf_lights
-
+    - service: light.toggle
+      entity_id: light.front_room_lights

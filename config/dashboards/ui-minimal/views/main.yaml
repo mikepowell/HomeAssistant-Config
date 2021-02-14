@@ -156,7 +156,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: button
-            entity: switch.flood_back
+            entity: switch.zw_flood_back
             hold_action:
               action: more-info
             icon: 'mdi:car-light-high'
@@ -180,7 +180,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: switch.flood_side
+            entity: switch.zw_flood_side
             hold_action:
               action: more-info
             icon: 'mdi:car-light-high'

@@ -4,8 +4,5 @@ camera.basement:
 media_player.basement:
   friendly_name: Basement Sonos
 
-sensor.basement_door_sensor_battery:
-  friendly_name: Basement door sensor battery
-
 sensor.zw_basement_stairs_humidity:
   icon: mdi:water-percent

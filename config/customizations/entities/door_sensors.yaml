@@ -1,0 +1,3 @@
+binary_sensor.zw_basement_door_sensor_sensor:
+  friendly_name: Basement door
+  device_class: door

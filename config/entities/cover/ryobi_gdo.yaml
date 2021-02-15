@@ -1,0 +1,6 @@
+- platform: ryobi_gdo3
+  username: !secret ryobi_username
+  password: !secret ryobi_password
+  device_id:
+    - !secret ryobi_door1_id
+    - !secret ryobi_door2_id

@@ -9,7 +9,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: button
-            entity: switch.front_room_floor_lamp
+            entity: switch.zw_front_room_floor_lamp
             hold_action:
               action: more-info
             icon_height: 36px
@@ -61,7 +61,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: light.zw_basement_stairs_light_level
+            entity: light.zw_basement_stairs
             hold_action:
               action: more-info
             icon: 'mdi:ceiling-light'
@@ -237,7 +237,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: button
-            entity: light.sofa_lights
+            entity: light.zw_sofa_lights
             hold_action:
               action: more-info
             icon: 'mdi:wall-sconce-flat'
@@ -249,7 +249,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: switch.end_table_lamp
+            entity: switch.zw_living_room_end_table_lamp
             hold_action:
               action: more-info
             icon: 'mdi:lamp'
@@ -278,7 +278,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: button
-            entity: light.porch_lights
+            entity: light.zw_porch_lights
             hold_action:
               action: more-info
             icon: 'mdi:dome-light'
@@ -291,7 +291,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: light.front_entry_lights
+            entity: light.zw_front_entry_lights
             hold_action:
               action: more-info
             icon: 'mdi:coach-lamp'
@@ -304,7 +304,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: switch.aeotec_cord
+            entity: switch.zw_porch_string_lights
             hold_action:
               action: more-info
             icon: 'mdi:string-lights'
@@ -318,7 +318,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: button
-            entity: switch.zw_patio_lights
+            entity: switch.zw_patio_light
             hold_action:
               action: more-info
             icon: 'mdi:coach-lamp'
@@ -360,7 +360,7 @@ cards:
         cards:
           - type: button
             name: Back
-            entity: switch.zw_flood_back
+            entity: switch.zw_back_floodlight
             hold_action:
               action: more-info
             icon: 'mdi:car-light-high'
@@ -383,7 +383,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: switch.zw_flood_side
+            entity: switch.zw_side_floodlight
             hold_action:
               action: more-info
             icon: 'mdi:car-light-high'

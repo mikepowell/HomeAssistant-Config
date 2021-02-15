@@ -1,30 +1,17 @@
 - alias: Turn porch string on with sofa lights
   trigger:
     platform: state
-    entity_id: light.sofa_lights
+    entity_id: light.zw_sofa_lights
     to: 'on'
   action:
     service: switch.turn_on
-    entity_id: switch.aeotec_cord
+    entity_id: switch.zw_porch_string_lights
 
 - alias: Turn porch string off with sofa lights
   trigger:
     platform: state
-    entity_id: light.sofa_lights
+    entity_id: light.zw_sofa_lights
     to: 'off'
   action:
     service: switch.turn_off
-    entity_id: switch.aeotec_cord
-
-- alias: Turn on patio lights when basement door unlocked
-  trigger:
-    platform: state
-    entity_id: lock.basement_door_lock
-    to: unlocked
-  condition:
-    after: sunset
-    before: sunrise
-    condition: sun
-  action:
-    service: switch.turn_on
-    entity_id: switch.patio_light
+    entity_id: switch.zw_porch_string_lights

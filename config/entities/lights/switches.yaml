@@ -4,7 +4,7 @@
 # switches controlling light fixtures this is very helpful.
 
 # Note that the light entities will be given IDs based on the names below,
-# e.g. switch.aeotec_cord becomes light.porch_string in the config below.
+# e.g. switch.zw_porch_string_lights becomes light.porch_string in the config below.
 # https://www.home-assistant.io/integrations/light.switch/
 
 - platform: switch
@@ -12,7 +12,7 @@
   name: Basement desk lamp
 
 - platform: switch
-  entity_id: switch.aeotec_cord
+  entity_id: switch.zw_porch_string_lights
   name: Porch string
 
 - platform: switch
@@ -28,11 +28,11 @@
   name: Christmas tree lights
 
 - platform: switch
-  entity_id: switch.end_table_lamp
+  entity_id: switch.zw_living_room_end_table_lamp
   name: Living room end table
 
 - platform: switch
-  entity_id: switch.zw_flood_back
+  entity_id: switch.zw_back_floodlight
   name: Back floodlight
 
 - platform: switch
@@ -40,11 +40,11 @@
   name: Garage floodlight
 
 - platform: switch
-  entity_id: switch.zw_flood_side
+  entity_id: switch.zw_side_floodlight
   name: Side floodlight
 
 - platform: switch
-  entity_id: switch.front_room_floor_lamp
+  entity_id: switch.zw_front_room_floor_lamp
   name: Front room floor lamp
 
 - platform: switch
@@ -52,7 +52,7 @@
   name: Living room floor lamp
 
 - platform: switch
-  entity_id: switch.zw_patio_lights
+  entity_id: switch.zw_patio_light
   name: Patio lights
 
 - platform: switch

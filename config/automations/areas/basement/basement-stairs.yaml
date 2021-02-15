@@ -1,22 +1,22 @@
 - alias: Turn on basement stairs light on motion
   trigger:
     platform: state
-    entity_id: binary_sensor.zw_basement_stairs_motion
+    entity_id: binary_sensor.zw_basement_stairs_multisensor_motion
     to: 'on'
   action:
     service: light.turn_on
     data:
-      entity_id: light.zw_basement_stairs_light_level
+      entity_id: light.zw_basement_stairs
       brightness_pct: 40
   mode: single
 
 - alias: Turn off basement stairs light after motion end
   trigger:
     platform: state
-    entity_id: binary_sensor.zw_basement_stairs_motion
+    entity_id: binary_sensor.zw_basement_stairs_multisensor_motion
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: light.zw_basement_stairs_light_level
+    entity_id: light.zw_basement_stairs
   mode: single
 

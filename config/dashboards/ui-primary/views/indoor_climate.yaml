@@ -23,11 +23,11 @@ cards:
 
   - type: entities
     entities:
-      - entity: sensor.zw_basement_stairs_temperature
-      - entity: sensor.zw_basement_stairs_humidity
+      - entity: sensor.zw_basement_stairs_multisensor_temperature
+      - entity: sensor.zw_basement_stairs_multisensor_relative_humidity
     footer:
       type: graph
-      entity: sensor.zw_basement_stairs_temperature
+      entity: sensor.zw_basement_stairs_multisensor_temperature
       detail: 2
       hours_to_show: 4
 

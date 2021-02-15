@@ -1,0 +1,11 @@
+cover.ryobi_gdo_door_74daea881296:
+  friendly_name: Garage door 1
+
+light.ryobi_gdo_light_74daea881296:
+  friendly_name: Garage door 1 light
+
+cover.ryobi_gdo_door_d4f513d93753:
+  friendly_name: Garage door 2
+
+light.ryobi_gdo_light_d4f513d93753:
+  friendly_name: Garage door 2 light

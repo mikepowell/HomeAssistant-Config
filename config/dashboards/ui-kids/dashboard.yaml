@@ -2,5 +2,5 @@ title: Minimal
 views:
   - !include views/main.yaml
   - !include ../common-views/weather.yaml
-  - !include ../common-views/climate.yaml
   - !include ../common-views/printer.yaml
+  - !include ../common-views/garage.yaml

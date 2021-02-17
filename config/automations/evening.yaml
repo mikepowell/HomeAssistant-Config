@@ -1,0 +1,48 @@
+- alias: Turn barn lights on in the evening
+  trigger:
+    platform: sun
+    event: sunset
+    offset: -01:00:00
+  action:
+    service: switch.turn_on
+    entity_id: switch.barn_front_down_lights
+
+- alias: Turn barn lights off in the evening
+  trigger:
+    platform: time
+    at: '23:00'
+  action:
+    service: switch.turn_off
+    entity_id: switch.barn_front_down_lights
+
+- alias: Turn front entry lights on at dusk
+  description: Turn front entry lights on at dusk
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:15:00"
+  action:
+    service: light.turn_on
+    entity_id: light.zw_front_entry_lights
+  mode: single
+
+- alias: Turn front entry lights off at 11:30
+  description: Turn front entry lights off at 11:30
+  trigger:
+    platform: time
+    at: "23:30:00"
+  action:
+    service: light.turn_off
+    entity_id: light.zw_front_entry_lights
+  mode: single
+
+- alias: Turn living room floor lamp on at dusk
+  description: Turn living room floor lamp on at dusk
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:15:00"
+  action:
+    service: light.turn_on
+    entity_id: light.living_room_floor_lamp
+  mode: single

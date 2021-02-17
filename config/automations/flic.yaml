@@ -27,3 +27,32 @@
     data:
       entity_id: input_select.basement_lights
       option: 'Off'
+
+- alias: Toggle nightstand lamp on Flic click
+  trigger:
+    platform: webhook
+    webhook_id: flic_spare-room_click
+  action:
+    service: switch.toggle
+    entity_id: switch.zw_spare_room_nightstand_lamp
+  mode: single
+
+- alias: Toggle dresser lamp on Flic double-click
+  trigger:
+    platform: webhook
+    webhook_id: flic_spare-room_doubleclick
+  action:
+    service: switch.toggle
+    entity_id: switch.spare_room_dresser
+  mode: single
+
+- alias: Turn off all lights on Flic hold
+  trigger:
+    platform: webhook
+    webhook_id: flic_spare-room_hold
+  action:
+    - service: switch.turn_off
+      entity_id: switch.zw_spare_room_nightstand_lamp
+    - service: switch.turn_off
+      entity_id: switch.spare_room_dresser
+  mode: single

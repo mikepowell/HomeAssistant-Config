@@ -1,0 +1,22 @@
+- alias: Turn living room lights on with sofa lights
+  trigger:
+    platform: state
+    entity_id: light.zw_sofa_lights
+    to: 'on'
+  action:
+    - service: switch.turn_on
+      entity_id: switch.zw_porch_string_lights
+    - service: switch.turn_on
+      entity_id: switch.zw_living_room_end_table_lamp
+
+- alias: Turn living room lights off with sofa lights
+  trigger:
+    platform: state
+    entity_id: light.zw_sofa_lights
+    to: 'off'
+  action:
+    - service: switch.turn_off
+      entity_id: switch.zw_porch_string_lights
+    - service: switch.turn_off
+      entity_id: switch.zw_living_room_end_table_lamp
+

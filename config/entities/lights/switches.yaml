@@ -60,5 +60,5 @@
   name: Spare room dresser lamp
 
 - platform: switch
-  entity_id: switch.zw_spare_room_lamp
+  entity_id: switch.zw_spare_room_nightstand_lamp
   name: Spare room nightstand lamp

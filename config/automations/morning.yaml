@@ -15,19 +15,13 @@
     service: switch.turn_off
     entity_id: switch.barn_front_down_lights
 
-- alias: Turn barn lights on in the evening
+- alias: Turn living room floor lamp off in the morning
+  description: Turn living room floor lamp off in the morning
   trigger:
     platform: sun
-    event: sunset
-    offset: -01:00:00
+    event: sunrise
+    offset: +01:00:00
   action:
-    service: switch.turn_on
-    entity_id: switch.barn_front_down_lights
-
-- alias: Turn barn lights off in the evening
-  trigger:
-    platform: time
-    at: '23:00'
-  action:
-    service: switch.turn_off
-    entity_id: switch.barn_front_down_lights
+    service: light.turn_off
+    entity_id: light.living_room_floor_lamp
+  mode: single

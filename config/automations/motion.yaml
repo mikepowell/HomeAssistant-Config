@@ -6,7 +6,7 @@
   action:
     service: light.turn_on
     data:
-      entity_id: light.zw_basement_stairs
+      entity_id: light.zw_basement_stair_lights
       brightness_pct: 40
   mode: single
 
@@ -17,6 +17,6 @@
     to: 'off'
   action:
     service: light.turn_off
-    entity_id: light.zw_basement_stairs
+    entity_id: light.zw_basement_stair_lights
   mode: single
 

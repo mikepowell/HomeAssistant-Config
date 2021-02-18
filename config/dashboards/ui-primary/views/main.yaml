@@ -61,7 +61,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: light.zw_basement_stairs
+            entity: light.zw_basement_stair_lights
             hold_action:
               action: more-info
             icon: 'mdi:ceiling-light'

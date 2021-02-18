@@ -1,17 +1,6 @@
 icon: mdi:printer-3d
 path: 3dprinter
 cards:
-  - type: button
-    entity: switch.3d_printer_power
-    icon_height: 36px
-    name: Power
-    show_icon: true
-    show_name: true
-    tap_action:
-      action: toggle
-    hold_action:
-      action: more-info
-
   - type: 'custom:threedy-card'
     base_entity: sensor.ender_3_v2
     name: Ender 3 V2
@@ -26,7 +15,7 @@ cards:
     font: Roboto
     scale: 1
     round: true
-    temperature_unit: C
+    power_entity: switch.3d_printer_power
 
   - type: picture-glance
     title: 3D Printer

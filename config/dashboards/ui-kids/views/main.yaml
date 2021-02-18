@@ -156,7 +156,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: button
-            entity: switch.zw_back_floodlight
+            entity: switch.zw_back_floodlight_microswitch
             hold_action:
               action: more-info
             icon: 'mdi:car-light-high'
@@ -180,7 +180,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: switch.zw_side_floodlight
+            entity: switch.zw_side_floodlight_microswitch
             hold_action:
               action: more-info
             icon: 'mdi:car-light-high'

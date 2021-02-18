@@ -24,7 +24,7 @@ cards:
   - type: entities
     entities:
       - entity: sensor.zw_basement_stairs_multisensor_temperature
-      - entity: sensor.zw_basement_stairs_multisensor_relative_humidity
+      - entity: sensor.zw_basement_stairs_multisensor_humidity
     footer:
       type: graph
       entity: sensor.zw_basement_stairs_multisensor_temperature

@@ -32,7 +32,7 @@
   name: Living room end table
 
 - platform: switch
-  entity_id: switch.zw_back_floodlight
+  entity_id: switch.zw_back_floodlight_microswitch
   name: Back floodlight
 
 - platform: switch
@@ -40,7 +40,7 @@
   name: Garage floodlight
 
 - platform: switch
-  entity_id: switch.zw_side_floodlight
+  entity_id: switch.zw_side_floodlight_microswitch
   name: Side floodlight
 
 - platform: switch

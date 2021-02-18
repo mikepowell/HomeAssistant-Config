@@ -13,8 +13,9 @@ cards:
       - Bed
     theme: Default
     font: Roboto
-    scale: 1
+    scale: 1.0
     round: true
+    temperature_unit: C
     power_entity: switch.3d_printer_power
 
   - type: picture-glance

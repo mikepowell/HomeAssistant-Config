@@ -1,10 +1,10 @@
 - alias: Turn on front room lights with aqara button
   trigger:
-    event_data:
-      command: single
-      unique_id: "00:15:8d:00:02:82:cf:e3:1:0x0012"
-    event_type: zha_event
     platform: event
+    event_type: zha_event
+    event_data:
+      unique_id: "00:15:8d:00:02:82:cf:e3:1:0x0012"
+      command: single
   action:
     - service: light.toggle
       entity_id: light.front_room_lights

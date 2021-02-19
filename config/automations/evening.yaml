@@ -46,3 +46,22 @@
     service: light.turn_on
     entity_id: light.living_room_floor_lamp
   mode: single
+
+- alias: Turn spare room lamp on in the evening
+  trigger:
+    platform: time
+    at: "20:00:00"
+  action:
+    service: light.turn_on
+    entity_id: light.spare_room_dresser_lamp
+  mode: single
+
+- alias: Turn spare room lamp off at midnight
+  trigger:
+    platform: time
+    at: "00:00:00"
+  action:
+    service: light.turn_off
+    entity_id: light.spare_room_dresser_lamp
+  mode: single
+

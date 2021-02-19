@@ -1,0 +1,22 @@
+# The monitor_docker platform (from HACS) adds monitoring of
+# Docker containers to Home Assistant.
+# https://github.com/ualex73/monitor_docker
+
+monitor_docker:
+  - name: Docker
+    containers:
+      - pi-hole
+      - nodered
+      - splunk
+      - home-assistant
+      - ESPHome
+      - portainer
+      - influxdb-grafana
+    rename:
+      pi-hole: Pi-hole
+      nodered: Node-RED
+      splunk: Splunk
+      home-assistant: Home assistant
+      ESPHome: ESPHome
+      portainer: Portainer
+      influxdb-grafana: InfluxDB/Grafana

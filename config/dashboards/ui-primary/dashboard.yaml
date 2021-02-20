@@ -7,5 +7,6 @@ views:
   - !include ../common-views/printer.yaml
   - !include ../common-views/garage.yaml
   - !include ../common-views/climate.yaml
+  - !include views/docker.yaml
   - !include views/tech.yaml
   - !include views/smoke.yaml

@@ -8,10 +8,6 @@
 # https://www.home-assistant.io/integrations/light.switch/
 
 - platform: switch
-  entity_id: switch.basement_desk_lamp
-  name: Basement desk lamp
-
-- platform: switch
   entity_id: switch.zw_porch_string_lights
   name: Porch string
 

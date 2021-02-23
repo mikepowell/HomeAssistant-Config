@@ -1,0 +1,17 @@
+# List of resources for custom cards, etc.
+
+# https://github.com/custom-cards/button-card
+- url: /hacsfiles/button-card/button-card.js
+  type: module
+
+# https://github.com/dangreco/threedy
+- url: /local/threedy-card.js
+  type: module
+
+# https://github.com/ofekashery/vertical-stack-in-card
+- url: /local/vertical-stack-in-card.js
+  type: module
+
+# https://github.com/kalkih/mini-graph-card
+- url: /local/mini-graph-card-bundle.js
+  type: module

@@ -5,8 +5,8 @@
       entity_id: input_select.basement_lights
       to: 'Off'
   action:
-    - service: switch.turn_off
-      entity_id: switch.basement_desk_lamp
+    - service: light.turn_off
+      entity_id: light.zw_basement_desk_lamp
     - service: light.turn_off
       entity_id: light.basement_office
     - service: light.turn_off
@@ -19,8 +19,8 @@
       entity_id: input_select.basement_lights
       to: 'On'
   action:
-    - service: switch.turn_on
-      entity_id: switch.basement_desk_lamp
+    - service: light.turn_on
+      entity_id: light.zw_basement_desk_lamp
     - service: light.turn_on
       data:
         entity_id: light.basement_office
@@ -40,7 +40,7 @@
       to: 'Working'
   action:
     - service: switch.turn_on
-      entity_id: switch.basement_desk_lamp
+      entity_id: light.zw_basement_desk_lamp
     - service: light.turn_on
       data:
         entity_id: light.basement_office

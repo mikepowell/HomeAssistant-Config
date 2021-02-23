@@ -1,76 +1,72 @@
 icon: 'mdi:chart-bell-curve-cumulative'
 path: tech
 cards:
-  - type: vertical-stack
+  - type: custom:vertical-stack-in-card
+    title: UDM-PRO
     cards:
-      - type: markdown
-        content: '### Synology'
+      - type: custom:mini-graph-card
+        name: BEAM
+        entities:
+          - entity: sensor.beam_throughput_down
+            name: Download
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.beam_throughput_up
+            name: Upload
+            show_state: true
+            state_adaptive_color: true
+        hours_to_show: 1
+        points_per_hour: 30
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          labels: true
 
-      - type: vertical-stack
+      - type: custom:mini-graph-card
+        name: CENTURYLINK
+        entities:
+          - entity: sensor.centurylink_throughput_down
+            name: Download
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.centurylink_throughput_up
+            name: Upload
+            show_state: true
+            state_adaptive_color: true
+        hours_to_show: 1
+        points_per_hour: 30
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          labels: true
+
+  - type: custom:vertical-stack-in-card
+    title: Synology
+    cards:
+      - type: horizontal-stack
         cards:
-          - type: horizontal-stack
-            cards:
-              - type: sensor
-                entity: sensor.syno_cpu_load_5_min
-                graph: line
-                hours_to_show: 6
-                name: CPU
-
-              - type: sensor
-                entity: sensor.syno_memory_usage_real
-                graph: line
-                name: RAM
-
-          - type: horizontal-stack
-            cards:
-              - type: sensor
-                entity: sensor.syno_network_down
-                graph: line
-                hours_to_show: 6
-                name: Down
-              - type: sensor
-                entity: sensor.syno_network_up
-                graph: line
-                hours_to_show: 6
-                name: Up
-
-          - type: history-graph
-            hours_to_show: 12
-            refresh_interval: 0
-            entities:
-              - entity: sensor.syno_network_down
-                name: Network down
-              - entity: sensor.syno_network_up
-                name: Network up
-
-          - type: history-graph
-            hours_to_show: 12
-            refresh_interval: 0
-            entities:
-              - entity: sensor.syno_cpu_load_15_min
-                name: CPU load (15m)
-              - entity: sensor.syno_cpu_load_5_min
-                name: CPU load (5m)
-
-  - type: vertical-stack
-    cards:
-      - type: markdown
-        content: '### UDM Pro'
-
-      - type: history-graph
-        hours_to_show: 24
-        refresh_interval: 0
+          - type: gauge
+            entity: sensor.syno_cpu_load_total
+            min: 0
+            max: 100
+            name: CPU
+            severity:
+              green: 0
+              yellow: 40
+              red: 60
+          - type: gauge
+            entity: sensor.syno_memory_usage_real
+            min: 0
+            max: 100
+            name: RAM
+            severity:
+              green: 0
+              yellow: 50
+              red: 75
+      - type: glance
+        show_name: false
         entities:
-          - entity: sensor.udm_pro_rx
-            name: RX
-          - entity: sensor.udm_pro_tx
-            name: TX
-
-      - type: history-graph
-        hours_to_show: 12
-        refresh_interval: 0
-        entities:
-          - entity: sensor.synology_nas_rx
-            name: Syno RX
-          - entity: sensor.synology_nas_tx
-            name: Syno TX
+          - sensor.syno_network_down
+          - sensor.syno_network_up

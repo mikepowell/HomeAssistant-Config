@@ -1,62 +1,91 @@
 icon: mdi:weather-partly-snowy-rainy
 path: weather
 cards:
-  - type: vertical-stack
+  - type: custom:vertical-stack-in-card
     cards:
-      - type: horizontal-stack
-        cards:
+      - type: custom:mini-graph-card
+        entities:
           - entity: sensor.my_weather_station_temp
-            graph: line
             name: Temp
-            type: sensor
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.my_weather_station_dew_point
+            name: Dew point
+            show_state: true
+            state_adaptive_color: true
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          name: false
+
+      - type: glance
+        show_name: true
+        entities:
+          - entity: sensor.my_weather_station_feels_like
+            name: Feels like
+          - entity: sensor.my_weather_station_inside_temp
+            name: Indoor
           - entity: sensor.my_weather_station_humidity
-            graph: line
             name: Humidity
-            type: sensor
-          - entity: sensor.my_weather_station_rel_pressure
-            graph: line
-            name: Pressure
-            type: sensor
 
-      - type: horizontal-stack
-        cards:
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mini-graph-card
+        entities:
           - entity: sensor.my_weather_station_wind_speed
-            graph: line
-            icon: 'mdi:weather-windy'
-            name: Wind
-            type: sensor
+            name: Speed
+            show_state: true
+            state_adaptive_color: true
           - entity: sensor.my_weather_station_wind_gust
-            graph: line
-            icon: 'mdi:weather-windy'
             name: Gust
-            type: sensor
+            show_state: true
+            state_adaptive_color: true
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: max
+        line_width: 2
+        decimals: 1
+        show:
+          name: false
 
-      - type: horizontal-stack
-        cards:
+      - type: glance
+        show_name: true
+        entities:
+          - entity: sensor.my_weather_station_max_gust
+            name: Max gust
+          - entity: sensor.my_weather_station_wind_dir
+            name: Direction
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mini-graph-card
+        entities:
           - entity: sensor.my_weather_station_hourly_rain_rate
-            graph: line
-            icon: 'mdi:weather-pouring'
             name: Rate
-            type: sensor
+            show_state: true
+            state_adaptive_color: true
           - entity: sensor.my_weather_station_daily_rain
-            graph: line
-            icon: 'mdi:weather-pouring'
             name: Daily
-            type: sensor
+            y_axis: secondary
+            show_state: true
+            state_adaptive_color: true
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: max
+        line_width: 2
+        decimals: 1
+        show:
+          name: false
 
-  - type: history-graph
-    hours_to_show: 24
-    refresh_interval: 0
-    entities:
-      - entity: sensor.my_weather_station_temp
-        name: Temperature
-      - entity: sensor.my_weather_station_humidity
-        name: Humidity
-      - entity: sensor.my_weather_station_wind_speed
-        name: Wind speed
-      - entity: sensor.my_weather_station_wind_gust
-        name: Wind gust
-      - entity: sensor.my_weather_station_hourly_rain_rate
-        name: Hourly rain rate
-      - entity: sensor.my_weather_station_daily_rain
-        name: Daily rain
+      - type: glance
+        show_name: true
+        entities:
+          - entity: sensor.my_weather_station_weekly_rain
+            name: Weekly
+          - entity: sensor.my_weather_station_monthly_rain
+            name: Monthly
+          - entity: sensor.my_weather_station_yearly_rain
+            name: Yearly

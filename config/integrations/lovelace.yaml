@@ -4,10 +4,10 @@
 # https://www.home-assistant.io/lovelace/dashboards-and-views
 #
 lovelace:
-  # Either 'yaml' or 'storage'. I'm specifying storage here so I have one
-  # 'Overview' dashboard that's configurable via the UI for quick messing
-  # around. More permanent YAML dashboards are stored in ../dashboards.
-  mode: storage
+  # Either 'yaml' or 'storage'.
+  mode: yaml
 
   # YAML dashboards are stored here:
   dashboards: !include ../dashboards/dashboards.yaml
+
+  resources: !include ../dashboards/resources.yaml

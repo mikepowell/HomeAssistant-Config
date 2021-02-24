@@ -52,9 +52,5 @@
   name: Patio lights
 
 - platform: switch
-  entity_id: switch.spare_room_dresser
-  name: Spare room dresser lamp
-
-- platform: switch
   entity_id: switch.zw_spare_room_nightstand_lamp
   name: Spare room nightstand lamp

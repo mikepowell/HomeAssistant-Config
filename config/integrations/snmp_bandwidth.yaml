@@ -1,3 +1,4 @@
+# yamllint disable rule:line-length
 homeassistant:
   customize:
     sensor.beam_throughput_down:
@@ -36,31 +37,31 @@ sensor:
 
   - platform: template
     sensors:
-        beam_throughput_down_raw:
-          friendly_name: 'Beam download throughput raw'
-          value_template: '{{ ((states.input_number.beam_download_traffic_delta.state | float ) / 1000000 ) | round(2) }}'
-          unit_of_measurement: 'Mbps'
+      beam_throughput_down_raw:
+        friendly_name: 'Beam download throughput raw'
+        value_template: '{{ ((states.input_number.beam_download_traffic_delta.state | float ) / 1000000 ) | round(2) }}'
+        unit_of_measurement: 'Mbps'
 
   - platform: template
     sensors:
-        beam_throughput_up_raw:
-          friendly_name: 'Beam upload throughput raw'
-          value_template: '{{ ((states.input_number.beam_upload_traffic_delta.state | float ) / 1000000 ) | round(2) }}'
-          unit_of_measurement: 'Mbps'
+      beam_throughput_up_raw:
+        friendly_name: 'Beam upload throughput raw'
+        value_template: '{{ ((states.input_number.beam_upload_traffic_delta.state | float ) / 1000000 ) | round(2) }}'
+        unit_of_measurement: 'Mbps'
 
   - platform: template
     sensors:
-        centurylink_throughput_down_raw:
-          friendly_name: 'CenturyLink download throughput raw'
-          value_template: '{{ ((states.input_number.centurylink_download_traffic_delta.state | float ) / 1000000 ) | round(2) }}'
-          unit_of_measurement: 'Mbps'
+      centurylink_throughput_down_raw:
+        friendly_name: 'CenturyLink download throughput raw'
+        value_template: '{{ ((states.input_number.centurylink_download_traffic_delta.state | float ) / 1000000 ) | round(2) }}'
+        unit_of_measurement: 'Mbps'
 
   - platform: template
     sensors:
-        centurylink_throughput_up_raw:
-          friendly_name: 'CenturyLink upload throughput raw'
-          value_template: '{{ ((states.input_number.centurylink_upload_traffic_delta.state | float ) / 1000000 ) | round(2) }}'
-          unit_of_measurement: 'Mbps'
+      centurylink_throughput_up_raw:
+        friendly_name: 'CenturyLink upload throughput raw'
+        value_template: '{{ ((states.input_number.centurylink_upload_traffic_delta.state | float ) / 1000000 ) | round(2) }}'
+        unit_of_measurement: 'Mbps'
 
   - platform: statistics
     name: 'Beam throughput down'
@@ -83,25 +84,25 @@ input_number:
     name: "Beam download traffic delta"
     initial: 0
     min: 0
-    max: 1000000000000
+    max: 10000000000000
 
   beam_upload_traffic_delta:
     name: "Beam upload traffic delta"
     initial: 0
     min: 0
-    max: 1000000000000
+    max: 10000000000000
 
   centurylink_download_traffic_delta:
     name: "CenturyLink download traffic delta"
     initial: 0
     min: 0
-    max: 1000000000000
+    max: 10000000000000
 
   centurylink_upload_traffic_delta:
     name: "CenturyLink upload traffic delta"
     initial: 0
     min: 0
-    max: 1000000000000
+    max: 10000000000000
 
 automation:
   - id: snmp_monitor_beam_download_traffic

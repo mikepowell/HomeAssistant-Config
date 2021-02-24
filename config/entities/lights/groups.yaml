@@ -23,3 +23,9 @@
   entities:
     - light.front_room_floor_lamp
     - light.zw_bookshelf_lights
+
+- platform: group
+  name: Spare room dresser lamp
+  entities:
+    - light.zw_spare_room_dresser_bulb_1
+    - light.zw_spare_room_dresser_bulb_2

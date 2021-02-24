@@ -8,3 +8,42 @@
   action:
     - service: light.toggle
       entity_id: light.front_room_lights
+
+- alias: Turn on dresser lamp with aqara single click
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      unique_id: 00:15:8d:00:02:90:15:f2:1:0x0012
+      command: single
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.spare_room_dresser_lamp
+      data:
+        brightness: 1
+
+- alias: Turn on dresser lamp with aqara double click
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      unique_id: 00:15:8d:00:02:90:15:f2:1:0x0012
+      command: double
+  action:
+    - service: light.turn_on
+      target:
+        entity_id: light.spare_room_dresser_lamp
+      data:
+        brightness: 255
+
+- alias: Turn on dresser lamp with aqara hold
+  trigger:
+    platform: event
+    event_type: zha_event
+    event_data:
+      unique_id: 00:15:8d:00:02:90:15:f2:1:0x0012
+      command: hold
+  action:
+    - service: light.turn_off
+      entity_id: light.spare_room_dresser_lamp

@@ -1,5 +1,14 @@
 # Flic Hub integration
 
+## Update 2/24/2021
+
+I'm no longer using the Flic integration described here, the range was just not long enough to support
+my three buttons with a single hub and I couldn't justify another $100+ for a second hub. I'm using
+Aqara Zigbee buttons instead, they look and feel cheaper than the Flic buttons but don't require a hub
+and the range is good.
+
+---
+
 The Flic hub is configured to send HTTP requests to the Home Assistant [webhook][ha-webhook] endpoint.
 This is accomplished by installing a custom JavaScript module onto the Flic hub using the
 [Flic Hub SDK][flic-sdk].

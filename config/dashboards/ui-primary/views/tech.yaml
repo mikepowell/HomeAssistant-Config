@@ -20,8 +20,6 @@ cards:
         aggregate_func: mean
         line_width: 2
         decimals: 1
-        show:
-          labels: true
 
       - type: custom:mini-graph-card
         name: CENTURYLINK
@@ -39,8 +37,6 @@ cards:
         aggregate_func: mean
         line_width: 2
         decimals: 1
-        show:
-          labels: true
 
   - type: custom:vertical-stack-in-card
     title: Synology

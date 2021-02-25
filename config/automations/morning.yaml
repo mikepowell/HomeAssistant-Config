@@ -23,5 +23,5 @@
     offset: +01:00:00
   action:
     service: light.turn_off
-    entity_id: light.living_room_floor_lamp
+    entity_id: light.zw_living_room_floor_lamp_color
   mode: single

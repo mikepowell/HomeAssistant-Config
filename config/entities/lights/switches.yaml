@@ -44,10 +44,6 @@
   name: Front room floor lamp
 
 - platform: switch
-  entity_id: switch.living_room_floor_lamp
-  name: Living room floor lamp
-
-- platform: switch
   entity_id: switch.zw_patio_light
   name: Patio lights
 

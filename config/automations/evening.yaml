@@ -44,7 +44,9 @@
     offset: "-00:15:00"
   action:
     service: light.turn_on
-    entity_id: light.living_room_floor_lamp
+    data:
+        entity_id: light.zw_living_room_floor_lamp_color
+        brightness_pct: 10
   mode: single
 
 - alias: Turn spare room lamp on in the evening
@@ -53,7 +55,9 @@
     at: "20:00:00"
   action:
     service: light.turn_on
-    entity_id: light.spare_room_dresser_lamp
+    data:
+      entity_id: light.spare_room_dresser_lamp
+      brightness_pct: 10
   mode: single
 
 - alias: Turn spare room lamp off at midnight

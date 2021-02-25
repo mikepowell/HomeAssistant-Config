@@ -61,6 +61,7 @@ binary_sensor: !include_dir_list entities/binary_sensors
 input_select: !include_dir_named entities/input_select
 cover: !include_dir_merge_list entities/covers
 light: !include_dir_merge_list entities/lights
+sensor: !include_dir_merge_list entities/sensors
 
 # Add scripts
 script: !include_dir_named scripts

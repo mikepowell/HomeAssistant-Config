@@ -1,0 +1,43 @@
+# Handles the three click types for the spare room button
+# (single click, double click, hold)
+- id: aqara_button_spare_room
+  alias: Aqara wireless remote spare room
+  mode: restart
+
+  trigger:
+    platform: event
+    event_type: zha_event
+
+  condition:
+    condition: template
+    value_template: '{{ trigger.event.data.device_ieee == "00:15:8d:00:02:90:15:f2" }}'
+
+  action:
+    - choose:
+        # Single click
+        - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.command == "single" }}'
+          sequence:
+            - service: light.toggle
+              entity_id: light.spare_room_nightstand_lamp
+
+        # Double click
+        - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.command == "double" }}'
+          sequence:
+            - service: light.turn_on
+              data:
+                entity_id: light.spare_room_dresser_lamp
+                brightness_pct: 1
+
+        # Hold
+        - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.command == "hold" }}'
+          sequence:
+            - service: light.turn_off
+              entity_id: light.spare_room_nightstand_lamp
+            - service: light.turn_off
+              entity_id: light.spare_room_dresser_lamp

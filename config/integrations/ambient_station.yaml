@@ -1,7 +1,0 @@
-#
-# This integration uses the Ambient Weather API to retrieve
-# data from our weather station.
-#
-ambient_station:
-  api_key: !secret ambient_api_key
-  app_key: !secret ambient_app_key_2

@@ -49,7 +49,7 @@ cards:
               action: more-info
 
           - type: button
-            entity: light.zw_basement_desk_lamp
+            entity: light.zw_basement_desk_lamp_color
             hold_action:
               action: more-info
             icon: 'mdi:lamp'

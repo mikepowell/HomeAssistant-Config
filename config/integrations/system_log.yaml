@@ -1,5 +1,0 @@
-#
-# Configures the maximum number of entries in the system log.
-#
-system_log:
-  max_entries: 200

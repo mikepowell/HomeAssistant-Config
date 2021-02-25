@@ -27,7 +27,7 @@
                 brightness_step_pct: '{{ trigger.event.data.args.relative_degrees | float / 3 }}'
             - service: light.turn_on
               data_template:
-                entity_id: light.zw_basement_desk_lamp
+                entity_id: light.zw_basement_desk_lamp_color
                 brightness_step_pct: '{{ trigger.event.data.args.relative_degrees | float / 3 }}'
 
         # Shake
@@ -38,4 +38,4 @@
             - service: light.turn_off
               entity_id: light.basement_office
             - service: light.turn_off
-              entity_id: light.zw_basement_desk_lamp
+              entity_id: light.zw_basement_desk_lamp_color

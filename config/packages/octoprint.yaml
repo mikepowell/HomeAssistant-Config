@@ -1,0 +1,19 @@
+
+octoprint:
+  host: 192.168.10.34
+  api_key: !secret octoprint_api_key
+  name: Ender 3 V2
+  bed: true
+  number_of_tools: 1
+
+binary_sensor:
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
+
+camera:
+  - platform: mjpeg
+    name: Ender 3 V2
+    still_image_url: http://192.168.10.34/webcam/?action=snapshot
+    mjpeg_url: http://192.168.10.34/webcam/?action=stream

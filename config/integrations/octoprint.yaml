@@ -1,6 +1,0 @@
-octoprint:
-  host: 192.168.10.34
-  api_key: !secret octoprint_api_key
-  name: Ender 3 V2
-  bed: true
-  number_of_tools: 1

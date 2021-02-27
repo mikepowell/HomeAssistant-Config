@@ -17,3 +17,14 @@ camera:
     name: Ender 3 V2
     still_image_url: http://192.168.10.34/webcam/?action=snapshot
     mjpeg_url: http://192.168.10.34/webcam/?action=stream
+
+homeassistant:
+  customize:
+    sensor.ender_3_v2_actual_bed_temp:
+      unit_of_measurement: C
+    sensor.ender_3_v2_actual_tool0_temp:
+      unit_of_measurement: C
+    sensor.ender_3_v2_target_tool0_temp:
+      unit_of_measurement: C
+    sensor.ender_3_v2_target_tool0_temp:
+      unit_of_measurement: C

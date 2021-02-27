@@ -1,63 +1,137 @@
 icon: 'mdi:home-thermometer-outline'
 path: indoor-climate
 cards:
-  - type: entities
-    entities:
-      - entity: sensor.basement_main_temperature
-      - entity: sensor.basement_main_humidity
-    footer:
-      type: graph
-      entity: sensor.basement_main_temperature
-      detail: 2
-      hours_to_show: 4
+  - type: custom:vertical-stack-in-card
+    title: Basement
+    cards:
+      - type: custom:mini-graph-card
+        name: TV ROOM
+        entities:
+          - entity: sensor.basement_main_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.basement_main_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
 
-  - type: entities
-    entities:
-      - entity: sensor.basement_office_temperature
-      - entity: sensor.basement_office_humidity
-    footer:
-      type: graph
-      entity: sensor.basement_office_temperature
-      detail: 2
-      hours_to_show: 4
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
 
-  - type: entities
-    entities:
-      - entity: sensor.zw_basement_stairs_multisensor_temperature
-      - entity: sensor.zw_basement_stairs_multisensor_humidity
-    footer:
-      type: graph
-      entity: sensor.zw_basement_stairs_multisensor_temperature
-      detail: 2
-      hours_to_show: 4
+      - type: custom:mini-graph-card
+        name: OFFICE
+        entities:
+          - entity: sensor.basement_office_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.basement_office_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
 
-  - type: entities
-    entities:
-      - entity: sensor.main_floor_temperature
-      - entity: sensor.main_floor_humidity
-    footer:
-      type: graph
-      entity: sensor.main_floor_temperature
-      detail: 2
-      hours_to_show: 4
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
 
-  - type: entities
-    entities:
-      - entity: sensor.front_room_temperature
-      - entity: sensor.front_room_humidity
-    footer:
-      type: graph
-      entity: sensor.front_room_temperature
-      detail: 2
-      hours_to_show: 4
+      - type: custom:mini-graph-card
+        name: STAIRS
+        entities:
+          - entity: sensor.zw_basement_stairs_multisensor_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.zw_basement_stairs_multisensor_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
 
-  - type: entities
-    entities:
-      - entity: sensor.upstairs_hall_temperature
-      - entity: sensor.upstairs_hall_humidity
-    footer:
-      type: graph
-      entity: sensor.upstairs_hall_temperature
-      detail: 2
-      hours_to_show: 4
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
 
+  - type: custom:vertical-stack-in-card
+    title: Main floor
+    cards:
+      - type: custom:mini-graph-card
+        name: DINING ROOM
+        entities:
+          - entity: sensor.main_floor_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.main_floor_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
+
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
+
+      - type: custom:mini-graph-card
+        name: FRONT ROOM
+        entities:
+          - entity: sensor.front_room_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.front_room_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
+
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
+
+  - type: custom:vertical-stack-in-card
+    title: Upstairs
+    cards:
+      - type: custom:mini-graph-card
+        name: HALL
+        entities:
+          - entity: sensor.upstairs_hall_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.upstairs_hall_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
+
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false

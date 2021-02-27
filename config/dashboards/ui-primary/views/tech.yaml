@@ -66,3 +66,23 @@ cards:
         entities:
           - sensor.syno_network_down
           - sensor.syno_network_up
+
+  - type: custom:vertical-stack-in-card
+    title: Zwave RPi
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.zw_raspberry_pi_temperature
+            name: CPU TEMP
+            show_state: true
+        hours_to_show: 1
+        points_per_hour: 30
+        aggregate_func: max
+        line_width: 2
+        decimals: 1
+
+      - type: glance
+        show_name: true
+        entities:
+          - entity: binary_sensor.zw_rpi_power_status
+            name: Power status

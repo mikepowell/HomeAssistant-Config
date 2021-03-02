@@ -1,4 +1,3 @@
-
 octoprint:
   host: 192.168.10.34
   api_key: !secret octoprint_api_key
@@ -22,9 +21,9 @@ homeassistant:
   customize:
     sensor.ender_3_v2_actual_bed_temp:
       unit_of_measurement: C
-    sensor.ender_3_v2_actual_tool0_temp:
+    sensor.ender_3_v2_target_bed_temp:
       unit_of_measurement: C
-    sensor.ender_3_v2_target_tool0_temp:
+    sensor.ender_3_v2_actual_tool0_temp:
       unit_of_measurement: C
     sensor.ender_3_v2_target_tool0_temp:
       unit_of_measurement: C

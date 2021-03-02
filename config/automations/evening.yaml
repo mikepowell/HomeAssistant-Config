@@ -45,8 +45,8 @@
   action:
     service: light.turn_on
     data:
-        entity_id: light.zw_living_room_floor_lamp_color
-        brightness_pct: 1
+      entity_id: light.zw_living_room_floor_lamp_color
+      brightness_pct: 1
   mode: single
 
 - alias: Turn spare room lamp on in the evening

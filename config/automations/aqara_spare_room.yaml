@@ -29,7 +29,7 @@
           sequence:
             - service: light.turn_on
               data:
-                entity_id: light.spare_room_dresser_lamp
+                entity_id: light.zw_spare_room_dresser_lamp_color
                 brightness_pct: 1
 
         # Hold
@@ -40,4 +40,4 @@
             - service: light.turn_off
               entity_id: light.spare_room_nightstand_lamp
             - service: light.turn_off
-              entity_id: light.spare_room_dresser_lamp
+              entity_id: light.zw_spare_room_dresser_lamp_color

@@ -143,7 +143,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: light.spare_room_dresser_lamp
+            entity: light.zw_spare_room_dresser_lamp_color
             hold_action:
               action: more-info
             icon: 'mdi:lamp'

@@ -1,0 +1,42 @@
+# Handles the three click types for the spare room button
+# (single click, double click, hold)
+- id: aqara_button_basement_office
+  alias: Aqara wireless remote basement office
+  mode: restart
+
+  trigger:
+    platform: event
+    event_type: zha_event
+
+  condition:
+    condition: template
+    value_template: '{{ trigger.event.data.device_ieee == "00:15:8d:00:02:7c:25:d8" }}'
+
+  action:
+    - choose:
+        # Single click
+        - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.command == "single" }}'
+          sequence:
+            - service: light.toggle
+              entity_id: light.zw_basement_desk_lamp
+
+        # Double click
+        - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.command == "double" }}'
+          sequence:
+            - service: light.toggle
+              data:
+                entity_id: light.basement_office
+
+        # Hold
+        - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.command == "hold" }}'
+          sequence:
+            - service: light.turn_off
+              entity_id: light.zw_basement_desk_lamp
+            - service: light.turn_off
+              entity_id: light.basement_office

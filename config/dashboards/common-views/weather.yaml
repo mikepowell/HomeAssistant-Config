@@ -38,17 +38,23 @@ cards:
           - entity: sensor.my_weather_station_wind_speed
             name: Speed
             show_state: true
+            show_points: false
             state_adaptive_color: true
           - entity: sensor.my_weather_station_wind_gust
             name: Gust
             show_state: true
             state_adaptive_color: true
+            show_line: false
+            show_points: true
+            show_fill: false
+            smoothing: false
         hours_to_show: 24
         points_per_hour: 2
         aggregate_func: max
         line_width: 2
         decimals: 1
         show:
+          points: true
           name: false
 
       - type: glance

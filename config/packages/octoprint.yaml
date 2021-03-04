@@ -11,6 +11,23 @@ binary_sensor:
       - Printing
       - Printing Error
 
+sensor:
+  - platform: template
+    sensors:
+      ender_3_v2_time_elapsed_friendly:
+        friendly_name: Ender 3 V2 time elapsed
+        value_template: >
+          {{ states('sensor.ender_3_v2_time_elapsed') | int | timestamp_custom('%H:%M:%S', 0) }}
+      ender_3_v2_time_remaining_friendly:
+        friendly_name: Ender 3 V2 time remaining
+        value_template: >
+          {{ states('sensor.ender_3_v2_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}
+
+      ender_3_v2_time_complete:
+        friendly_name: Ender 3 V2 time complete
+        value_template: >
+          {{ (now() + timedelta(0,states('sensor.ender_3_v2_time_remaining') | int)).strftime("%H:%M:%S") }}
+
 camera:
   - platform: mjpeg
     name: Ender 3 V2
@@ -27,3 +44,13 @@ homeassistant:
       unit_of_measurement: C
     sensor.ender_3_v2_target_tool0_temp:
       unit_of_measurement: C
+
+    sensor.ender_3_v2_time_elapsed_friendly:
+      icon: mdi:clock-start
+
+    sensor.ender_3_v2_time_remaining_friendly:
+      icon: mdi:clock-end
+
+    sensor.ender_3_v2_time_complete:
+      icon: mdi:clock-check-outline
+

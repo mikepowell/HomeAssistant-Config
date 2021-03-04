@@ -40,8 +40,9 @@ cards:
               show_name: false
               entities:
                 - entity: sensor.ender_3_v2_current_state
-                - entity: sensor.ender_3_v2_time_elapsed
-                - entity: sensor.ender_3_v2_time_remaining
+                - entity: sensor.ender_3_v2_time_elapsed_friendly
+                - entity: sensor.ender_3_v2_time_remaining_friendly
+                - entity: sensor.ender_3_v2_time_complete
 
         - type: picture-glance
           title: 3D Printer

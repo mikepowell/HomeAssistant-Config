@@ -1,28 +1,53 @@
 icon: mdi:printer-3d
 path: 3dprinter
 cards:
-  - type: 'custom:threedy-card'
-    base_entity: sensor.ender_3_v2
-    name: Ender 3 V2
-    printer_type: I3
-    monitored:
-      - Status
-      - ETA
-      - Elapsed
-      - Hotend
-      - Bed
-    theme: Default
-    font: Roboto
-    scale: 1.0
-    round: true
-    temperature_unit: C
-    power_entity: switch.3d_printer_power
-
-  - type: picture-glance
-    title: 3D Printer
-    entities: []
-    camera_image: camera.ender_3_v2
+  - type: button
+    entity: switch.3d_printer_power
+    name: Printer power
+    icon_height: 40px
     tap_action:
-      action: more-info
-    hold_action:
-      action: none
+      action: toggle
+      confirmation:
+        text: Are you sure you want to toggle printer power?
+
+  - type: conditional
+    conditions:
+      - entity: switch.3d_printer_power
+        state: "on"
+    card:
+      type: vertical-stack
+      cards:
+        - type: custom:vertical-stack-in-card
+          cards:
+            - type: horizontal-stack
+              cards:
+                - type: gauge
+                  entity: sensor.ender_3_v2_actual_tool0_temp
+                  name: Extruder
+                  min: 0
+                  max: 250
+                - type: gauge
+                  entity: sensor.ender_3_v2_actual_bed_temp
+                  name: Bed
+                  min: 0
+                  max: 110
+                - type: gauge
+                  entity: sensor.ender_3_v2_job_percentage
+                  name: Progress
+                  min: 0
+                  max: 100
+            - type: glance
+              show_name: false
+              entities:
+                - entity: sensor.ender_3_v2_current_state
+                - entity: sensor.ender_3_v2_time_elapsed
+                - entity: sensor.ender_3_v2_time_remaining
+
+        - type: picture-glance
+          title: 3D Printer
+          entities: []
+          camera_image: camera.ender_3_v2
+          tap_action:
+            action: more-info
+          hold_action:
+            action: none

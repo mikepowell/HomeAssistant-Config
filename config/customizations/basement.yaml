@@ -6,3 +6,6 @@ media_player.basement:
 
 sensor.zw_basement_stairs_multisensor_relative_humidity:
   icon: mdi:water-percent
+
+switch.3d_printer_power:
+  icon: mdi:power

@@ -4,6 +4,10 @@
 - url: /hacsfiles/button-card/button-card.js
   type: module
 
+# https://github.com/Savjee/button-text-card
+- url: /hacsfiles/button-text-card/button-text-card.js
+  type: module
+
 # https://github.com/dangreco/threedy
 - url: /local/threedy-card.js
   type: module

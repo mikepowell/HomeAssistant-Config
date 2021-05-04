@@ -37,19 +37,19 @@ cards:
 
       - type: horizontal-stack
         cards:
-        - type: glance
-          show_name: false
-          entities:
-            - entity: sensor.docker_home_assistant_memory
-        - type: button
-          name: Restart Home Assistant
-          icon: mdi:restart
-          icon_height: 50px
-          tap_action:
-            action: call-service
-            service: homeassistant.restart
-            confirmation:
-              text: Are you sure you want to restart Home Assistant?
+          - type: glance
+            show_name: false
+            entities:
+              - entity: sensor.docker_home_assistant_memory
+          - type: button
+            name: Restart Home Assistant
+            icon: mdi:restart
+            icon_height: 50px
+            tap_action:
+              action: call-service
+              service: homeassistant.restart
+              confirmation:
+                text: Are you sure you want to restart Home Assistant?
 
       - type: entities
         entities:

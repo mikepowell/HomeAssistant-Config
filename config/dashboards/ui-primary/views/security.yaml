@@ -1,0 +1,105 @@
+title: Security
+icon: 'mdi:shield-home'
+path: security
+cards:
+  - type: 'custom:vertical-stack-in-card'
+    title: Doors
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.zw_front_door_sensor
+                name: Front
+                show_last_changed: true
+              - entity: binary_sensor.zw_porch_door_sensor
+                name: Porch
+                show_last_changed: true
+              - entity: binary_sensor.zw_mudroom_door_sensor
+                name: Mudroom
+                show_last_changed: true
+              - entity: binary_sensor.zw_basement_door_sensor
+                name: Basement
+                show_last_changed: true
+      - type: horizontal-stack
+        cards:
+          - type: glance
+            entities:
+              - entity: cover.ryobi_gdo_door_74daea881296
+                name: Garage 1
+                show_last_changed: true
+              - entity: cover.ryobi_gdo_door_d4f513d93753
+                name: Garage 2
+                show_last_changed: true
+
+  - type: 'custom:vertical-stack-in-card'
+    title: Cameras
+    cards:
+      - type: picture-glance
+        title: Garage
+        entities:
+          - entity: binary_sensor.motion_garage
+          - entity: switch.flood_garage
+          - entity: switch.ir_active_garage
+          - entity: switch.hdr_mode_garage
+        camera_image: camera.garage
+        tap_action:
+          action: more-info
+        hold_action:
+          action: none
+      - type: picture-glance
+        title: Front door
+        entities:
+          - entity: binary_sensor.front_door_motion
+          - entity: sensor.front_door_last_motion
+        camera_image: camera.front_door
+        tap_action:
+          action: more-info
+        hold_action:
+          action: none
+      - type: picture-glance
+        title: Basement
+        entities:
+          - entity: binary_sensor.motion_basement
+          - entity: switch.ir_active_basement
+          - entity: switch.hdr_mode_basement
+        camera_image: camera.basement
+        tap_action:
+          action: more-info
+        hold_action:
+          action: none
+
+  - type: 'custom:vertical-stack-in-card'
+    title: Smoke detectors
+    cards:
+      - type: glance
+        title: Main floor
+        show_name: false
+        entities:
+          - entity: sensor.smoke_main_smoke_detector
+            show_state: true
+          - entity: sensor.smoke_main_carbon_monoxide_detector
+            show_state: true
+          - entity: sensor.smoke_main_battery
+            show_state: true
+      - type: glance
+        title: Upstairs
+        show_name: false
+        entities:
+          - entity: sensor.smoke_upstairs_smoke_detector
+            show_state: true
+          - entity: sensor.smoke_upstairs_carbon_monoxide_detector
+            show_state: true
+          - entity: sensor.smoke_upstairs_battery
+            show_state: true
+
+      - type: glance
+        title: Basement
+        show_name: false
+        entities:
+          - entity: sensor.smoke_basement_smoke_detector
+            show_state: true
+          - entity: sensor.smoke_basement_carbon_monoxide_detector
+            show_state: true
+          - entity: sensor.smoke_basement_battery
+            show_state: true

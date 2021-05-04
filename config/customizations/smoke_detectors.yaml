@@ -1,0 +1,29 @@
+sensor.smoke_main_smoke_detector:
+  friendly_name: Main floor smoke
+  icon: mdi:fire
+  device_class: carbon_dioxide
+
+sensor.smoke_upstairs_smoke_detector:
+  friendly_name: Upstairs smoke
+  icon: mdi:fire
+  device_class: carbon_dioxide
+
+sensor.smoke_basement_smoke_detector:
+  friendly_name: Downstairs floor smoke
+  icon: mdi:fire
+  device_class: carbon_dioxide
+
+sensor.smoke_main_carbon_monoxide_detector:
+  friendly_name: Main floor CO
+  icon: mdi:molecule-co
+  device_class: carbon_monoxide
+
+sensor.smoke_upstairs_carbon_monoxide_detector:
+  friendly_name: Upstairs CO
+  icon: mdi:molecule-co
+  device_class: carbon_monoxide
+
+sensor.smoke_basement_carbon_monoxide_detector:
+  friendly_name: Downstairs CO
+  icon: mdi:molecule-co
+  device_class: carbon_monoxide

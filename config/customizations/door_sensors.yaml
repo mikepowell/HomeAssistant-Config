@@ -1,3 +1,15 @@
-binary_sensor.zw_basement_door_sensor_sensor:
+binary_sensor.zw_basement_door_sensor:
   friendly_name: Basement door
+  device_class: door
+
+binary_sensor.zw_porch_door_sensor:
+  friendly_name: Porch door
+  device_class: door
+
+binary_sensor.zw_mudroom_door_sensor:
+  friendly_name: Mudroom door
+  device_class: door
+
+binary_sensor.zw_front_door_sensor:
+  friendly_name: Front door
   device_class: door

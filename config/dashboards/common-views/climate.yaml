@@ -1,10 +1,144 @@
-title: Thermostats
-icon: mdi:thermostat
-path: climate
+title: Indoor climate
+icon: 'mdi:home-thermometer-outline'
+path: indoor-climate
 cards:
-  - entity: climate.main_floor
-    name: Main Floor
-    type: thermostat
-  - entity: climate.upstairs
-    name: Upstairs
-    type: thermostat
+  - type: custom:vertical-stack-in-card
+    title: Basement
+    cards:
+      - type: custom:mini-graph-card
+        name: TV ROOM
+        entities:
+          - entity: sensor.basement_main_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.basement_main_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
+
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
+
+      - type: custom:mini-graph-card
+        name: OFFICE
+        entities:
+          - entity: sensor.basement_office_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.basement_office_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
+
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
+
+      - type: custom:mini-graph-card
+        name: STAIRS
+        entities:
+          - entity: sensor.zw_basement_stairs_multisensor_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.zw_basement_stairs_multisensor_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
+
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
+
+  - type: custom:vertical-stack-in-card
+    title: Main floor
+    cards:
+      - type: custom:mini-graph-card
+        name: DINING ROOM
+        entities:
+          - entity: sensor.main_floor_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.main_floor_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
+
+      - type: custom:mini-graph-card
+        name: FRONT ROOM
+        entities:
+          - entity: sensor.front_room_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.front_room_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
+
+      - entity: climate.main_floor
+        name: Main Floor
+        type: thermostat
+
+  - type: custom:vertical-stack-in-card
+    title: Upstairs
+    cards:
+      - type: custom:mini-graph-card
+        name: HALL
+        entities:
+          - entity: sensor.upstairs_hall_temperature
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+          - entity: sensor.upstairs_hall_humidity
+            show_state: true
+            show_name: false
+            state_adaptive_color: true
+            y-axis: secondary
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: mean
+        line_width: 2
+        decimals: 1
+        show:
+          legend: false
+
+      - entity: climate.upstairs
+        name: Upstairs
+        type: thermostat
+

@@ -2,9 +2,7 @@ title: Primary
 views:
   - !include views/main.yaml
   - !include ../common-views/weather.yaml
-  - !include views/indoor_climate.yaml
   - !include views/security.yaml
-  - !include ../common-views/printer.yaml
   - !include ../common-views/climate.yaml
-  - !include views/docker.yaml
   - !include views/tech.yaml
+  - !include ../common-views/printer.yaml

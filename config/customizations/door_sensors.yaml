@@ -13,3 +13,8 @@ binary_sensor.zw_mudroom_door_sensor:
 binary_sensor.zw_front_door_sensor:
   friendly_name: Front door
   device_class: door
+
+binary_sensor.zw_gun_safe_sensor:
+  friendly_name: Gun safe
+  device_class: door
+  icon: mdi:pistol

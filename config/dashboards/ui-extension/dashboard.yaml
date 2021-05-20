@@ -1,0 +1,37 @@
+views:
+  - title: Docker
+    panel: true
+    icon: mdi:docker
+    cards:
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: gauge
+                entity: sensor.docker_home_assistant_cpu
+                min: 0
+                max: 100
+                name: CPU (Cores)
+                severity:
+                  green: 0
+                  yellow: 20
+                  red: 40
+              - type: gauge
+                entity: sensor.docker_home_assistant_1cpu
+                min: 0
+                max: 100
+                name: CPU (Overall)
+                severity:
+                  green: 0
+                  yellow: 20
+                  red: 40
+              - type: gauge
+                entity: sensor.docker_home_assistant_memory_percent
+                min: 0
+                max: 100
+                name: Memory
+                severity:
+                  green: 0
+                  yellow: 20
+                  red: 40
+

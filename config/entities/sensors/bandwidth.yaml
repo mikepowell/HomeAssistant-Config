@@ -1,0 +1,58 @@
+#
+# Sensors to convert Unifi transferred bytes into bandwidth values
+#
+- platform: statistics
+  entity_id: sensor.mp_sp7_rx
+  name: MP SP7 RX stats
+  sampling_size: 1000
+  max_age:
+    minutes: 1
+
+- platform: statistics
+  entity_id: sensor.mp_sp7_tx
+  name: MP SP7 TX stats
+  sampling_size: 1000
+  max_age:
+    minutes: 1
+
+- platform: statistics
+  entity_id: sensor.mp_iphone_rx
+  name: MP iPhone RX stats
+  sampling_size: 1000
+  max_age:
+    minutes: 1
+
+- platform: statistics
+  entity_id: sensor.mp_iphone_tx
+  name: MP iPhone TX stats
+  sampling_size: 1000
+  max_age:
+    minutes: 1
+
+- platform: template
+  sensors:
+    mp_laptop_rx_rate:
+      friendly_name: MP SP7 RX rate
+      unit_of_measurement: Mb/s
+      value_template: "{{ state_attr('sensor.mp_sp7_rx_stats', 'change_rate') * 8 }}"
+
+- platform: template
+  sensors:
+    mp_laptop_tx_rate:
+      friendly_name: MP SP7 TX rate
+      unit_of_measurement: Mb/s
+      value_template: "{{ state_attr('sensor.mp_sp7_tx_stats', 'change_rate') * 8 }}"
+
+- platform: template
+  sensors:
+    mp_iphone_rx_rate:
+      friendly_name: MP iPhone RX rate
+      unit_of_measurement: Mb/s
+      value_template: "{{ state_attr('sensor.mp_iphone_rx_stats', 'change_rate') * 8 }}"
+
+- platform: template
+  sensors:
+    mp_iphone_tx_rate:
+      friendly_name: MP iPhone TX rate
+      unit_of_measurement: Mb/s
+      value_template: "{{ state_attr('sensor.mp_iphone_tx_stats', 'change_rate') * 8 }}"

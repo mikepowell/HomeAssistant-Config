@@ -1,4 +1,5 @@
-title: Primary
+title: Primary 2
+icon: mdi:home-circle-outline
 views:
   - !include views/main.yaml
   - !include ../common-views/weather.yaml

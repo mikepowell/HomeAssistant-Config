@@ -55,8 +55,6 @@ cards:
         entities:
           - entity: switch.docker_home_assistant
             name: Home Assistant
-          - entity: sensor.docker_home_assistant_image
-            name: Image
           - entity: sensor.docker_home_assistant_status
             name: Status
 
@@ -104,8 +102,6 @@ cards:
         entities:
           - entity: switch.docker_pi_hole
             name: Pi-Hole
-          - entity: sensor.docker_pi_hole_image
-            name: Image
           - entity: sensor.docker_pi_hole_status
             name: Status
 
@@ -153,8 +149,6 @@ cards:
         entities:
           - entity: switch.docker_splunk
             name: Splunk
-          - entity: sensor.docker_splunk_image
-            name: Image
           - entity: sensor.docker_splunk_status
             name: Status
 
@@ -202,10 +196,49 @@ cards:
         entities:
           - entity: switch.docker_portainer
             name: Portainer
-          - entity: sensor.docker_portainer_image
-            name: Image
           - entity: sensor.docker_portainer_status
             name: Status
+
+  - type: custom:vertical-stack-in-card
+    title: Device bandwidth
+    cards:
+      - type: custom:mini-graph-card
+        name: MP-SP7
+        entities:
+          - entity: sensor.mp_laptop_rx_rate
+            name: RX
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.mp_laptop_tx_rate
+            name: TX
+            state_adaptive_color: true
+            show_state: true
+        hours_to_show: 1
+        points_per_hour: 60
+        aggregate_func: max
+        line_width: 2
+        decimals: 1
+        show:
+          extrema: true
+
+      - type: custom:mini-graph-card
+        name: MP-IPHONE
+        entities:
+          - entity: sensor.mp_iphone_rx_rate
+            name: RX
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.mp_iphone_tx_rate
+            name: TX
+            state_adaptive_color: true
+            show_state: true
+        hours_to_show: 1
+        points_per_hour: 60
+        aggregate_func: max
+        line_width: 2
+        decimals: 1
+        show:
+          extrema: true
 
   - type: custom:vertical-stack-in-card
     title: UDM-PRO

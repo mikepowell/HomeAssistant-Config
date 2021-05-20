@@ -1,14 +1,17 @@
 {
   "domain": "remote_homeassistant",
   "name": "Remote Home-Assistant",
-  "documentation": "https://github.com/lukas-hetzenecker/home-assistant-remote",
+  "issue_tracker": "https://github.com/custom-components/remote_homeassistant/issues",
+  "documentation": "https://github.com/custom-components/remote_homeassistant",
   "dependencies": [],
-  "config_flow": false,
+  "config_flow": true,
   "codeowners": [
-    "@lukas-hetzenecker"
+    "@lukas-hetzenecker",
+    "@postlund"
   ],
-  "requirements": [
+  "requirements": [],
+  "zeroconf": [
+    "_home-assistant._tcp.local."
   ],
-  "homeassistant": "0.96.0"
+  "version": "3.4"
 }
-

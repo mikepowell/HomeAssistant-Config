@@ -8,7 +8,7 @@
 ui-primary:
   mode: yaml
   title: Primary
-  icon: mdi:head-cog
+  icon: mdi:home-circle-outline
   show_in_sidebar: true
   filename: dashboards/ui-primary/dashboard.yaml
   require_admin: true
@@ -16,13 +16,20 @@ ui-primary:
 ui-minimal:
   mode: yaml
   title: Minimal
-  icon: mdi:head-cog
+  icon: mdi:home-circle-outline
   show_in_sidebar: true
   filename: dashboards/ui-minimal/dashboard.yaml
 
 ui-kids:
   mode: yaml
   title: Kids
-  icon: mdi:head-cog
+  icon: mdi:home-circle-outline
   show_in_sidebar: true
   filename: dashboards/ui-kids/dashboard.yaml
+
+ui-extension:
+  mode: yaml
+  title: Extension
+  icon: mdi:home-circle-outline
+  show_in_sidebar: false
+  filename: dashboards/ui-extension/dashboard.yaml

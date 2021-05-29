@@ -36,6 +36,26 @@ cards:
                 show_last_changed: true
 
   - type: 'custom:vertical-stack-in-card'
+    title: Motion
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: glance
+            entities:
+              - entity: binary_sensor.motion_garage
+                name: Garage
+                show_last_changed: true
+              - entity: binary_sensor.motion_basement
+                name: Basement
+                show_last_changed: true
+              - entity: binary_sensor.zw_basement_stairs_multisensor_motion
+                name: Basement stairs
+                show_last_changed: true
+              - entity: binary_sensor.front_door_motion
+                name: Front door
+                show_last_changed: true
+
+  - type: 'custom:vertical-stack-in-card'
     title: Cameras
     cards:
       - type: picture-glance

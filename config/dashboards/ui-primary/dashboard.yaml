@@ -6,4 +6,5 @@ views:
   - !include views/security.yaml
   - !include ../common-views/climate.yaml
   - !include views/tech.yaml
+  - !include views/batteries.yaml
   - !include ../common-views/printer.yaml

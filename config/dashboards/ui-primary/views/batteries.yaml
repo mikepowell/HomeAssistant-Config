@@ -1,0 +1,45 @@
+title: Batteries
+icon: 'mdi:battery-medium'
+path: batteries
+cards:
+  - type: 'custom:vertical-stack-in-card'
+    title: Batteries
+    cards:
+      - type: glance
+        title: Main floor
+        show_name: true
+        entities:
+          - entity: sensor.zw_smoke_main_battery_level
+            name: Smoke detector
+            show_state: true
+          - entity: sensor.zw_leak_laundry_battery_level
+            name: Laundry leak
+            show_state: true
+
+      - type: glance
+        title: Upstairs
+        show_name: true
+        entities:
+          - entity: sensor.zw_smoke_upstairs_battery_level
+            name: Smoke detector
+            show_state: true
+          - entity: sensor.zw_leak_bathroom_c_battery_level
+            name: C leak
+            show_state: true
+          - entity: sensor.zw_leak_bathroom_k_battery_level
+            name: K leak
+            show_state: true
+
+      - type: glance
+        title: Basement
+        show_name: true
+        entities:
+          - entity: sensor.zw_smoke_basement_battery_level
+            name: Main smoke
+            show_state: true
+          - entity: sensor.zw_smoke_workshop_battery_level
+            name: Workshop smoke
+            show_state: true
+          - entity: sensor.zw_leak_basement_battery_level
+            name: Leak
+            show_state: true

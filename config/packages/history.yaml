@@ -1,0 +1,13 @@
+
+history:
+  use_include_order: true
+  include:
+    domains:
+      - sensor
+      - switch
+      - media_player
+      - cover
+      - climate
+      - binary_sensor
+      - light
+      - weather

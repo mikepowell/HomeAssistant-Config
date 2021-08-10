@@ -91,38 +91,3 @@ cards:
           action: more-info
         hold_action:
           action: none
-
-  - type: 'custom:vertical-stack-in-card'
-    title: Smoke detectors
-    cards:
-      - type: glance
-        title: Main floor
-        show_name: false
-        entities:
-          - entity: sensor.smoke_main_smoke_detector
-            show_state: true
-          - entity: sensor.smoke_main_carbon_monoxide_detector
-            show_state: true
-          - entity: sensor.smoke_main_battery
-            show_state: true
-      - type: glance
-        title: Upstairs
-        show_name: false
-        entities:
-          - entity: sensor.smoke_upstairs_smoke_detector
-            show_state: true
-          - entity: sensor.smoke_upstairs_carbon_monoxide_detector
-            show_state: true
-          - entity: sensor.smoke_upstairs_battery
-            show_state: true
-
-      - type: glance
-        title: Basement
-        show_name: false
-        entities:
-          - entity: sensor.smoke_basement_smoke_detector
-            show_state: true
-          - entity: sensor.smoke_basement_carbon_monoxide_detector
-            show_state: true
-          - entity: sensor.smoke_basement_battery
-            show_state: true

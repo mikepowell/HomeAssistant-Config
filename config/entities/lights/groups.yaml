@@ -29,3 +29,9 @@
   entities:
     - light.zw_spare_room_dresser_bulb_1
     - light.zw_spare_room_dresser_bulb_2
+
+- platform: group
+  name: Mudroom lights
+  entities:
+    - light.zw_mudroom_cabinet_lights_1
+    - light.zw_mudroom_cabinet_lights_2

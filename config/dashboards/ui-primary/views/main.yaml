@@ -319,7 +319,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: button
-            entity: switch.zw_patio_light
+            entity: light.patio_lights
             hold_action:
               action: more-info
             icon: 'mdi:coach-lamp'

@@ -44,9 +44,5 @@
   name: Front room floor lamp
 
 - platform: switch
-  entity_id: switch.zw_patio_light
-  name: Patio lights
-
-- platform: switch
   entity_id: switch.zw_spare_room_nightstand_lamp
   name: Spare room nightstand lamp

@@ -28,3 +28,25 @@
           sequence:
             - service: light.turn_off
               entity_id: light.mudroom_lights
+
+- id: mudroom_motion
+  alias: Mudroom motion
+  mode: restart
+
+  trigger:
+    platform: state
+    entity_id: binary_sensor.zw_mudroom_motion_sensor_motion
+    from: "off"
+    to: "on"
+
+  action:
+    - service: light.turn_on
+      entity_id: light.mudroom_lights
+    - wait_for_trigger:
+        platform: state
+        entity_id: binary_sensor.zw_mudroom_motion_sensor_motion
+        from: "on"
+        to: "off"
+    - delay: 300
+    - service: light.turn_off
+      entity_id: light.mudroom_lights

@@ -62,7 +62,7 @@ cards:
         title: Garage
         entities:
           - entity: binary_sensor.motion_garage
-          - entity: switch.flood_garage
+          - entity: switch.zw_garage_floodlight
           - entity: switch.ir_active_garage
           - entity: switch.hdr_mode_garage
         camera_image: camera.garage

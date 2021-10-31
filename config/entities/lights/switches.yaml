@@ -32,7 +32,7 @@
   name: Back floodlight
 
 - platform: switch
-  entity_id: switch.flood_garage
+  entity_id: switch.zw_garage_floodlight
   name: Garage floodlight
 
 - platform: switch

@@ -373,7 +373,7 @@ cards:
 
           - type: button
             name: Garage
-            entity: switch.flood_garage
+            entity: switch.zw_garage_floodlight
             hold_action:
               action: more-info
             icon: 'mdi:car-light-high'

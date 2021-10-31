@@ -8,6 +8,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: glance
+            columns: 3
             entities:
               - entity: binary_sensor.zw_front_door_sensor
                 name: Front
@@ -21,17 +22,21 @@ cards:
               - entity: binary_sensor.zw_basement_door_sensor
                 name: Basement
                 show_last_changed: true
+              - entity: binary_sensor.zw_gun_safe_sensor
+                name: Gun safe
+                show_last_changed: true
+
+  - type: 'custom:vertical-stack-in-card'
+    title: Garage
+    cards:
       - type: horizontal-stack
         cards:
           - type: glance
             entities:
-              - entity: binary_sensor.zw_gun_safe_sensor
-                name: Gun safe
-                show_last_changed: true
-              - entity: binary_sensor.zw_garage_door_1_sensor
+              - entity: cover.garage_door_1
                 name: Garage 1
                 show_last_changed: true
-              - entity: binary_sensor.zw_garage_door_2_sensor
+              - entity: cover.garage_door_2
                 name: Garage 2
                 show_last_changed: true
 

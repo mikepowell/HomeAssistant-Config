@@ -19,7 +19,9 @@
               value_template: '{{ trigger.event.data.command == "single" }}'
           sequence:
             - service: light.toggle
-              entity_id: light.zw_basement_counter_lights
+              data:
+                entity_id: light.zw_basement_counter_lights
+                brightness_pct: 100
 
         # Double click
         - conditions:

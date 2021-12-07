@@ -5,22 +5,19 @@
         },
         "error": {
             "connection_error": "Failed to connect. Wrong IP or Username/Password.",
+            "protect_version": "UniFi Protect Version is not supported by this Integration",
             "nvr_error": "Error retrieving data from Unifi Protect."
         },
         "step": {
             "user": {
+                "description": "Set up Unifi Protect to monitor cameras and sensors.",
+                "title": "Unifi Protect",
                 "data": {
                     "host": "IP Address of Unifi Protect Server",
-                    "port": "Port Number (7443 NON UnifiOS, 443 UnifiOS)",
+                    "port": "Port Number",
                     "username": "Username",
-                    "password": "Password",
-                    "snapshot_direct": "Use Anonymous Snapshots (Must be enabled on all Cameras)",
-                    "ir_on": "Setting to use for Infrared Light ON",
-                    "ir_off": "Setting to use for Infrared Light OFF",
-                    "scan_interval": "Scan interval for Events on NON UnifiOS Servers (Set higher if many Cameras)"
-                },
-                "description": "Set up Unifi Protect to monitor cameras and sensors.",
-                "title": "Unifi Protect"
+                    "password": "Password"
+                }
             }
         }
     },
@@ -28,8 +25,10 @@
         "step": {
             "init": {
                 "data": {
-                    "snapshot_direct": "Use Anonymous Snapshots (Must be enabled on all Cameras)",
-                    "scan_interval": "Scan interval for Events on NON UnifiOS Servers (Set higher if many Cameras)"
+                    "username": "Username",
+                    "password": "Password",
+                    "disable_rtsp": "Disable the RTSP stream",
+                    "doorbell_text": "Add a comma separated list of Custom Texts for the doorbell. Leave blank if no Doorbel"
                 }
             }
         }

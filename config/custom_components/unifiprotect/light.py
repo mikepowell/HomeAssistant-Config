@@ -1,4 +1,5 @@
 """This component provides Lights for Unifi Protect."""
+from __future__ import annotations
 
 import logging
 
@@ -8,21 +9,19 @@ from homeassistant.components.light import (
     LightEntity,
 )
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import entity_platform
 
 from .const import (
-    ATTR_DEVICE_MODEL,
     ATTR_ONLINE,
     ATTR_UP_SINCE,
-    DEFAULT_ATTRIBUTION,
     DEVICE_TYPE_LIGHT,
     DOMAIN,
     LIGHT_SETTINGS_SCHEMA,
     SERVICE_LIGHT_SETTINGS,
 )
 from .entity import UnifiProtectEntity
+from .models import UnifiProtectEntryData
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -33,36 +32,30 @@ async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities
 ) -> None:
     """Set up lights for UniFi Protect integration."""
-    entry_data = hass.data[DOMAIN][entry.entry_id]
-    upv_object = entry_data["upv"]
-    protect_data = entry_data["protect_data"]
-    server_info = entry_data["server_info"]
+    entry_data: UnifiProtectEntryData = hass.data[DOMAIN][entry.entry_id]
+    upv_object = entry_data.upv
+    protect_data = entry_data.protect_data
+    server_info = entry_data.server_info
 
-    if not protect_data.data:
+    entities = [
+        UnifiProtectLight(
+            upv_object,
+            protect_data,
+            server_info,
+            device.device_id,
+        )
+        for device in protect_data.get_by_types({DEVICE_TYPE_LIGHT})
+    ]
+
+    if not entities:
         return
 
-    lights = []
-    for light_id in protect_data.data:
-        if protect_data.data[light_id].get("type") == DEVICE_TYPE_LIGHT:
-            lights.append(
-                UnifiProtectLight(
-                    upv_object,
-                    protect_data,
-                    server_info,
-                    light_id,
-                )
-            )
-
-    if not lights:
-        # No lights found
-        return
-
-    platform = entity_platform.current_platform.get()
+    platform = entity_platform.async_get_current_platform()
     platform.async_register_entity_service(
         SERVICE_LIGHT_SETTINGS, LIGHT_SETTINGS_SCHEMA, "async_light_settings"
     )
 
-    async_add_entities(lights)
+    async_add_entities(entities)
 
 
 def unifi_brightness_to_hass(value):
@@ -82,31 +75,17 @@ class UnifiProtectLight(UnifiProtectEntity, LightEntity):
         """Initialize an Unifi light."""
         super().__init__(upv_object, protect_data, server_info, light_id, None)
         self._name = self._device_data["name"]
+        self._attr_icon = "mdi:spotlight-beam"
+        self._attr_supported_features = SUPPORT_BRIGHTNESS
+        self._attr_is_on = self._device_data["is_on"] == ON_STATE
 
-    @property
-    def name(self):
-        """Return the name of the device if any."""
-        return self._name
-
-    @property
-    def is_on(self):
-        """If the light is currently on or off."""
-        return self._device_data["is_on"] == ON_STATE
-
-    @property
-    def icon(self):
-        """Return the Icon for this light."""
-        return "mdi:spotlight-beam"
-
-    @property
-    def brightness(self):
-        """Return the brightness of this light between 0..255."""
-        return unifi_brightness_to_hass(self._device_data["brightness"])
-
-    @property
-    def supported_features(self):
-        """Flag supported features."""
-        return SUPPORT_BRIGHTNESS
+    @callback
+    def _async_updated_event(self):
+        self._attr_is_on = self._device_data["is_on"] == ON_STATE
+        self._attr_brightness = unifi_brightness_to_hass(
+            self._device_data["brightness"]
+        )
+        super()._async_updated_event()
 
     async def async_turn_on(self, **kwargs):
         """Turn the light on."""
@@ -122,11 +101,10 @@ class UnifiProtectLight(UnifiProtectEntity, LightEntity):
         await self.upv_object.set_light_on_off(self._device_id, False)
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         """Return the device state attributes."""
         return {
-            ATTR_ATTRIBUTION: DEFAULT_ATTRIBUTION,
-            ATTR_DEVICE_MODEL: self._model,
+            **super().extra_state_attributes,
             ATTR_ONLINE: self._device_data["online"],
             ATTR_UP_SINCE: self._device_data["up_since"],
         }

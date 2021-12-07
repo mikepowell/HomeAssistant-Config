@@ -71,6 +71,18 @@ cards:
             tap_action:
               action: toggle
 
+          - type: button
+            entity: light.christmas_tree_lights
+            hold_action:
+              action: more-info
+            icon: 'mdi:string-lights'
+            icon_height: 36px
+            name: Xmas tree
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
       - type: markdown
         content: '### Outdoor'
 
@@ -115,7 +127,7 @@ cards:
       - type: horizontal-stack
         cards:
           - type: button
-            entity: light.patio_lights
+            entity: light.patio_light
             hold_action:
               action: more-info
             icon: 'mdi:coach-lamp'

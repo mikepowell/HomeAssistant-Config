@@ -1,10 +1,12 @@
 """Support for Ubiquiti's Unifi Protect NVR."""
+from __future__ import annotations
+
 import logging
+from typing import Optional
 
 from homeassistant.components.camera import SUPPORT_STREAM, Camera
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import ATTR_ATTRIBUTION, ATTR_LAST_TRIP_TIME
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import entity_platform
 
 from .const import (
@@ -13,19 +15,16 @@ from .const import (
     ATTR_CHIME_ENABLED,
     ATTR_IS_DARK,
     ATTR_MIC_SENSITIVITY,
-    ATTR_ONLINE,
     ATTR_PRIVACY_MODE,
     ATTR_UP_SINCE,
     ATTR_WDR_VALUE,
     ATTR_ZOOM_POSITION,
-    DEFAULT_ATTRIBUTION,
+    CUSTOM_MESSAGE,
     DEFAULT_BRAND,
     DEVICE_TYPE_CAMERA,
     DEVICE_TYPE_DOORBELL,
     DEVICES_WITH_CAMERA,
     DOMAIN,
-    SAVE_THUMBNAIL_SCHEMA,
-    SERVICE_SAVE_THUMBNAIL,
     SERVICE_SET_DOORBELL_CHIME_DURAION,
     SERVICE_SET_DOORBELL_LCD_MESSAGE,
     SERVICE_SET_HDR_MODE,
@@ -48,8 +47,11 @@ from .const import (
     SET_STATUS_LIGHT_SCHEMA,
     SET_WDR_VALUE_SCHEMA,
     SET_ZOOM_POSITION_SCHEMA,
+    TYPE_RECORD_MOTION,
+    TYPE_RECORD_NEVER,
 )
 from .entity import UnifiProtectEntity
+from .models import UnifiProtectEntryData
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -58,25 +60,26 @@ async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities
 ) -> None:
     """Discover cameras on a Unifi Protect NVR."""
-    entry_data = hass.data[DOMAIN][entry.entry_id]
-    upv_object = entry_data["upv"]
-    protect_data = entry_data["protect_data"]
-    server_info = entry_data["server_info"]
-    snapshot_direct = entry_data["snapshot_direct"]
-    if not protect_data.data:
-        return
+    entry_data: UnifiProtectEntryData = hass.data[DOMAIN][entry.entry_id]
+    upv_object = entry_data.upv
+    protect_data = entry_data.protect_data
+    server_info = entry_data.server_info
+    disable_stream = entry_data.disable_stream
 
-    cameras = []
-    for camera_id in protect_data.data:
-        if protect_data.data[camera_id].get("type") in DEVICES_WITH_CAMERA:
-            cameras.append(
-                UnifiProtectCamera(
-                    upv_object, protect_data, server_info, camera_id, snapshot_direct
-                )
+    async_add_entities(
+        [
+            UnifiProtectCamera(
+                upv_object,
+                protect_data,
+                server_info,
+                device.device_id,
+                disable_stream,
             )
-    async_add_entities(cameras)
+            for device in protect_data.get_by_types(DEVICES_WITH_CAMERA)
+        ]
+    )
 
-    platform = entity_platform.current_platform.get()
+    platform = entity_platform.async_get_current_platform()
 
     platform.async_register_entity_service(
         SERVICE_SET_RECORDING_MODE,
@@ -109,10 +112,6 @@ async def async_setup_entry(
     )
 
     platform.async_register_entity_service(
-        SERVICE_SAVE_THUMBNAIL, SAVE_THUMBNAIL_SCHEMA, "async_save_thumbnail"
-    )
-
-    platform.async_register_entity_service(
         SERVICE_SET_MIC_VOLUME, SET_MIC_VOLUME_SCHEMA, "async_set_mic_volume"
     )
 
@@ -134,37 +133,42 @@ async def async_setup_entry(
         "async_set_doorbell_chime_duration",
     )
 
-    return True
-
 
 class UnifiProtectCamera(UnifiProtectEntity, Camera):
     """A Ubiquiti Unifi Protect Camera."""
 
     def __init__(
-        self, upv_object, protect_data, server_info, camera_id, snapshot_direct
+        self,
+        upv_object,
+        protect_data,
+        server_info,
+        camera_id,
+        disable_stream,
     ):
         """Initialize an Unifi camera."""
         super().__init__(upv_object, protect_data, server_info, camera_id, None)
-        self._snapshot_direct = snapshot_direct
         self._name = self._device_data["name"]
-        self._stream_source = self._device_data["rtsp"]
+        self._disable_stream = disable_stream
+        self._stream_source = None if disable_stream else self._device_data["rtsp"]
         self._last_image = None
-        self._supported_features = SUPPORT_STREAM if self._stream_source else 0
+        self._attr_supported_features = SUPPORT_STREAM if self._stream_source else 0
 
-    @property
-    def name(self):
-        """Return the name of this camera."""
-        return self._name
+    @callback
+    def _async_updated_event(self):
+        self._attr_available = (
+            self._device_data["online"] and self.protect_data.last_update_success
+        )
+        self.async_write_ha_state()
 
     @property
     def supported_features(self):
         """Return supported features for this camera."""
-        return self._supported_features
+        return self._attr_supported_features
 
     @property
     def motion_detection_enabled(self):
         """Camera Motion Detection Status."""
-        return self._device_data["recording_mode"]
+        return self._device_data["recording_mode"] and super().available
 
     @property
     def brand(self):
@@ -185,24 +189,19 @@ class UnifiProtectCamera(UnifiProtectEntity, Camera):
         )
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         """Add additional Attributes to Camera."""
-        chime_enabled = "No Chime Attached"
+        chime_enabled = False
         if self._device_type == DEVICE_TYPE_DOORBELL:
-            last_trip_time = self._device_data["last_ring"]
             if self._device_data["has_chime"]:
                 chime_enabled = self._device_data["chime_enabled"]
-        else:
-            last_trip_time = self._device_data["last_motion"]
 
         return {
-            ATTR_ATTRIBUTION: DEFAULT_ATTRIBUTION,
+            **super().extra_state_attributes,
             ATTR_UP_SINCE: self._device_data["up_since"],
-            ATTR_ONLINE: self._device_data["online"],
             ATTR_CAMERA_ID: self._device_id,
             ATTR_CHIME_ENABLED: chime_enabled,
             ATTR_CHIME_DURATION: self._device_data["chime_duration"],
-            ATTR_LAST_TRIP_TIME: last_trip_time,
             ATTR_IS_DARK: self._device_data["is_dark"],
             ATTR_MIC_SENSITIVITY: self._device_data["mic_volume"],
             ATTR_PRIVACY_MODE: self._device_data["privacy_on"],
@@ -213,23 +212,6 @@ class UnifiProtectCamera(UnifiProtectEntity, Camera):
     async def async_set_recording_mode(self, recording_mode):
         """Set Camera Recording Mode."""
         await self.upv_object.set_camera_recording(self._device_id, recording_mode)
-
-    async def async_save_thumbnail(self, filename, image_width):
-        """Save Thumbnail Image."""
-
-        if not self.hass.config.is_allowed_path(filename):
-            _LOGGER.error("Can't write %s, no access to path!", filename)
-            return
-
-        image = await self.upv_object.get_thumbnail(self._device_id, image_width)
-        if image is None:
-            _LOGGER.error("Last recording not found for Camera %s", self.name)
-            return
-
-        try:
-            await self.hass.async_add_executor_job(_write_image, filename, image)
-        except OSError as err:
-            _LOGGER.error("Can't write image to file: %s", err)
 
     async def async_set_ir_mode(self, ir_mode):
         """Set camera ir mode."""
@@ -261,8 +243,8 @@ class UnifiProtectCamera(UnifiProtectEntity, Camera):
         """Set LCD Message on Doorbell display."""
         if not duration.isnumeric():
             duration = None
-        await self.upv_object.set_doorbell_custom_text(
-            self._device_id, message, duration
+        await self.upv_object.set_doorbell_lcd_text(
+            self._device_id, CUSTOM_MESSAGE, message, duration
         )
 
     async def async_set_mic_volume(self, level):
@@ -289,34 +271,30 @@ class UnifiProtectCamera(UnifiProtectEntity, Camera):
 
     async def async_enable_motion_detection(self):
         """Enable motion detection in camera."""
-        if not await self.upv_object.set_camera_recording(self._device_id, "motion"):
+        if not await self.upv_object.set_camera_recording(
+            self._device_id, TYPE_RECORD_MOTION
+        ):
             return
         _LOGGER.debug("Motion Detection Enabled for Camera: %s", self._name)
 
     async def async_disable_motion_detection(self):
         """Disable motion detection in camera."""
-        if not await self.upv_object.set_camera_recording(self._device_id, "never"):
+        if not await self.upv_object.set_camera_recording(
+            self._device_id, TYPE_RECORD_NEVER
+        ):
             return
         _LOGGER.debug("Motion Detection Disabled for Camera: %s", self._name)
 
-    async def async_camera_image(self):
+    async def async_camera_image(
+        self, width: Optional[int] = None, height: Optional[int] = None
+    ):
         """Return the Camera Image."""
-        if self._snapshot_direct:
-            last_image = await self.upv_object.get_snapshot_image_direct(
-                self._device_id
-            )
-        else:
-            last_image = await self.upv_object.get_snapshot_image(self._device_id)
+        last_image = await self.upv_object.get_snapshot_image(
+            self._device_id, width, height
+        )
         self._last_image = last_image
         return self._last_image
 
     async def stream_source(self):
         """Return the Stream Source."""
         return self._stream_source
-
-
-def _write_image(to_file, image_data):
-    """Executor helper to write image."""
-    with open(to_file, "wb") as img_file:
-        img_file.write(image_data)
-        _LOGGER.debug("Thumbnail Image written to %s", to_file)

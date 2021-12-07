@@ -1,16 +1,15 @@
 """Config Flow to configure Unifi Protect Integration."""
+from __future__ import annotations
+
 import logging
 
 from aiohttp import CookieJar
-
-# from homeassistant.config_entries import ConfigFlow
 from homeassistant import config_entries
 from homeassistant.const import (
     CONF_HOST,
     CONF_ID,
     CONF_PASSWORD,
     CONF_PORT,
-    CONF_SCAN_INTERVAL,
     CONF_USERNAME,
 )
 from homeassistant.core import callback
@@ -20,16 +19,11 @@ from pyunifiprotect.const import SERVER_ID, SERVER_NAME
 import voluptuous as vol
 
 from .const import (
-    CONF_IR_OFF,
-    CONF_IR_ON,
-    CONF_SNAPSHOT_DIRECT,
+    CONF_DISABLE_RTSP,
+    CONF_DOORBELL_TEXT,
     DEFAULT_PORT,
-    DEFAULT_SCAN_INTERVAL,
     DOMAIN,
-    TYPE_IR_AUTO,
-    TYPE_IR_OFF,
-    TYPES_IR_OFF,
-    TYPES_IR_ON,
+    MIN_REQUIRED_PROTECT_V,
 )
 
 _LOGGER = logging.getLogger(__name__)
@@ -39,7 +33,6 @@ class UnifiProtectFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a Unifi Protect config flow."""
 
     VERSION = 1
-    CONNECTION_CLASS = config_entries.CONN_CLASS_LOCAL_POLL
 
     @staticmethod
     @callback
@@ -68,6 +61,11 @@ class UnifiProtectFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
         try:
             server_info = await unifiprotect.server_information()
+            if server_info["server_version"] < MIN_REQUIRED_PROTECT_V:
+                _LOGGER.debug("UniFi Protect Version not supported")
+                errors["base"] = "protect_version"
+                return await self._show_setup_form(errors)
+
         except NotAuthorized as ex:
             _LOGGER.debug(ex)
             errors["base"] = "connection_error"
@@ -91,10 +89,10 @@ class UnifiProtectFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                 CONF_PORT: user_input[CONF_PORT],
                 CONF_USERNAME: user_input.get(CONF_USERNAME),
                 CONF_PASSWORD: user_input.get(CONF_PASSWORD),
-                CONF_SNAPSHOT_DIRECT: user_input.get(CONF_SNAPSHOT_DIRECT),
-                CONF_IR_ON: user_input.get(CONF_IR_ON),
-                CONF_IR_OFF: user_input.get(CONF_IR_OFF),
-                CONF_SCAN_INTERVAL: user_input.get(CONF_SCAN_INTERVAL),
+            },
+            options={
+                CONF_DISABLE_RTSP: False,
+                CONF_DOORBELL_TEXT: "",
             },
         )
 
@@ -108,14 +106,6 @@ class UnifiProtectFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
                     vol.Required(CONF_PORT, default=DEFAULT_PORT): int,
                     vol.Required(CONF_USERNAME): str,
                     vol.Required(CONF_PASSWORD): str,
-                    vol.Optional(CONF_SNAPSHOT_DIRECT, default=False): bool,
-                    vol.Optional(CONF_IR_ON, default=TYPE_IR_AUTO): vol.In(TYPES_IR_ON),
-                    vol.Optional(CONF_IR_OFF, default=TYPE_IR_OFF): vol.In(
-                        TYPES_IR_OFF
-                    ),
-                    vol.Optional(
-                        CONF_SCAN_INTERVAL, default=DEFAULT_SCAN_INTERVAL
-                    ): vol.All(vol.Coerce(int), vol.Range(min=2, max=20)),
                 }
             ),
             errors=errors or {},
@@ -138,18 +128,22 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
             step_id="init",
             data_schema=vol.Schema(
                 {
+                    vol.Required(
+                        CONF_USERNAME,
+                        default=self.config_entry.data.get(CONF_USERNAME, ""),
+                    ): str,
+                    vol.Required(
+                        CONF_PASSWORD,
+                        default=self.config_entry.data.get(CONF_PASSWORD, ""),
+                    ): str,
                     vol.Optional(
-                        CONF_SNAPSHOT_DIRECT,
-                        default=self.config_entry.options.get(
-                            CONF_SNAPSHOT_DIRECT, False
-                        ),
+                        CONF_DOORBELL_TEXT,
+                        default=self.config_entry.options.get(CONF_DOORBELL_TEXT, ""),
+                    ): str,
+                    vol.Optional(
+                        CONF_DISABLE_RTSP,
+                        default=self.config_entry.options.get(CONF_DISABLE_RTSP, False),
                     ): bool,
-                    vol.Optional(
-                        CONF_SCAN_INTERVAL,
-                        default=self.config_entry.options.get(
-                            CONF_SCAN_INTERVAL, DEFAULT_SCAN_INTERVAL
-                        ),
-                    ): vol.All(vol.Coerce(int), vol.Range(min=2, max=20)),
                 }
             ),
         )

@@ -59,53 +59,6 @@ cards:
             name: Status
 
   - type: 'custom:vertical-stack-in-card'
-    title: Splunk
-    cards:
-      - type: horizontal-stack
-        cards:
-          - type: gauge
-            entity: sensor.docker_splunk_cpu
-            min: 0
-            max: 100
-            name: CPU (Cores)
-            severity:
-              green: 0
-              yellow: 20
-              red: 40
-          - type: gauge
-            entity: sensor.docker_splunk_1cpu
-            min: 0
-            max: 100
-            name: CPU (Overall)
-            severity:
-              green: 0
-              yellow: 20
-              red: 40
-          - type: gauge
-            entity: sensor.docker_splunk_memory_percent
-            min: 0
-            max: 100
-            name: Memory
-            severity:
-              green: 0
-              yellow: 20
-              red: 40
-      - type: glance
-        show_name: false
-        entities:
-          - entity: sensor.docker_splunk_memory
-          - entity: sensor.docker_splunk_network_speed_up
-          - entity: sensor.docker_splunk_network_speed_down
-          - entity: sensor.docker_splunk_network_total_up
-          - entity: sensor.docker_splunk_network_total_down
-      - type: entities
-        entities:
-          - entity: switch.docker_splunk
-            name: Splunk
-          - entity: sensor.docker_splunk_status
-            name: Status
-
-  - type: 'custom:vertical-stack-in-card'
     title: Portainer
     cards:
       - type: horizontal-stack
@@ -151,43 +104,6 @@ cards:
             name: Portainer
           - entity: sensor.docker_portainer_status
             name: Status
-
-  - type: custom:vertical-stack-in-card
-    title: UDM-PRO
-    cards:
-      - type: custom:mini-graph-card
-        name: BEAM
-        entities:
-          - entity: sensor.beam_throughput_down
-            name: Download
-            show_state: true
-            state_adaptive_color: true
-          - entity: sensor.beam_throughput_up
-            name: Upload
-            show_state: true
-            state_adaptive_color: true
-        hours_to_show: 1
-        points_per_hour: 30
-        aggregate_func: mean
-        line_width: 2
-        decimals: 1
-
-      - type: custom:mini-graph-card
-        name: CENTURYLINK
-        entities:
-          - entity: sensor.centurylink_throughput_down
-            name: Download
-            show_state: true
-            state_adaptive_color: true
-          - entity: sensor.centurylink_throughput_up
-            name: Upload
-            show_state: true
-            state_adaptive_color: true
-        hours_to_show: 1
-        points_per_hour: 30
-        aggregate_func: mean
-        line_width: 2
-        decimals: 1
 
   - type: custom:vertical-stack-in-card
     title: Synology

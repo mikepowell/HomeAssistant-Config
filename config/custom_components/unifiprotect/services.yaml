@@ -1,29 +1,3 @@
-save_thumbnail_image:
-  name: Save Thumbnail Image
-  description: "Request the latest motion thumbnail from a camera and write it to a file"
-  fields:
-    entity_id:
-      name: Entity ID
-      description: string (required) camera to get thumbnail from
-      example: "camera.outdoor"
-      required: true
-      selector:
-        entity:
-          integration: unifiprotect
-          domain: camera
-    filename:
-      name: Filename
-      description: "string (required) where to save the thumbnail"
-      required: true
-      selector:
-        text:
-      example: "/config/www/thumbnail.png"
-    image_width:
-      name: Image Width
-      description: "string (optional) width of Thumbnail image in pixels"
-      example: 640
-      selector:
-        number:
 set_recording_mode:
   name: Set Recording Mode
   description: "Set recording mode for the camera"
@@ -39,23 +13,22 @@ set_recording_mode:
           domain: camera
     recording_mode:
       name: Recording Mode
-      description: "(Required) Valid options are: always = Always Recording, motion = Only record on motion, never = stop recording, smart = Smart Detect. Default value is: motion"
+      description: "(Required) Valid options are: always = Always Recording, detections = Only record on motion, never = stop recording"
       required: true
-      example: motion
+      example: detections
       selector:
         select:
           options:
             - "always"
-            - "motion"
-            - "smart"
+            - "detections"
             - "never"
 set_ir_mode:
   name: Set Infrared mode
-  description: "Set Infrared Settings for the camera"
+  description: "Set Infrared mode for the camera"
   fields:
     entity_id:
       name: Entity ID
-      description: string (required) camera to set IR mode for
+      description: string (required) camera to set Infrared mode for
       example: "camera.outdoor"
       required: true
       selector:
@@ -63,16 +36,16 @@ set_ir_mode:
           integration: unifiprotect
           domain: camera
     ir_mode:
-      name: IR Mode
-      description: "(Optional) Valid options are: always_on = IR always on, auto = Automatic, led_off = Automatic wo LEDs, always_off = Always Off. Default value is: auto"
+      name: Infrared Mode
+      description: "(Optional) Valid options are: auto = Automatic, autoFilterOnly = Auto (Filter Only, no LED's), on = Always Enable, off = Always Disable. Default value is: auto"
       example: auto
       selector:
         select:
           options:
-            - "always_on"
             - "auto"
-            - "led_off"
-            - "always_off"
+            - "autoFilterOnly"
+            - "on"
+            - "off"
 set_status_light:
   name: Set Status Lights
   description: "Turn the Cameras Led Light on or off"
@@ -214,14 +187,13 @@ set_privacy_mode:
           mode: slider
     recording_mode:
       name: Recording mode
-      description: "(Optional) Valid options are: always = Always Recording, motion = Only record on motion, never = stop recording, smart = Smart Detect. Default value is: no change"
+      description: "(Optional) Valid options are: always = Always Recording, detections = Only record on motion, never = stop recording. Default value is: no change"
       example: motion
       selector:
         select:
           options:
             - "always"
-            - "motion"
-            - "smart"
+            - "detections"
             - "never"
 set_zoom_position:
   name: Set Zoom Position
@@ -292,7 +264,7 @@ light_settings:
           options:
             - "off"
             - "motion"
-            - "dark"
+            - "always"
     enable_at:
       name: Enable At
       description: "string (optional) When motion is selected as mode, one can adjust if light turns on on motion detection. Where fulltime is always, and dark is only when dark."
@@ -348,3 +320,23 @@ set_doorbell_chime_duration:
           max: 10000
           step: 100
           mode: slider
+set_viewport_view:
+  name: Set Viewport View
+  description: "Change the Liveview on the specified Viewport Device"
+  fields:
+    entity_id:
+      name: Viewport ID
+      description: The ID number of the Viewport where the view will be displayed
+      example: "60e2c6a300ed6f038700248f"
+      required: true
+      selector:
+        entity:
+          integration: unifiprotect
+          domain: media_player
+    view_id:
+      name: Liveview ID
+      description: The ID number of the view to be displayed on the Viewport
+      required: true
+      selector:
+        text:
+      example: 602631ab021688038700232b

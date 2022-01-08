@@ -23,12 +23,12 @@ cards:
             - type: horizontal-stack
               cards:
                 - type: gauge
-                  entity: sensor.ender_3_v2_actual_tool0_temp
+                  entity: sensor.ender_3_v2_extruder_temp
                   name: Extruder
                   min: 0
                   max: 250
                 - type: gauge
-                  entity: sensor.ender_3_v2_actual_bed_temp
+                  entity: sensor.ender_3_v2_bed_temp
                   name: Bed
                   min: 0
                   max: 110

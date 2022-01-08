@@ -28,6 +28,18 @@ sensor:
         value_template: >
           {{ (now() + timedelta(0,states('sensor.ender_3_v2_time_remaining') | int)).strftime("%H:%M:%S") }}
 
+      ender_3_v2_bed_temp:
+        friendly_name: Ender 3 V2 bed temp
+        unit_of_measurement: 'C'
+        device_class: temperature
+        value_template: "{{ (((states('sensor.ender_3_v2_actual_bed_temp') | float(0)) - 32) * 0.5556) | round(1) }}"
+
+      ender_3_v2_extruder_temp:
+        friendly_name: Ender 3 V2 extruder temp
+        unit_of_measurement: 'C'
+        device_class: temperature
+        value_template: "{{ (((states('sensor.ender_3_v2_actual_tool0_temp') | float(0)) - 32) * 0.5556) | round(1) }}"
+
 camera:
   - platform: mjpeg
     name: Ender 3 V2

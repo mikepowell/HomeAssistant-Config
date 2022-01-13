@@ -1,0 +1,23 @@
+- id: notify_ups_ob
+  alias: Notify when UPS goes on battery
+  trigger:
+    platform: state
+    entity_id: sensor.ups_status_data
+    to: "OB DISCHRG"
+  action:
+    service: notify.mobile_app_mp_iphone
+    data:
+      message: "The UPS is on battery power."
+      title: "UPS on Battery"
+
+- id: notify_ups_ol
+  alias: Notify when UPS goes online
+  trigger:
+    platform: state
+    entity_id: sensor.ups_status_data
+    from: "OB DISCHRG"
+  action:
+    service: notify.mobile_app_mp_iphone
+    data:
+      message: "The UPS is on line power."
+      title: "UPS Online"

@@ -3,7 +3,7 @@ icon: mdi:docker
 path: docker
 cards:
   - type: 'custom:vertical-stack-in-card'
-    title: Home Assistant
+    title: Home Assistant2
     cards:
       - type: horizontal-stack
         cards:
@@ -58,6 +58,39 @@ cards:
           - entity: sensor.docker_home_assistant_image
             name: Image
           - entity: sensor.docker_home_assistant_status
+            name: Status
+
+  - type: 'custom:vertical-stack-in-card'
+    title: CyberPower UPS
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.ups_input_voltage
+            min: 0
+            max: 130
+            name: Input voltage
+          - type: gauge
+            entity: sensor.ups_load
+            min: 0
+            max: 100
+            name: Load
+            severity:
+              green: 0
+              yellow: 75
+              red: 90
+
+      - type: horizontal-stack
+        cards:
+          - type: glance
+            show_name: false
+            entities:
+              - entity: sensor.ups_status
+              - entity: sensor.ups_battery_charge
+
+      - type: entities
+        entities:
+          - entity: sensor.ups_status
             name: Status
 
   - type: 'custom:vertical-stack-in-card'

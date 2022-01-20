@@ -6,11 +6,11 @@ cards:
     cards:
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.my_weather_station_temp
+          - entity: sensor.mpws2000_temp
             name: Temp
             show_state: true
             state_adaptive_color: true
-          - entity: sensor.my_weather_station_dew_point
+          - entity: sensor.mpws2000_dew_point
             name: Dew point
             show_state: true
             state_adaptive_color: true
@@ -25,23 +25,23 @@ cards:
       - type: glance
         show_name: true
         entities:
-          - entity: sensor.my_weather_station_feels_like
+          - entity: sensor.mpws2000_feels_like
             name: Feels like
-          - entity: sensor.my_weather_station_inside_temp
+          - entity: sensor.mpws2000_inside_temp
             name: Indoor
-          - entity: sensor.my_weather_station_humidity
+          - entity: sensor.mpws2000_humidity
             name: Humidity
 
   - type: custom:vertical-stack-in-card
     cards:
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.my_weather_station_wind_speed
+          - entity: sensor.mpws2000_wind_speed
             name: Speed
             show_state: true
             show_points: false
             state_adaptive_color: true
-          - entity: sensor.my_weather_station_wind_gust
+          - entity: sensor.mpws2000_wind_gust
             name: Gust
             show_state: true
             state_adaptive_color: true
@@ -61,20 +61,20 @@ cards:
       - type: glance
         show_name: true
         entities:
-          - entity: sensor.my_weather_station_max_gust
+          - entity: sensor.mpws2000_max_gust
             name: Max gust
-          - entity: sensor.my_weather_station_wind_dir
+          - entity: sensor.mpws2000_wind_dir
             name: Direction
 
   - type: custom:vertical-stack-in-card
     cards:
       - type: custom:mini-graph-card
         entities:
-          - entity: sensor.my_weather_station_hourly_rain_rate
+          - entity: sensor.mpws2000_hourly_rain_rate
             name: Rate
             show_state: true
             state_adaptive_color: true
-          - entity: sensor.my_weather_station_daily_rain
+          - entity: sensor.mpws2000_daily_rain
             name: Daily
             y_axis: secondary
             show_state: true
@@ -90,9 +90,9 @@ cards:
       - type: glance
         show_name: true
         entities:
-          - entity: sensor.my_weather_station_weekly_rain
+          - entity: sensor.mpws2000_weekly_rain
             name: Weekly
-          - entity: sensor.my_weather_station_monthly_rain
+          - entity: sensor.mpws2000_monthly_rain
             name: Monthly
-          - entity: sensor.my_weather_station_yearly_rain
+          - entity: sensor.mpws2000_yearly_rain
             name: Yearly

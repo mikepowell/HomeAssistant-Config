@@ -1,0 +1,18 @@
+#
+# Sensors to convert units on CyberPower UPS
+#
+- platform: template
+  sensors:
+    ups_battery_runtime_friendly:
+      friendly_name: "UPS Battery Runtime"
+      icon_template: mdi:timer-outline
+      value_template: >
+        {% set time = states.sensor.ups_battery_runtime.state %}
+        {% if time == "Unknown" %}
+          Unknown
+        {% else %}
+          {% set seconds = ((time | int % 60) / 1) | int %}
+          {% set minutes = ((time | int % 3600) / 60) | int %}
+          {% set hours = (time | int / 3600) | int %}
+          {{ hours }}:{{ minutes }}:{{ seconds }}
+        {% endif %}

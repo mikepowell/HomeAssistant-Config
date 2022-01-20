@@ -89,7 +89,7 @@ cards:
           - type: glance
             show_name: false
             entities:
-              - entity: sensor.ups_battery_runtime
+              - entity: sensor.ups_battery_runtime_friendly
               - entity: sensor.ups_battery_charge
               - entity: sensor.ups_output_voltage
 

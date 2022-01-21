@@ -96,3 +96,19 @@ cards:
             name: Monthly
           - entity: sensor.mpws2000_yearly_rain
             name: Yearly
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:mini-graph-card
+        entities:
+          - entity: sensor.mpws2000_rel_pressure
+            name: Absolute
+            show_state: true
+            state_adaptive_color: true
+        hours_to_show: 24
+        points_per_hour: 2
+        aggregate_func: max
+        line_width: 2
+        decimals: 1
+        show:
+          name: false

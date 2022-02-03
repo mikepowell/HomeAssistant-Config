@@ -1,23 +1,34 @@
 {
     "config": {
         "abort": {
-            "server_exists": "Unifi Protect Server already configured."
+            "reauth_successful": "Re-authentication was successful",
+            "server_exists": "UniFi Protect Server already configured."
         },
         "error": {
-            "connection_error": "Failed to connect. Wrong IP or Username/Password.",
-            "protect_version": "UniFi Protect Version is not supported by this Integration",
-            "nvr_error": "Error retrieving data from Unifi Protect."
+            "invalid_auth": "Invalid authentication",
+            "nvr_error": "Error retrieving data from UniFi Protect.",
+            "protect_version": "UniFi Protect Version is not supported by this Integration"
         },
         "step": {
-            "user": {
-                "description": "Set up Unifi Protect to monitor cameras and sensors.",
-                "title": "Unifi Protect",
+            "reauth_confirm": {
                 "data": {
-                    "host": "IP Address of Unifi Protect Server",
-                    "port": "Port Number",
+                    "host": "IP/Host of UniFi Protect Server",
+                    "password": "Password",
+                    "port": "Port",
+                    "username": "Username"
+                },
+                "title": "UniFi Protect Reauth"
+            },
+            "user": {
+                "data": {
+                    "host": "IP/Host of UniFi Protect Server",
+                    "password": "Password",
+                    "port": "Port",
                     "username": "Username",
-                    "password": "Password"
-                }
+                    "verify_ssl": "Verify SSL certificate"
+                },
+                "description": "Set up UniFi Protect to monitor cameras and sensors.",
+                "title": "UniFi Protect Setup"
             }
         }
     },
@@ -25,11 +36,12 @@
         "step": {
             "init": {
                 "data": {
-                    "username": "Username",
-                    "password": "Password",
+                    "all_updates": "Realtime metrics (WARNING: Greatly increases CPU usage)",
                     "disable_rtsp": "Disable the RTSP stream",
-                    "doorbell_text": "Add a comma separated list of Custom Texts for the doorbell. Leave blank if no Doorbel"
-                }
+                    "override_connection_host": "Override Connection Host"
+                },
+                "description": "Realtime metrics option should only be enabled if you have enabled the diagnostics sensors and want them updated in realtime. If if not enabled, they will only update once every 15 minutes.",
+                "title": "UniFi Protect Options"
             }
         }
     }

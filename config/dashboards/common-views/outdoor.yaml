@@ -1,0 +1,139 @@
+title: Outdoors
+icon: mdi:home-outline
+path: outdoor
+cards:
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: '### Outdoor'
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: light.zw_porch_lights
+            hold_action:
+              action: more-info
+            icon: 'mdi:dome-light'
+            icon_height: 36px
+            name: Porch
+            show_icon: true
+            show_name: true
+            show_state: false
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: light.zw_front_entry_lights
+            hold_action:
+              action: more-info
+            icon: 'mdi:coach-lamp'
+            icon_height: 36px
+            name: Entry
+            show_icon: true
+            show_name: true
+            show_state: false
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: switch.zw_porch_string_lights
+            hold_action:
+              action: more-info
+            icon: 'mdi:string-lights'
+            icon_height: 36px
+            name: String
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: light.patio_light
+            hold_action:
+              action: more-info
+            icon: 'mdi:coach-lamp'
+            icon_height: 36px
+            name: Patio
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: switch.barn_front_down_lights
+            hold_action:
+              action: more-info
+            icon: 'mdi:outdoor-lamp'
+            icon_height: 36px
+            name: Barn
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: light.holiday_lights
+            hold_action:
+              action: more-info
+            icon: 'mdi:string-lights'
+            icon_height: 36px
+            name: Holiday
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+      - type: markdown
+        content: '### Floodlights'
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            name: Back
+            entity: switch.zw_back_floodlight_microswitch
+            hold_action:
+              action: more-info
+            icon: 'mdi:car-light-high'
+            icon_height: 36px
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+          - type: button
+            name: Garage
+            entity: switch.zw_garage_floodlight
+            hold_action:
+              action: more-info
+            icon: 'mdi:car-light-high'
+            icon_height: 36px
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: switch.zw_side_floodlight_microswitch
+            hold_action:
+              action: more-info
+            icon: 'mdi:car-light-high'
+            icon_height: 36px
+            name: Side
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+          - type: button
+            name: Barn
+            icon: 'mdi:car-light-high'
+            icon_height: 36px
+            show_icon: true
+            show_name: true
+            entity: switch.barn_back_flood_lights
+            hold_action:
+              action: more-info
+            tap_action:
+              action: toggle

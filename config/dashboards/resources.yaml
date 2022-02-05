@@ -19,3 +19,7 @@
 # https://github.com/kalkih/mini-graph-card
 - url: /local/mini-graph-card-bundle.js
   type: module
+
+# https://github.com/RomRider/apexcharts-card
+- url: /local/apexcharts-card/apexcharts-card.js?v=1.10.0
+  type: module

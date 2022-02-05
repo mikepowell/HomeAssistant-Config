@@ -1,0 +1,54 @@
+title: Basement
+icon: mdi:home-floor-b
+path: floor_b
+cards:
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: '### Basement'
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: light.basement_office
+            icon: 'mdi:wall-sconce-flat'
+            icon_height: 36px
+            name: Ceiling
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+            hold_action:
+              action: more-info
+
+          - type: button
+            entity: light.zw_basement_desk_lamp_color
+            hold_action:
+              action: more-info
+            icon: 'mdi:lamp'
+            icon_height: 36px
+            name: Desk
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: light.zw_basement_stair_lights
+            hold_action:
+              action: more-info
+            icon: 'mdi:ceiling-light'
+            icon_height: 36px
+            name: Stairs
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+      - type: entities
+        entities:
+          - entity: automation.turn_on_basement_stairs_light_on_motion
+            name: Automation - Basement stairs motion
+            icon: mdi:motion-sensor
+
+

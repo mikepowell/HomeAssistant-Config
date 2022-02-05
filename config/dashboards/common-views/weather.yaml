@@ -4,23 +4,19 @@ path: weather
 cards:
   - type: custom:vertical-stack-in-card
     cards:
-      - type: custom:mini-graph-card
-        entities:
+      - type: custom:apexcharts-card
+        config_templates: default
+        header:
+          title: Temp and Dew Point
+        series:
           - entity: sensor.mpws2000_temp
-            name: Temp
-            show_state: true
-            state_adaptive_color: true
+            name: Outdoor
           - entity: sensor.mpws2000_dew_point
-            name: Dew point
-            show_state: true
-            state_adaptive_color: true
-        hours_to_show: 24
-        points_per_hour: 2
-        aggregate_func: mean
-        line_width: 2
-        decimals: 1
-        show:
-          name: false
+            name: Dew pt
+        yaxis:
+          - min: 0
+            max: ~100
+            decimals: 0
 
       - type: glance
         show_name: true
@@ -34,29 +30,27 @@ cards:
 
   - type: custom:vertical-stack-in-card
     cards:
-      - type: custom:mini-graph-card
-        entities:
+      - type: custom:apexcharts-card
+        config_templates: default
+        header:
+          title: Wind
+        series:
           - entity: sensor.mpws2000_wind_speed
             name: Speed
-            show_state: true
-            show_points: false
-            state_adaptive_color: true
           - entity: sensor.mpws2000_wind_gust
             name: Gust
-            show_state: true
-            state_adaptive_color: true
-            show_line: false
-            show_points: true
-            show_fill: false
-            smoothing: false
-        hours_to_show: 24
-        points_per_hour: 2
-        aggregate_func: max
-        line_width: 2
-        decimals: 1
-        show:
-          points: true
-          name: false
+            type: line
+            group_by:
+              func: max
+              duration: 5m
+              fill: 'null'
+
+        yaxis:
+          - min: 0
+            max: ~30
+            decimals: 0
+            apex_config:
+              tickAmount: 6
 
       - type: glance
         show_name: true

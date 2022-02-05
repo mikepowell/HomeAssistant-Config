@@ -1,0 +1,121 @@
+title: Upstairs
+icon: mdi:home-floor-2
+path: floor_2
+cards:
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        content: '### Upstairs'
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: switch.zw_spare_room_nightstand_lamp
+            hold_action:
+              action: more-info
+            icon: 'mdi:lamp'
+            icon_height: 36px
+            name: Nightstand
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: light.zw_spare_room_dresser_lamp_color
+            hold_action:
+              action: more-info
+            icon: 'mdi:lamp'
+            icon_height: 36px
+            name: Dresser
+            show_icon: true
+            show_name: true
+            tap_action:
+              action: toggle
+
+
+      - type: entities
+        entities:
+          - entity: light.spare_room_ceiling_light
+            name: Light
+            icon: mdi:ceiling-fan-light
+          - entity: fan.spare_room_ceiling_fan
+            name: Fan
+            icon: mdi:ceiling-fan
+
+      - type: horizontal-stack
+        cards:
+          - type: button
+            entity: light.spare_room_ceiling_light
+            hold_action:
+              action: more-info
+            icon: mdi:ceiling-light
+            icon_height: 36px
+            name: Light
+            show_icon: true
+            show_name: false
+            tap_action:
+              action: toggle
+
+          - type: button
+            entity: fan.spare_room_ceiling_fan
+            icon: mdi:fan-off
+            icon_height: 36px
+            name: 'Off'
+            show_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: fan.turn_off
+              service_data:
+                entity_id: fan.spare_room_ceiling_fan
+            hold_action:
+              action: more-info
+
+          - type: button
+            entity: fan.spare_room_ceiling_fan
+            icon: mdi:fan-speed-1
+            icon_height: 36px
+            name: Low
+            show_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: fan.turn_on
+              service_data:
+                entity_id: fan.spare_room_ceiling_fan
+                speed: low
+            hold_action:
+              action: more-info
+
+          - type: button
+            entity: fan.spare_room_ceiling_fan
+            icon: mdi:fan-speed-2
+            icon_height: 36px
+            name: Med
+            show_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: fan.turn_on
+              service_data:
+                entity_id: fan.spare_room_ceiling_fan
+                speed: medium
+            hold_action:
+              action: more-info
+
+          - type: button
+            entity: fan.spare_room_ceiling_fan
+            icon: mdi:fan-speed-3
+            icon_height: 36px
+            name: High
+            show_icon: true
+            show_name: false
+            tap_action:
+              action: call-service
+              service: fan.turn_on
+              service_data:
+                entity_id: fan.spare_room_ceiling_fan
+                speed: high
+            hold_action:
+              action: more-info

@@ -1,5 +1,7 @@
 title: Minimal
 views:
-  - !include views/main.yaml
+  - !include ../common-views/floor_b.yaml
+  - !include ../common-views/floor_1.yaml
+  - !include ../common-views/outdoor.yaml
   - !include ../common-views/weather.yaml
   - !include ../common-views/climate.yaml

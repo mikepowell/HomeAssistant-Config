@@ -1,7 +1,34 @@
 title: Primary 2
 icon: mdi:home-circle-outline
+
+apexcharts_card_templates:
+  default:
+    graph_span: 24h
+    header:
+      show: true
+      show_states: true
+      colorize_states: true
+    all_series_config:
+      stroke_width: 2
+      opacity: 0.3
+      type: area
+
+  bandwidth_chart:
+    config_templates: default
+    header:
+      show: true
+      show_states: true
+      colorize_states: true
+    all_series_config:
+      stroke_width: 2
+      opacity: 0.3
+      type: area
+
 views:
-  - !include views/main.yaml
+  - !include ../common-views/floor_b.yaml
+  - !include ../common-views/floor_1.yaml
+  - !include ../common-views/floor_2.yaml
+  - !include ../common-views/outdoor.yaml
   - !include ../common-views/weather.yaml
   - !include views/security.yaml
   - !include ../common-views/climate.yaml

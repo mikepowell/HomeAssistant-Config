@@ -14,7 +14,7 @@ cards:
           - entity: sensor.mpws2000_dew_point
             name: Dew pt
         yaxis:
-          - min: 0
+          - min: ~0
             max: ~100
             decimals: 0
 
@@ -37,13 +37,9 @@ cards:
         series:
           - entity: sensor.mpws2000_wind_speed
             name: Speed
+
           - entity: sensor.mpws2000_wind_gust
             name: Gust
-            type: line
-            group_by:
-              func: max
-              duration: 5m
-              fill: 'null'
 
         yaxis:
           - min: 0
@@ -51,6 +47,28 @@ cards:
             decimals: 0
             apex_config:
               tickAmount: 6
+
+      - type: custom:apexcharts-card
+        chart_type: scatter
+        config_templates: default
+        apex_config:
+          markers:
+            size: 2
+            strokeOpacity: 0
+            fillOpacity: 1
+            showNullDataPoints: false
+        header:
+          title: Wind direction
+        series:
+          - entity: sensor.mpws2000_wind_dir_avg_10m
+            name: Direction
+            opacity: 1
+        yaxis:
+          - min: 0
+            max: 360
+            decimals: 0
+            apex_config:
+              tickAmount: 4
 
       - type: glance
         show_name: true
@@ -62,24 +80,23 @@ cards:
 
   - type: custom:vertical-stack-in-card
     cards:
-      - type: custom:mini-graph-card
-        entities:
+      - type: custom:apexcharts-card
+        config_templates: default
+        header:
+          title: Rain
+        series:
           - entity: sensor.mpws2000_hourly_rain_rate
             name: Rate
-            show_state: true
-            state_adaptive_color: true
+
           - entity: sensor.mpws2000_daily_rain
             name: Daily
-            y_axis: secondary
-            show_state: true
-            state_adaptive_color: true
-        hours_to_show: 24
-        points_per_hour: 2
-        aggregate_func: max
-        line_width: 2
-        decimals: 1
-        show:
-          name: false
+
+        yaxis:
+          - min: 0
+            max: ~4
+            decimals: 0
+            apex_config:
+              tickAmount: 8
 
       - type: glance
         show_name: true
@@ -93,16 +110,32 @@ cards:
 
   - type: custom:vertical-stack-in-card
     cards:
-      - type: custom:mini-graph-card
-        entities:
+      - type: custom:apexcharts-card
+        config_templates: default
+        header:
+          title: Barometer
+        series:
           - entity: sensor.mpws2000_rel_pressure
-            name: Absolute
-            show_state: true
-            state_adaptive_color: true
-        hours_to_show: 24
-        points_per_hour: 2
-        aggregate_func: max
-        line_width: 2
-        decimals: 1
-        show:
-          name: false
+            name: Pressure
+
+        yaxis:
+          - min: ~28.5
+            max: ~30.5
+            apex_config:
+              tickAmount: 8
+
+  - type: custom:vertical-stack-in-card
+    cards:
+      - type: custom:apexcharts-card
+        config_templates: default
+        header:
+          title: Sun
+        series:
+          - entity: sensor.mpws2000_solar_rad
+            name: Solar radiation
+
+        yaxis:
+          - min: ~28.5
+            max: ~30.5
+            apex_config:
+              tickAmount: 8

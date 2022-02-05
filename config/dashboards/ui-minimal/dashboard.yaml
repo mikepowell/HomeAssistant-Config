@@ -1,4 +1,17 @@
 title: Minimal
+
+apexcharts_card_templates:
+  default:
+    graph_span: 24h
+    header:
+      show: true
+      show_states: true
+      colorize_states: true
+    all_series_config:
+      stroke_width: 1
+      opacity: 0.3
+      type: area
+
 views:
   - !include ../common-views/floor_b.yaml
   - !include ../common-views/floor_1.yaml

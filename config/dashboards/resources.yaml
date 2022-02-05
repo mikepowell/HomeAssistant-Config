@@ -8,18 +8,18 @@
 - url: /hacsfiles/button-text-card/button-text-card.js
   type: module
 
-# https://github.com/dangreco/threedy
-- url: /local/threedy-card.js
+# https://github.com/RomRider/apexcharts-card
+- url: /hacsfiles/apexcharts-card/apexcharts-card.js
+  type: module
+
+  # https://github.com/dangreco/threedy
+- url: /hacsfiles/threedy/threedy-card.js
   type: module
 
 # https://github.com/ofekashery/vertical-stack-in-card
-- url: /local/vertical-stack-in-card.js
+- url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
   type: module
 
 # https://github.com/kalkih/mini-graph-card
-- url: /local/mini-graph-card-bundle.js
-  type: module
-
-# https://github.com/RomRider/apexcharts-card
-- url: /local/apexcharts-card/apexcharts-card.js?v=1.10.0
+- url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
   type: module

@@ -9,20 +9,14 @@ apexcharts_card_templates:
       show_states: true
       colorize_states: true
     all_series_config:
-      stroke_width: 2
+      stroke_width: 1
       opacity: 0.3
       type: area
+      group_by:
+        func: max
+        duration: 5m
 
-  bandwidth_chart:
-    config_templates: default
-    header:
-      show: true
-      show_states: true
-      colorize_states: true
-    all_series_config:
-      stroke_width: 2
-      opacity: 0.3
-      type: area
+
 
 views:
   - !include ../common-views/floor_b.yaml

@@ -22,7 +22,7 @@ cards:
               - entity: binary_sensor.zw_basement_door_sensor
                 name: Basement
                 show_last_changed: true
-              - entity: binary_sensor.zw_gun_safe_sensor
+              - entity: binary_sensor.zw_gun_safe_door_sensor
                 name: Gun safe
                 show_last_changed: true
 
@@ -47,10 +47,10 @@ cards:
         cards:
           - type: glance
             entities:
-              - entity: binary_sensor.motion_garage
+              - entity: binary_sensor.garage_motion
                 name: Garage
                 show_last_changed: true
-              - entity: binary_sensor.motion_basement
+              - entity: binary_sensor.basement_motion
                 name: Basement
                 show_last_changed: true
               - entity: binary_sensor.zw_basement_stairs_multisensor_motion
@@ -66,11 +66,9 @@ cards:
       - type: picture-glance
         title: Garage
         entities:
-          - entity: binary_sensor.motion_garage
+          - entity: binary_sensor.garage_motion
           - entity: switch.zw_garage_floodlight
-          - entity: switch.ir_active_garage
-          - entity: switch.hdr_mode_garage
-        camera_image: camera.garage
+        camera_image: camera.garage_high
         tap_action:
           action: more-info
         hold_action:
@@ -88,10 +86,8 @@ cards:
       - type: picture-glance
         title: Basement
         entities:
-          - entity: binary_sensor.motion_basement
-          - entity: switch.ir_active_basement
-          - entity: switch.hdr_mode_basement
-        camera_image: camera.basement
+          - entity: binary_sensor.basement_motion
+        camera_image: camera.basement_high
         tap_action:
           action: more-info
         hold_action:

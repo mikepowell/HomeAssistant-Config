@@ -1,49 +1,28 @@
 """Config flow for Remote Home-Assistant integration."""
 import logging
+import enum
+
 from urllib.parse import urlparse
 
-import voluptuous as vol
-
-from homeassistant import config_entries, core
-from homeassistant.helpers.instance_id import async_get
 import homeassistant.helpers.config_validation as cv
-from homeassistant.const import (
-    CONF_HOST,
-    CONF_PORT,
-    CONF_VERIFY_SSL,
-    CONF_ACCESS_TOKEN,
-    CONF_ENTITY_ID,
-    CONF_UNIT_OF_MEASUREMENT,
-    CONF_ABOVE,
-    CONF_BELOW,
-)
+import voluptuous as vol
+from homeassistant import config_entries, core
+from homeassistant.const import (CONF_ABOVE, CONF_ACCESS_TOKEN, CONF_BELOW,
+                                 CONF_ENTITY_ID, CONF_HOST, CONF_PORT,
+                                 CONF_UNIT_OF_MEASUREMENT, CONF_VERIFY_SSL, CONF_TYPE)
 from homeassistant.core import callback
+from homeassistant.helpers.instance_id import async_get
 from homeassistant.util import slugify
 
 from . import async_yaml_to_config_entry
-from .rest_api import (
-    ApiProblem,
-    CannotConnect,
-    InvalidAuth,
-    UnsupportedVersion,
-    async_get_discovery_info,
-)
-from .const import (
-    CONF_REMOTE_CONNECTION,
-    CONF_SECURE,
-    CONF_LOAD_COMPONENTS,
-    CONF_SERVICE_PREFIX,
-    CONF_SERVICES,
-    CONF_FILTER,
-    CONF_SUBSCRIBE_EVENTS,
-    CONF_ENTITY_PREFIX,
-    CONF_INCLUDE_DOMAINS,
-    CONF_INCLUDE_ENTITIES,
-    CONF_EXCLUDE_DOMAINS,
-    CONF_EXCLUDE_ENTITIES,
-    CONF_OPTIONS,
-    DOMAIN,
-)  # pylint:disable=unused-import
+from .const import (CONF_ENTITY_PREFIX,  # pylint:disable=unused-import
+                    CONF_EXCLUDE_DOMAINS, CONF_EXCLUDE_ENTITIES, CONF_FILTER,
+                    CONF_INCLUDE_DOMAINS, CONF_INCLUDE_ENTITIES,
+                    CONF_LOAD_COMPONENTS, CONF_MAIN, CONF_OPTIONS, CONF_REMOTE, CONF_REMOTE_CONNECTION,
+                    CONF_SECURE, CONF_SERVICE_PREFIX, CONF_SERVICES,
+                    CONF_SUBSCRIBE_EVENTS, DOMAIN, REMOTE_ID)
+from .rest_api import (ApiProblem, CannotConnect, EndpointMissing, InvalidAuth,
+                       UnsupportedVersion, async_get_discovery_info)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -77,6 +56,13 @@ async def validate_input(hass: core.HomeAssistant, conf):
     return {"title": info["location_name"], "uuid": info["uuid"]}
 
 
+class InstanceType(enum.Enum):
+    """Possible options for instance type."""
+
+    remote = "Setup as remote node"
+    main = "Add a remote"
+
+
 class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     """Handle a config flow for Remote Home-Assistant."""
 
@@ -96,6 +82,32 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input=None):
         """Handle the initial step."""
         errors = {}
+
+        if user_input is not None:
+            if user_input[CONF_TYPE] == CONF_REMOTE:
+                await self.async_set_unique_id(REMOTE_ID)
+                self._abort_if_unique_id_configured()
+                return self.async_create_entry(title="Remote instance", data=user_input)
+
+            elif user_input[CONF_TYPE] == CONF_MAIN:
+                return await self.async_step_connection_details()
+            
+            errors["base"] = "unknown"
+            
+        return self.async_show_form(
+            step_id="user",
+            data_schema=vol.Schema(
+                {
+                    vol.Required(CONF_TYPE): vol.In([CONF_REMOTE, CONF_MAIN])
+                }
+            ),
+            errors=errors,
+        )
+
+
+    async def async_step_connection_details(self, user_input=None):
+        """Handle the connection details step."""
+        errors = {}
         if user_input is not None:
             try:
                 info = await validate_input(self.hass, user_input)
@@ -107,6 +119,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 errors["base"] = "invalid_auth"
             except UnsupportedVersion:
                 errors["base"] = "unsupported_version"
+            except EndpointMissing:
+                errors["base"] = "missing_endpoint"
             except Exception:  # pylint: disable=broad-except
                 _LOGGER.exception("Unexpected exception")
                 errors["base"] = "unknown"
@@ -119,7 +133,7 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         port = self.prefill.get(CONF_PORT) or vol.UNDEFINED
         secure = self.prefill.get(CONF_SECURE) or vol.UNDEFINED
         return self.async_show_form(
-            step_id="user",
+            step_id="connection_details",
             data_schema=vol.Schema(
                 {
                     vol.Required(CONF_HOST, default=host): str,
@@ -134,7 +148,8 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_zeroconf(self, info):
         """Handle instance discovered via zeroconf."""
-        properties = info["properties"]
+        properties = info.properties
+        port = info.port
         uuid = properties["uuid"]
 
         await self.async_set_unique_id(uuid)
@@ -150,14 +165,14 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         self.prefill = {
             CONF_HOST: url.hostname,
-            CONF_PORT: url.port,
+            CONF_PORT: port,
             CONF_SECURE: url.scheme == "https",
         }
 
         # pylint: disable=no-member # https://github.com/PyCQA/pylint/issues/3167
         self.context["identifier"] = self.unique_id
         self.context["title_placeholders"] = {"name": properties["location_name"]}
-        return await self.async_step_user()
+        return await self.async_step_connection_details()
 
     async def async_step_import(self, user_input):
         """Handle import from YAML."""
@@ -183,7 +198,7 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
     """Handle options flow for the Home Assistant remote integration."""
 
     def __init__(self, config_entry):
-        """Initialize localtuya options flow."""
+        """Initialize remote_homeassistant options flow."""
         self.config_entry = config_entry
         self.filters = None
         self.events = None
@@ -191,6 +206,9 @@ class OptionsFlowHandler(config_entries.OptionsFlow):
 
     async def async_step_init(self, user_input=None):
         """Manage basic options."""
+        if self.config_entry.unique_id == REMOTE_ID:
+            return
+        
         if user_input is not None:
             self.options = user_input.copy()
             return await self.async_step_domain_entity_filters()

@@ -4,64 +4,45 @@ Connect two Home Assistant instances via the Websocket API.
 For more details about this component, please refer to the documentation at
 https://home-assistant.io/components/remote_homeassistant/
 """
-import fnmatch
-import logging
-import copy
 import asyncio
+import copy
+import fnmatch
 import inspect
+import logging
+import re
 from contextlib import suppress
 
 import aiohttp
-import re
-
-import voluptuous as vol
-
-from homeassistant.core import HomeAssistant, callback, Context
 import homeassistant.components.websocket_api.auth as api
-from homeassistant.core import EventOrigin, split_entity_id
-from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
-from homeassistant.helpers.typing import HomeAssistantType, ConfigType
-from homeassistant.const import (
-    CONF_HOST,
-    CONF_PORT,
-    EVENT_CALL_SERVICE,
-    EVENT_HOMEASSISTANT_STOP,
-    EVENT_STATE_CHANGED,
-    CONF_EXCLUDE,
-    CONF_ENTITIES,
-    CONF_ENTITY_ID,
-    CONF_DOMAINS,
-    CONF_INCLUDE,
-    CONF_UNIT_OF_MEASUREMENT,
-    CONF_ABOVE,
-    CONF_BELOW,
-    CONF_VERIFY_SSL,
-    CONF_ACCESS_TOKEN,
-    SERVICE_RELOAD,
-)
+import homeassistant.helpers.config_validation as cv
+import voluptuous as vol
 from homeassistant.config import DATA_CUSTOMIZE
+from homeassistant.config_entries import SOURCE_IMPORT, ConfigEntry
+from homeassistant.const import (CONF_ABOVE, CONF_ACCESS_TOKEN, CONF_BELOW,
+                                 CONF_DOMAINS, CONF_ENTITIES, CONF_ENTITY_ID,
+                                 CONF_EXCLUDE, CONF_HOST, CONF_INCLUDE,
+                                 CONF_PORT, CONF_UNIT_OF_MEASUREMENT,
+                                 CONF_VERIFY_SSL, EVENT_CALL_SERVICE,
+                                 EVENT_HOMEASSISTANT_STOP, EVENT_STATE_CHANGED,
+                                 SERVICE_RELOAD)
+from homeassistant.core import (Context, EventOrigin, HomeAssistant, callback,
+                                split_entity_id)
 from homeassistant.helpers import device_registry as dr
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from homeassistant.helpers.reload import async_integration_yaml_config
-import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.dispatcher import async_dispatcher_send
+from homeassistant.helpers.reload import async_integration_yaml_config
+from homeassistant.helpers.typing import ConfigType, HomeAssistantType
 from homeassistant.setup import async_setup_component
 
-from .const import (
-    CONF_REMOTE_CONNECTION,
-    CONF_UNSUB_LISTENER,
-    CONF_INCLUDE_DOMAINS,
-    CONF_INCLUDE_ENTITIES,
-    CONF_EXCLUDE_DOMAINS,
-    CONF_EXCLUDE_ENTITIES,
-    CONF_OPTIONS,
-    CONF_LOAD_COMPONENTS,
-    CONF_SERVICE_PREFIX,
-    CONF_SERVICES,
-    DOMAIN,
-)
-from .rest_api import UnsupportedVersion, async_get_discovery_info
+from custom_components.remote_homeassistant.views import DiscoveryInfoView
+
+from .const import (CONF_EXCLUDE_DOMAINS, CONF_EXCLUDE_ENTITIES,
+                    CONF_INCLUDE_DOMAINS, CONF_INCLUDE_ENTITIES,
+                    CONF_LOAD_COMPONENTS, CONF_OPTIONS, CONF_REMOTE_CONNECTION,
+                    CONF_SERVICE_PREFIX, CONF_SERVICES, CONF_UNSUB_LISTENER,
+                    DOMAIN, REMOTE_ID)
 from .proxy_services import ProxyServices
+from .rest_api import UnsupportedVersion, async_get_discovery_info
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -199,6 +180,10 @@ async def _async_update_config_entry_if_from_yaml(hass, entries_by_id, conf):
             hass.config_entries.async_update_entry(entry, data=data, options=options)
 
 
+async def setup_remote_instance(hass: HomeAssistantType):
+    hass.http.register_view(DiscoveryInfoView())
+
+
 async def async_setup(hass: HomeAssistantType, config: ConfigType):
     """Set up the remote_homeassistant component."""
     hass.data.setdefault(DOMAIN, {})
@@ -221,6 +206,8 @@ async def async_setup(hass: HomeAssistantType, config: ConfigType):
 
         await asyncio.gather(*update_tasks)
 
+    hass.async_create_task(setup_remote_instance(hass))
+
     hass.helpers.service.async_register_admin_service(
         DOMAIN,
         SERVICE_RELOAD,
@@ -234,35 +221,40 @@ async def async_setup(hass: HomeAssistantType, config: ConfigType):
                 DOMAIN, context={"source": SOURCE_IMPORT}, data=instance
             )
         )
+
     return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     """Set up Remote Home-Assistant from a config entry."""
     _async_import_options_from_yaml(hass, entry)
-    remote = RemoteConnection(hass, entry)
+    if entry.unique_id == REMOTE_ID:
+        hass.async_create_task(setup_remote_instance(hass))
+        return True
+    else:
+        remote = RemoteConnection(hass, entry)
 
-    hass.data[DOMAIN][entry.entry_id] = {
-        CONF_REMOTE_CONNECTION: remote,
-        CONF_UNSUB_LISTENER: entry.add_update_listener(_update_listener),
-    }
+        hass.data[DOMAIN][entry.entry_id] = {
+            CONF_REMOTE_CONNECTION: remote,
+            CONF_UNSUB_LISTENER: entry.add_update_listener(_update_listener),
+        }
 
-    async def setup_components_and_platforms():
-        """Set up platforms and initiate connection."""
-        for domain in entry.options.get(CONF_LOAD_COMPONENTS, []):
-            hass.async_create_task(async_setup_component(hass, domain, {}))
+        async def setup_components_and_platforms():
+            """Set up platforms and initiate connection."""
+            for domain in entry.options.get(CONF_LOAD_COMPONENTS, []):
+                hass.async_create_task(async_setup_component(hass, domain, {}))
 
-        await asyncio.gather(
-            *[
-                hass.config_entries.async_forward_entry_setup(entry, platform)
-                for platform in PLATFORMS
-            ]
-        )
-        await remote.async_connect()
+            await asyncio.gather(
+                *[
+                    hass.config_entries.async_forward_entry_setup(entry, platform)
+                    for platform in PLATFORMS
+                ]
+            )
+            await remote.async_connect()
 
-    hass.async_create_task(setup_components_and_platforms())
+        hass.async_create_task(setup_components_and_platforms())
 
-    return True
+        return True
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
@@ -442,7 +434,7 @@ class RemoteConnection(object):
             name=info.get("location_name"),
             manufacturer="Home Assistant",
             model=info.get("installation_type"),
-            sw_version=info.get("version"),
+            sw_version=info.get("ha_version"),
         )
 
         asyncio.ensure_future(self._recv())

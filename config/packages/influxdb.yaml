@@ -6,5 +6,10 @@
 # https://philhawthorne.com/getting-started-with-grafana-influxdb-for-home-assistant/
 #
 influxdb:
+  api_version: 2
+  ssl: false
   host: 192.168.10.13
   port: 8086
+  organization: 681db025a8db1def
+  bucket: Home Assistant
+  token: !secret influxdb_api_token

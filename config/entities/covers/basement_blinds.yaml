@@ -1,0 +1,6 @@
+- platform: group
+  name: "Basement Blinds"
+  entities:
+    - cover.zw_basement_blind_left
+    - cover.zw_basement_blind_center
+    - cover.zw_basement_blind_right

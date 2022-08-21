@@ -59,7 +59,6 @@ scene: !include scenes.yaml
 scene mine: !include_dir_merge_list scenes
 
 # Add entity-specific configurations
-group: !include_dir_merge_named entities/groups
 binary_sensor: !include_dir_list entities/binary_sensors
 input_select: !include_dir_named entities/input_select
 cover: !include_dir_merge_list entities/covers

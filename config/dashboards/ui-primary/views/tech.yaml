@@ -11,29 +11,32 @@ cards:
             entity: sensor.docker_home_assistant_cpu
             min: 0
             max: 100
+            needle: true
             name: CPU (Cores)
             severity:
               green: 0
-              yellow: 20
-              red: 40
+              yellow: 80
+              red: 90
           - type: gauge
             entity: sensor.docker_home_assistant_1cpu
             min: 0
             max: 100
+            needle: true
             name: CPU (Overall)
             severity:
               green: 0
-              yellow: 20
-              red: 40
+              yellow: 80
+              red: 90
           - type: gauge
             entity: sensor.docker_home_assistant_memory_percent
             min: 0
             max: 100
+            needle: true
             name: Memory
             severity:
               green: 0
-              yellow: 20
-              red: 40
+              yellow: 80
+              red: 90
 
       - type: horizontal-stack
         cards:
@@ -110,8 +113,8 @@ cards:
             name: CPU (Cores)
             severity:
               green: 0
-              yellow: 20
-              red: 40
+              yellow: 80
+              red: 90
           - type: gauge
             entity: sensor.docker_portainer_1cpu
             min: 0
@@ -119,8 +122,8 @@ cards:
             name: CPU (Overall)
             severity:
               green: 0
-              yellow: 20
-              red: 40
+              yellow: 80
+              red: 90
           - type: gauge
             entity: sensor.docker_portainer_memory_percent
             min: 0
@@ -128,8 +131,8 @@ cards:
             name: Memory
             severity:
               green: 0
-              yellow: 20
-              red: 40
+              yellow: 80
+              red: 90
       - type: glance
         show_name: false
         entities:
@@ -155,6 +158,7 @@ cards:
             min: 0
             max: 100
             name: CPU
+            needle: true
             severity:
               green: 0
               yellow: 40
@@ -164,6 +168,7 @@ cards:
             min: 0
             max: 100
             name: RAM
+            needle: true
             severity:
               green: 0
               yellow: 50
@@ -193,3 +198,19 @@ cards:
         entities:
           - entity: binary_sensor.zw_rpi_power_status
             name: Power status
+
+  - type: custom:vertical-stack-in-card
+    title: Speed Test
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.speedtest_download
+            min: 0
+            max: 60
+            name: DOWN
+          - type: gauge
+            entity: sensor.speedtest_upload
+            min: 0
+            max: 60
+            name: UP

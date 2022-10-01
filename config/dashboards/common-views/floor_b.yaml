@@ -50,5 +50,8 @@ cards:
           - entity: automation.turn_on_basement_stairs_light_on_motion
             name: Automation - Basement stairs motion
             icon: mdi:motion-sensor
+          - entity: input_boolean.watching_movie
+            name: Watching a movie
+
 
 

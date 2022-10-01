@@ -1,0 +1,17 @@
+- alias: Start watching a movie
+  trigger:
+    platform: state
+    entity_id: input_boolean.watching_movie
+    to: 'on'
+  action:
+    service: script.watch_movie_on
+  mode: single
+
+- alias: Stop watching a movie
+  trigger:
+    platform: state
+    entity_id: input_boolean.watching_movie
+    to: 'off'
+  action:
+    service: script.watch_movie_off
+  mode: single

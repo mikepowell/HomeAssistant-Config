@@ -61,10 +61,14 @@ scene mine: !include_dir_merge_list scenes
 # Add entity-specific configurations
 binary_sensor: !include_dir_list entities/binary_sensors
 input_select: !include_dir_named entities/input_select
+input_boolean: !include_dir_named entities/input_boolean
 cover: !include_dir_merge_list entities/covers
 light: !include_dir_merge_list entities/lights
 sensor: !include_dir_merge_list entities/sensors
 alert: !include_dir_named alerts
 
 # Add scripts
-script: !include_dir_named scripts
+script: !include scripts.yaml
+script mine: !include_dir_merge_named scripts
+
+

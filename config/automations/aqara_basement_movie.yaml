@@ -1,0 +1,39 @@
+# Handles the three click types for the spare room button
+# (single click, double click, hold)
+- id: aqara_basement_movie
+  alias: Aqara wireless remote basement movie
+  mode: single
+
+  trigger:
+    platform: event
+    event_type: zha_event
+
+  condition:
+    condition: template
+    value_template: '{{ trigger.event.data.device_ieee == "00:15:8d:00:02:83:ee:de" }}'
+
+  action:
+    - choose:
+        # Single click
+        - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.command == "single" }}'
+          sequence:
+            - service: input_boolean.toggle
+              entity_id: input_boolean.watching_movie
+
+        # Double click
+        - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.command == "double" }}'
+          sequence:
+            - service: input_boolean.turn_off
+              entity_id: input_boolean.watching_movie
+
+        # Hold
+        - conditions:
+            - condition: template
+              value_template: '{{ trigger.event.data.command == "hold" }}'
+          sequence:
+            - service: input_boolean.turn_on
+              entity_id: input_boolean.watching_movie

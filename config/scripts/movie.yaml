@@ -1,0 +1,56 @@
+watch_movie_on:
+  alias: Start watching a movie
+  sequence:
+  - service: cover.close_cover
+    target:
+      entity_id: cover.basement_blinds
+  - service: light.turn_on
+    target:
+      entity_id: light.zw_basement_desk_lamp_color
+    data:
+      brightness: 255
+  - service: light.turn_on
+    target:
+      entity_id: light.zw_basement_counter_lights
+    data:
+      brightness: 30
+  - service: light.turn_off
+    target:
+      entity_id: light.zw_basement_stair_lights
+  - service: automation.turn_off
+    target:
+      entity_id: automation.turn_on_basement_stairs_light_on_motion
+  - service: remote.turn_on
+    target:
+      entity_id: remote.basement_harmony
+    data:
+      activity: "Watch Roku"
+  mode: single
+  icon: mdi:movie-open-play
+
+watch_movie_off:
+  alias: Stop watching a movie
+  sequence:
+  - service: cover.open_cover
+    target:
+      entity_id: cover.basement_blinds
+  - service: light.turn_off
+    target:
+      entity_id: light.zw_basement_desk_lamp_color
+  - service: light.turn_off
+    target:
+      entity_id: light.zw_basement_counter_lights
+  - service: light.turn_on
+    target:
+      entity_id: light.zw_basement_stair_lights
+  - service: automation.turn_on
+    target:
+      entity_id: automation.turn_on_basement_stairs_light_on_motion
+  - service: remote.turn_on
+    target:
+      entity_id: remote.basement_harmony
+    data:
+      activity: "PowerOff"
+  mode: single
+  icon: mdi:movie-open-play
+

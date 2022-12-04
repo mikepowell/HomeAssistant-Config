@@ -72,7 +72,7 @@ cards:
               action: toggle
 
           - type: button
-            entity: light.christmas_tree_lights
+            entity: switch.christmas_tree
             hold_action:
               action: more-info
             icon: 'mdi:string-lights'

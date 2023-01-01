@@ -2,10 +2,6 @@ watch_movie_on:
   alias: Start watching a movie
   sequence:
   - service: cover.close_cover
-    condition:
-      condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
     target:
       entity_id: cover.basement_blinds
   - service: light.turn_on

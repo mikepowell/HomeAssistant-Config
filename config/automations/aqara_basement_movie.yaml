@@ -1,4 +1,4 @@
-# Handles the three click types for the spare room button
+# Handles the three click types for the basement button
 # (single click, double click, hold)
 - id: aqara_basement_movie
   alias: Aqara wireless remote basement movie

@@ -25,12 +25,6 @@
     - light.zw_bookshelf_lights
 
 - platform: group
-  name: Spare room dresser lamp
-  entities:
-    - light.zw_spare_room_dresser_bulb_1
-    - light.zw_spare_room_dresser_bulb_2
-
-- platform: group
   name: Mudroom lights
   entities:
     - light.zw_mudroom_cabinet_lights_1
